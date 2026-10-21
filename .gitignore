@@ -1,0 +1,15 @@
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info/
+
+.env
+.venv/
+.idea/
+.vscode/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+media/

@@ -1,0 +1,150 @@
+.why-us {
+  background:
+    radial-gradient(
+      ellipse 860px 265px at -5% 95%,
+      rgba(224, 135, 45, 0.08),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 1340px 410px at -25% 85%,
+      rgba(224, 72, 45, 0.08),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 1470px 400px at -15% 75%,
+      rgba(224, 45, 55, 0.06),
+      transparent 100%
+    ),
+    #0e1014;
+  overflow: hidden;
+  view-timeline-name: --why-us;
+  view-timeline-axis: block;
+}
+.why-us-content {
+  padding: 100px 80px;
+  display: flex;
+  flex-direction: column;
+}
+.why-us-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.first-line,
+.second-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  white-space: nowrap;
+}
+.why-us-timeline img {
+  display: block;
+  flex: 0 0 auto;
+  width: 98px;
+  height: 64px;
+  object-fit: cover;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+}
+.why-us-timeline span {
+  flex: 0 0 auto;
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: white;
+}
+.why-us-achievements {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.achievements {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.achievements div {
+  min-width: 305px;
+}
+
+.achievements h1 {
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 1);
+}
+.achievements h1 strong {
+  font-family: JetBrains Mono;
+  font-weight: 500;
+  font-size: 98px;
+  color: rgba(255, 255, 255, 1);
+}
+.achievements p {
+  font-family: JetBrains Mono;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+}
+.achievements span {
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .first-line {
+      animation: why-from-left 1s linear both;
+      animation-timeline: --why-us;
+      animation-range: entry 75% cover 35%;
+    }
+
+    .second-line {
+      animation: why-from-right 1s linear both;
+      animation-timeline: --why-us;
+      animation-range: entry 75% cover 35%;
+    }
+  }
+}
+
+@keyframes why-from-left {
+  from {
+    transform: translateX(-80px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes why-from-right {
+  from {
+    transform: translateX(45vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

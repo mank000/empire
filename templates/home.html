@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/running-string.css' %}">
     <link rel="stylesheet" href="{% static 'css/01-expertise.css' %}">
     <link rel="stylesheet" href="{% static 'css/02-services.css' %}">
+    <link rel="stylesheet" href="{% static 'css/03-why-us.css' %}">
 {% endblock %}
 {% block title %}Монтажная Империя{% endblock %}
 {% block content %}
@@ -12,4 +15,5 @@
     {% include "includes/running-string.html" %}
     {% include "includes/01-expertise.html" %}
     {% include "includes/02-services.html" %}
+    {% include "includes/03-why-us.html" %}
 {% endblock %}

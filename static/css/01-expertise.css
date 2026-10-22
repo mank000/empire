@@ -39,20 +39,7 @@
   text-transform: uppercase;
   color: white;
 }
-.expertise-top span {
-  font-family: JetBrains Mono;
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 16px;
-  leading-trim: NONE;
-  line-height: 18px;
-  letter-spacing: 0%;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-.expertise-top span svg {
-  margin-bottom: 4.5px;
-}
+
 .expertise-description {
   text-align: left;
   font-family: Onest;

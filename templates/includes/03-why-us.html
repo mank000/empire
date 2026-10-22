@@ -1,0 +1,69 @@
+{% load static %}
+<section class="why-us">
+    <div class="why-us-content">
+        <h3 class="redline">
+            03
+            <svg width="24"
+                 height="2"
+                 viewBox="0 0 24 2"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="2" fill="#E02D37" />
+            </svg>
+            ПОЧЕМУ МЫ
+        </h3>
+        <div class="why-us-timeline">
+            <div class="first-line">
+                <span>Эти цифры объясняют</span>
+                <img src="{% static 'img/first-timeline.jpg' %}" alt="first-timeline">
+                <span>почему нас зовут</span>
+                <img src="{% static 'img/second-timeline.jpg' %}" alt="second-timeline">
+            </div>
+            <div class="second-line">
+                <img src="{% static 'img/third-timeline.jpg' %}" alt="third-timeline">
+                <span>на сложные объекты</span>
+            </div>
+        </div>
+        <div class="why-us-achievements">
+            <div class="achievements">
+                <div>
+                    <h1><strong>12</strong> лет</h1>
+                    <p>НА РЫНКЕ ПРИМОРЬЯ</p>
+                    <span>работаем с 2013 года</span>
+                </div>
+                <div>
+                    <h1><strong>450</strong>  +</h1>
+                    <p>Объектов сдано</p>
+                    <span>от квартиры до сети филиалов</span>
+                </div>
+                <div>
+                    <h1><strong>98</strong>  %</h1>
+                    <p>Приёмка с первого раза</p>
+                    <span>включая государственные объекты</span>
+                </div>
+            </div>
+            <a href="#" class="red-button">
+                <span class="red-button-text">Оставить заявку</span>
+                <span class="red-button-arrow">
+                    <svg width="24"
+                         class="arrow-default"
+                         height="24"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.5 12H20.33M14.4297 5.92969L20.4997 11.9997L14.4297 18.0697" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="bevel" stroke="white" />
+                    </svg>
+                    <svg class="arrow-hover"
+                         width="34"
+                         height="34"
+                         viewBox="0 0 34 34"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.3962 10.96L22.9805 10.96L22.9805 19.5442" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="bevel" stroke="white" />
+                        <path d="M10.9602 22.981L22.8608 11.0804" stroke-width="2" stroke-miterlimit="10" stroke="white" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+    </div>
+</section>

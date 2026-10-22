@@ -5,73 +5,8 @@
     <link rel="stylesheet" href="{% static 'css/running-string.css' %}">
 {% endblock %}
 {% block title %}Монтажная Империя{% endblock %}
-
 {% block content %}
-    <div class="first-page">
-        <div class="block-with-video">
-            <video class="video" autoplay muted loop playsinline>
-                <source src="{% static 'video/magnific-luxury-cinematic.mp4' %}" type="video/mp4">
-            </video>
-            <div class="video-overlay"></div>
-            <div class="video-content">
-                <div class="rectangles">
-                    <div class="top">
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="8" height="8" rx="4" fill="#E02D37"/>
-                        </svg>
-                        <span>
-                            REC 00:00:00
-                        </span>
-                    </div>
-                    <div class="heading">
-                        <h1>СИСТЕМЫ ЗАЩИТЫ</h1>
-                        <span>Проектируем, монтируем и настраиваем системы безопасности и электрику — от квартиры до распределённой сети филиалов.</span>
-                    </div>
-                    <div class="advantages">
-                        <div>
-                            <span>Бизнесу и частным клиентам</span>
-                        </div>
-                        <div>
-                            <span>Один подрядчик на весь цикл</span>
-                        </div>
-                        <div>
-                            <span>Бесплатный выезд инженера</span>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <div class="footer-left">
-                            <span class="upper-button">
-                                Установим любые системы защиты во Владивостоке<br> под ключ: проект, оборудование, монтаж и сдача объекта
-                            </span>
-                            <a href="#" class="red-button">
-                                <span class="red-button-text">
-                                    Оставить заявку
-                                </span>
-                                <span class="red-button-arrow">
-                                →
-                                </span>
-                            </a>
-                        </div>
-                        <div class="footer-date">
-                            <span>DATE / 06.08.2026</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="running-string">
-        <div class="track">
-            <div class="track-item">
-                <span>СКУД　▪　ДОМОФОНЫ　▪　ОХРАННАЯ СИГНАЛИЗАЦИЯ　▪　ПОЖАРНАЯ СИГНАЛИЗАЦИЯ　▪　СКС　▪　ЭЛЕКТРОМОНТАЖ　▪　МОНТАЖНАЯ ИНЖЕНЕРИЯ　▪　ВИДЕОНАБЛЮДЕНИЕ　▪　СКУД　▪　ДОМОФОНЫ　▪　ОХРАННАЯ СИГНАЛИЗАЦИЯ　▪　ПОЖАРНАЯ СИГНАЛИЗАЦИЯ　▪　СКС　▪　ЭЛЕКТРОМОНТАЖ　▪　МОНТАЖНАЯ ИНЖЕНЕРИЯ　▪　ВИДЕОНАБЛЮДЕНИЕ　▪</span>
-            </div>
-
-            <div class="track-item" aria-hidden="true">
-                <span>СКУД　▪　ДОМОФОНЫ　▪　ОХРАННАЯ СИГНАЛИЗАЦИЯ　▪　ПОЖАРНАЯ СИГНАЛИЗАЦИЯ　▪　СКС　▪　ЭЛЕКТРОМОНТАЖ　▪　МОНТАЖНАЯ ИНЖЕНЕРИЯ　▪　ВИДЕОНАБЛЮДЕНИЕ　▪　СКУД　▪　ДОМОФОНЫ　▪　ОХРАННАЯ СИГНАЛИЗАЦИЯ　▪　ПОЖАРНАЯ СИГНАЛИЗАЦИЯ　▪　СКС　▪　ЭЛЕКТРОМОНТАЖ　▪　МОНТАЖНАЯ ИНЖЕНЕРИЯ　▪　ВИДЕОНАБЛЮДЕНИЕ　▪</span>
-            </div>
-        </div>
-    </div>
-    
-    
+    {% include "includes/first-page.html" %}
+    {% include "includes/running-string.html" %}
+    {% include "includes/expertise.html" %}
 {% endblock %}

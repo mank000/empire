@@ -1,42 +1,42 @@
 .running-string {
-    width: 100%;
-    height: 58px;
-    background: #E02D37;
-    overflow: hidden;
+  width: 100%;
+  height: 58px;
+  background: #e02d37;
+  overflow: hidden;
 }
 
 .track {
-    display: flex;
-    width: max-content;
-    height: 100%;
-    align-items: center;
+  display: flex;
+  width: max-content;
+  height: 100%;
+  align-items: center;
 
-    animation: track-scroll 50s linear infinite;
+  animation: track-scroll 50s linear infinite;
 }
 
 .track-item {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding-right: 24px;
-    color: white;
-    font-family: "JetBrains Mono";
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 18px
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding-right: 24px;
+  color: white;
+  font-family: "JetBrains Mono";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 18px;
 }
 
 @keyframes track-scroll {
-    from {
-        transform: translateX(0);
-    }
+  from {
+    transform: translateX(0);
+  }
 
-    to {
-        transform: translateX(-50%);
-    }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .track {
-        animation: none;
-    }
+  .track {
+    animation: none;
+  }
 }

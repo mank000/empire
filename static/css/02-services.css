@@ -3,7 +3,7 @@
   margin: 60px auto 0;
   grid-template-columns: 362fr 362fr 524fr;
   grid-template-rows: repeat(3, 269px);
-  max-width: 1280px;
+
   width: 100%;
   gap: 16px;
   grid-template-areas:
@@ -71,10 +71,9 @@
 
 .surveillance .service-image {
   height: 227px;
-  right: 0;
+  right: 8px;
   width: 294px;
-  max-width: 55%;
-  bottom: 0;
+  bottom: 9px;
 }
 
 .access {
@@ -168,9 +167,21 @@
 .services-content {
   padding: 100px 80px 80px 80px;
   background:
-    radial-gradient(ellipse 700px 340px at 88% 22%, rgba(224, 135, 45, 0.12), transparent 100%),
-    radial-gradient(ellipse 1050px 430px at 78% 27%, rgba(224, 72, 45, 0.12), transparent 100%),
-    radial-gradient(ellipse 1100px 430px at 58% 35%, rgba(224, 45, 55, 0.10), transparent 100%),
+    radial-gradient(
+      ellipse 700px 340px at 88% 22%,
+      rgba(224, 135, 45, 0.12),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 1050px 430px at 78% 27%,
+      rgba(224, 72, 45, 0.12),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 1100px 430px at 58% 35%,
+      rgba(224, 45, 55, 0.1),
+      transparent 100%
+    ),
     #151619;
   clip-path: polygon(
     var(--cut) 0,
@@ -187,14 +198,16 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  max-width: 1280px;
+
   margin-inline: auto;
 }
 .services-top {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 840px;
+}
+.services-top svg {
+  margin-bottom: 4.5px;
 }
 .services-top > span {
   font-family: "JetBrains Mono", monospace;

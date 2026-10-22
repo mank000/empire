@@ -1,0 +1,71 @@
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.45fr;
+  grid-template-rows: repeat(3, 220px);
+  gap: 12px;
+  grid-template-areas:
+    "video video access"
+    "security fire electrical"
+    "intercom network electrical";
+}
+
+.surveillance {
+  grid-area: video;
+}
+
+.access {
+  grid-area: access;
+}
+
+.security {
+  grid-area: security;
+}
+
+.fire {
+  grid-area: fire;
+}
+
+.electrical {
+  grid-area: electrical;
+}
+
+.intercom {
+  grid-area: intercom;
+}
+
+.network {
+  grid-area: network;
+}
+
+.service-card {
+  background: #151619;
+  padding: 28px;
+  min-width: 0;
+}
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 55%;
+  height: auto;
+  pointer-events: none;
+}
+
+.services {
+  --cut: 40px;
+
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+}

@@ -1,0 +1,183 @@
+.expertise {
+  background-image: url("../img/Illustration.png");
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  background-image: url("../img/Illustration.png");
+  background-size: cover;
+  background-position: center;
+}
+.expertise-content {
+  padding-top: 100px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 1;
+}
+.expertise-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.expertise-top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 840px;
+}
+.expertise-top h2 {
+  margin: 0;
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: white;
+}
+.expertise-top span {
+  font-family: JetBrains Mono;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 18px;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.expertise-top span svg {
+  margin-bottom: 4.5px;
+}
+.expertise-description {
+  text-align: left;
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: rgba(243, 242, 242, 0.5);
+  max-width: 500px;
+}
+.expertise-description strong {
+  font-weight: 400;
+  color: rgba(243, 242, 242, 1);
+}
+.expertise-cards {
+  display: flex;
+  margin-top: 52px;
+  gap: 16px;
+}
+.expertise-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  flex: 1;
+  min-width: 0;
+
+  box-sizing: border-box;
+  background: #151619;
+
+  background: rgba(21, 22, 25, 1);
+  padding: 32px;
+}
+.expertise-card h2 {
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+}
+.expertise-card span {
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 12px;
+}
+.expertise-card img {
+  width: 125px;
+  height: 125px;
+}
+.expertise-card-text {
+  flex: 1;
+  min-width: 0;
+}
+.expertise-card-image {
+  flex: 0 0 125px;
+}
+
+.expertise-card-image img {
+  display: block;
+  width: 125px;
+  height: 125px;
+  object-fit: contain;
+}
+
+/* Контейнер засвета */
+.expertise-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glow-ellipse {
+  position: absolute;
+  border-radius: 50%;
+}
+
+/* Ellipse 1 — оранжевая */
+.ellipse-1 {
+  width: 861.81px;
+  height: 263.78px;
+  left: 477.39px;
+  top: -172.36px;
+
+  background: rgba(224, 135, 45, 0.08);
+  filter: blur(62.0182px);
+  transform: matrix(1, 0.03, 0.16, -0.99, 0, 0);
+}
+
+/* Ellipse 2 — красная */
+.ellipse-2 {
+  width: 1471.65px;
+  height: 402.02px;
+  left: -75.62px;
+  top: -273.74px;
+
+  background: rgba(224, 45, 55, 0.06);
+  filter: blur(109.444px);
+  transform: matrix(1, -0.01, 0.09, -1, 0, 0);
+}
+
+/* Ellipse 3 — красно-оранжевая */
+.ellipse-3 {
+  width: 1344.06px;
+  height: 411.38px;
+  left: 224.28px;
+  top: -252.56px;
+
+  background: rgba(224, 72, 45, 0.08);
+  filter: blur(91.2032px);
+  transform: matrix(1, 0.03, 0.16, -0.99, 0, 0);
+}
+
+/* Контент поверх засвета */
+.expertise-content {
+  position: relative;
+  z-index: 1;
+}

@@ -3,10 +3,13 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/running-string.css' %}">
+    <link rel="stylesheet" href="{% static 'css/01-expertise.css' %}">
+    <link rel="stylesheet" href="{% static 'css/02-services.css' %}">
 {% endblock %}
 {% block title %}Монтажная Империя{% endblock %}
 {% block content %}
     {% include "includes/first-page.html" %}
     {% include "includes/running-string.html" %}
-    {% include "includes/expertise.html" %}
+    {% include "includes/01-expertise.html" %}
+    {% include "includes/02-services.html" %}
 {% endblock %}

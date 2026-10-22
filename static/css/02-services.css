@@ -1,65 +1,177 @@
 .services-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.45fr;
-  grid-template-rows: repeat(3, 220px);
-  gap: 12px;
+  margin: 60px auto 0;
+  grid-template-columns: 362fr 362fr 524fr;
+  grid-template-rows: repeat(3, 269px);
+  max-width: 1280px;
+  width: 100%;
+  gap: 16px;
   grid-template-areas:
     "video video access"
     "security fire electrical"
     "intercom network electrical";
 }
+.service-card {
+  position: relative;
+  overflow: hidden;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.service-card::before {
+  content: "";
+  position: absolute;
+  width: 436px;
+  height: 436px;
+  left: -218px;
+  bottom: -218px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    transparent 97px,
+    rgba(255, 255, 255, 0.08) 97px 98px,
+    transparent 98px 157px,
+    rgba(255, 255, 255, 0.04) 157px 158px,
+    transparent 158px 217px,
+    rgba(255, 255, 255, 0.02) 217px 218px,
+    transparent 218px
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.service-card:hover::before,
+.service-card:focus-within::before {
+  opacity: 1;
+}
+
+.service-card > * {
+  z-index: 1;
+}
+
+.service-image {
+  position: absolute;
+  pointer-events: none;
+}
+
+.service-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 .surveillance {
   grid-area: video;
+  align-items: flex-start;
+}
+
+.surveillance .service-image {
+  height: 227px;
+  right: 0;
+  width: 294px;
+  max-width: 55%;
+  bottom: 0;
 }
 
 .access {
   grid-area: access;
 }
+.access .service-image {
+  width: 232px;
+  height: 134px;
+  right: 8px;
+  bottom: 9px;
+}
 
 .security {
   grid-area: security;
+}
+.security .service-image {
+  width: 177px;
+  height: 121px;
+  right: 17px;
+  bottom: 18px;
 }
 
 .fire {
   grid-area: fire;
 }
-
+.fire .service-image {
+  width: 149px;
+  height: 115px;
+  right: 14px;
+  bottom: 9px;
+}
 .electrical {
   grid-area: electrical;
 }
-
+.electrical .service-image {
+  width: 465px;
+  height: 554px;
+  right: 10px;
+  bottom: 1px;
+}
+.service-card.electrical > a {
+  margin-top: 60px;
+}
 .intercom {
   grid-area: intercom;
 }
-
+.intercom .service-image {
+  width: 149px;
+  height: 130px;
+  right: 8px;
+  bottom: 15px;
+}
 .network {
   grid-area: network;
 }
-
-.service-card {
-  background: #151619;
-  padding: 28px;
-  min-width: 0;
+.network .service-image {
+  width: 149px;
+  height: 130px;
+  right: 1px;
+  bottom: 19px;
 }
-
-.service-card {
-  position: relative;
-  overflow: hidden;
+.service-card h3 {
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: white;
 }
-
-.service-card img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  max-width: 55%;
-  height: auto;
-  pointer-events: none;
+.service-card span {
+  padding-top: 12px;
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: none;
+  display: block;
+  max-width: 300px;
 }
 
 .services {
   --cut: 40px;
+  background-color: #0e1014;
+}
 
+.services-content {
+  padding: 100px 80px 80px 80px;
+  background:
+    radial-gradient(ellipse 700px 340px at 88% 22%, rgba(224, 135, 45, 0.12), transparent 100%),
+    radial-gradient(ellipse 1050px 430px at 78% 27%, rgba(224, 72, 45, 0.12), transparent 100%),
+    radial-gradient(ellipse 1100px 430px at 58% 35%, rgba(224, 45, 55, 0.10), transparent 100%),
+    #151619;
   clip-path: polygon(
     var(--cut) 0,
     100% 0,
@@ -68,4 +180,80 @@
     0 100%,
     0 var(--cut)
   );
+}
+.services-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+.services-top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 840px;
+}
+.services-top > span {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+.services-top h2 {
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: white;
+}
+.services-description {
+  max-width: 500px;
+  font-family: "Onest", sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  color: rgba(243, 242, 242, 0.5);
+}
+.service-card a {
+  font-family: JetBrains Mono;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: rgba(224, 45, 55, 1);
+  text-decoration: none;
+  margin-top: auto;
+  align-self: flex-start;
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.service-card a:hover {
+  text-decoration: underline;
+  color: rgba(184, 33, 41, 1);
+}
+.arrow-default {
+  display: block;
+}
+.arrow-hover {
+  display: none;
+}
+.service-card a:hover .arrow-default {
+  display: none;
+}
+.service-card a:hover .arrow-hover {
+  display: block;
 }

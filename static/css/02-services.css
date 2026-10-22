@@ -206,9 +206,7 @@
   flex-direction: column;
   gap: 24px;
 }
-.services-top svg {
-  margin-bottom: 4.5px;
-}
+
 .services-top > span {
   font-family: "JetBrains Mono", monospace;
   font-weight: 500;
@@ -276,6 +274,23 @@ a:hover .arrow-hover {
   isolation: isolate;
   overflow: hidden;
   min-height: 332px;
+  view-timeline-name: --ticket;
+  view-timeline-axis: block;
+  background: #151619;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  margin-top: 80px;
+}
+.ticket-creator::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background:
     radial-gradient(
       ellipse 520px 290px at 96% 90%,
@@ -291,19 +306,10 @@ a:hover .arrow-hover {
       ellipse 820px 370px at 58% 65%,
       rgba(224, 45, 55, 0.5),
       transparent 100%
-    ),
-    #151619;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    0 100%,
-    0 var(--cut)
-  );
-  margin-top: 80px;
+    );
+  pointer-events: none;
 }
-.ticket-creator::before {
+.ticket-creator::after {
   content: "";
   position: absolute;
   top: 0;
@@ -314,6 +320,23 @@ a:hover .arrow-hover {
   mix-blend-mode: color-dodge;
   opacity: 0.25;
   pointer-events: none;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .ticket-creator::before {
+      animation: ticket-glow 1s linear both;
+      animation-timeline: --ticket;
+      animation-range: entry 0% cover 45%;
+    }
+  }
+}
+@keyframes ticket-glow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .ticket-content {
   position: relative;

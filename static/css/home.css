@@ -1,0 +1,244 @@
+
+.block-with-video {
+    position: relative;
+    height: 680px;
+    overflow: hidden;
+}
+
+/* Первый слой — видео */
+.video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Второй слой — затемнение */
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            0deg,
+            rgba(14, 16, 20, 0) 0%,
+            #0E1014 110.83%
+        ),
+        #0E10141A;
+}
+
+.video-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: #E02D370F;
+    mix-blend-mode: overlay;
+}
+/* Третий слой — текст */
+.video-content {
+    position: relative;
+    z-index: 1;
+
+    height: 100%;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+}
+
+.rectangles {
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+    box-sizing: border-box;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    --color: rgb(255, 255, 255, 0.4);
+    background:
+        linear-gradient(var(--color), var(--color)) top left / 30px 1px,
+        linear-gradient(var(--color), var(--color)) top left / 1px 30px,
+
+        linear-gradient(var(--color), var(--color)) top right / 30px 1px,
+        linear-gradient(var(--color), var(--color)) top right / 1px 30px,
+
+        linear-gradient(var(--color), var(--color)) bottom left / 30px 1px,
+        linear-gradient(var(--color), var(--color)) bottom left / 1px 30px,
+
+        linear-gradient(var(--color), var(--color)) bottom right / 30px 1px,
+        linear-gradient(var(--color), var(--color)) bottom right / 1px 30px;
+
+    background-repeat: no-repeat;
+
+}
+.top span {
+    font-family: JetBrains Mono;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+.top svg {
+    margin-bottom: 1.5px;
+}
+.heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 44px;
+    margin-bottom: 28px;
+}
+.heading h1 {
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 100px;
+    line-height: 0.8;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    margin: 0;
+
+
+}
+.heading span {
+    display: block;
+    font-family: "Onest", Regular;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-align: left;
+
+    width: 375px;
+    flex-shrink: 0;
+    color: #FFFFFFCC;
+
+
+}
+.advantages {
+    display: flex;
+    align-items: center;
+    gap:10px;
+    border-top: rgba(255,255,255,0.2) solid 1px;
+    padding-top: 28px;
+}
+.advantages div {
+    background-color: #ffff;
+    clip-path: polygon(
+        12px 0,
+        100% 0,
+        100% calc(100% - 12px),
+        calc(100% - 12px) 100%,
+        0 100%,
+        0 12px
+    );
+}
+.advantages div:not(:first-child) {
+    margin-left: 10px;
+}
+
+.advantages div span {
+    font-family: 'JetBrains Mono';
+    font-weight: 500;
+
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+
+    color: rgba(14, 16, 20, 1);
+    display: block;
+    padding: 12px 18px 12px 18px;
+}
+.footer {
+    margin-top: 170px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-date {
+    display: flex;
+    flex-direction: row-reverse;
+    color: #FFFFFF66;
+    font-family: JetBrains Mono;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 14px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+}
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+}
+.upper-button {
+    font-family: Onest;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: rgba(255, 255, 255, 1);
+
+}
+.red-button {
+    display: inline-flex;
+    align-items: stretch;
+    width: 244px;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: #E02D37;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.red-button-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-family: 'JetBrains Mono';
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+
+}
+
+.red-button-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 46px;
+    border-left: 2px solid white;
+
+}
+.red-button:hover {
+    background: rgba(184, 33, 41, 1);
+}
+
+.running-string{
+    width: auto;
+    height: 58px;
+    background:#E02D37;
+}
+
+

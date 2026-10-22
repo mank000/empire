@@ -1,5 +1,5 @@
 .why-us {
-  background:
+  /* background:
     radial-gradient(
       ellipse 860px 265px at -5% 95%,
       rgba(224, 135, 45, 0.08),
@@ -15,7 +15,8 @@
       rgba(224, 45, 55, 0.06),
       transparent 100%
     ),
-    #0e1014;
+    #0e1014; */
+  background-image: url("../img/Illustration.png");
   overflow: hidden;
   view-timeline-name: --why-us;
   view-timeline-axis: block;

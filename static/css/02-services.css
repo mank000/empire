@@ -264,9 +264,142 @@
 .arrow-hover {
   display: none;
 }
-.service-card a:hover .arrow-default {
+a:hover .arrow-default {
   display: none;
 }
-.service-card a:hover .arrow-hover {
+a:hover .arrow-hover {
   display: block;
+}
+
+.ticket-creator {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 332px;
+  background:
+    radial-gradient(
+      ellipse 520px 290px at 96% 90%,
+      rgba(224, 135, 45, 0.68),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 760px 330px at 82% 60%,
+      rgba(224, 72, 45, 0.72),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 820px 370px at 58% 65%,
+      rgba(224, 45, 55, 0.5),
+      transparent 100%
+    ),
+    #151619;
+  clip-path: polygon(
+    var(--cut) 0,
+    100% 0,
+    100% calc(100% - var(--cut)),
+    calc(100% - var(--cut)) 100%,
+    0 100%,
+    0 var(--cut)
+  );
+  margin-top: 80px;
+}
+.ticket-creator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(607px, 50%);
+  height: 100%;
+  background: url("../img/ticket-camera.png") center / cover no-repeat;
+  mix-blend-mode: color-dodge;
+  opacity: 0.25;
+  pointer-events: none;
+}
+.ticket-content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 60px 48px;
+}
+.ticket-content .advantages {
+  flex: 0 0 auto;
+}
+.ticket-content .advantages div {
+  flex: 0 0 auto;
+}
+.ticket-content .advantages div span {
+  white-space: nowrap;
+}
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+}
+.ticket-header .header-phone {
+  display: flex;
+  flex-direction: column;
+}
+.ticket-header .header-phone a {
+  font-family: Onest;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
+.ticket-header .header-phone span {
+  display: block;
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: right;
+}
+.ticket-header h1 {
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  padding-bottom: 10px;
+}
+.ticket-under-problem {
+  display: block;
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 537px;
+  padding-bottom: 28px;
+}
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.ticket-creation-button {
+  padding-top: 28px;
+  flex: 0 0 auto;
+}
+.ticket-creation-button .red-button {
+  color: black;
+  background-color: white;
+}
+.ticket-creation-button .red-button:hover {
+  background: rgba(245, 240, 240, 1);
+}
+.ticket-creation-button .red-button-arrow {
+  border: none;
 }

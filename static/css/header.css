@@ -109,9 +109,6 @@ nav a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-.header-contact a:hover {
-  text-decoration: underline;
-}
 nav a:not(:first-child) {
   margin-left: 20px;
 }

@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'css/02-services.css' %}">
     <link rel="stylesheet" href="{% static 'css/03-why-us.css' %}">
     <link rel="stylesheet" href="{% static 'css/04-stage-works.css' %}">
+    <link rel="stylesheet" href="{% static 'css/05-area-of-work.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sponsors-string.css' %}">
 {% endblock %}
 {% block title %}Монтажная Империя{% endblock %}
 {% block content %}
@@ -16,6 +18,12 @@
     {% include "includes/running-string.html" %}
     {% include "includes/01-expertise.html" %}
     {% include "includes/02-services.html" %}
-    {% include "includes/03-why-us.html" %}
-    {% include "includes/04-stage-works.html" %}
+    <div class="why-stages">
+        {% include "includes/03-why-us.html" %}
+        {% include "includes/04-stage-works.html" %}
+    </div>
+    <div class="area-sponsors">
+        {% include "includes/05-area-of-work.html" %}
+        {% include "includes/sponsors-string.html" %}
+    </div>
 {% endblock %}

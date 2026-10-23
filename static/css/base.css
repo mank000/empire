@@ -49,3 +49,31 @@ h1 {
   font-style: normal;
   font-display: swap;
 }
+.advantages > div {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: show-card 450ms ease-out forwards;
+}
+.advantages > div:nth-child(1) {
+  animation-delay: 150ms;
+}
+.advantages > div:nth-child(2) {
+  animation-delay: 300ms;
+}
+.advantages > div:nth-child(3) {
+  animation-delay: 450ms;
+}
+@keyframes show-card {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-page .advantages > div {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

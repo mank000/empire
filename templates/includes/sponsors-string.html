@@ -1,0 +1,14 @@
+{% load static %}
+<section class="sponsors-string" aria-label="Наши партнёры">
+    <div class="sponsors-track">
+        {% for group in "123456" %}
+            <div class="sponsors-group" aria-hidden="true">
+                <img src="{% static 'img/sponsors/sber.png' %}" alt="Сбербанк">
+                <img src="{% static 'img/sponsors/mchs.png' %}" alt="МЧС России">
+                <img src="{% static 'img/sponsors/gazprom.png' %}" alt="Газпром">
+                <img src="{% static 'img/sponsors/tbank.png' %}" alt="Т-Банк">
+                <img src="{% static 'img/sponsors/fssp.png' %}" alt="ФССП России">
+            </div>
+        {% endfor %}
+    </div>
+</section>

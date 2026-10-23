@@ -1,22 +1,25 @@
-.why-us {
-  /* background:
+.why-stages {
+  background-color: #0e1014;
+  background-image:
     radial-gradient(
-      ellipse 860px 265px at -5% 95%,
+      ellipse 860px 265px at -5% 44%,
       rgba(224, 135, 45, 0.08),
       transparent 100%
     ),
     radial-gradient(
-      ellipse 1340px 410px at -25% 85%,
+      ellipse 1344px 411px at -25% 40%,
       rgba(224, 72, 45, 0.08),
       transparent 100%
     ),
     radial-gradient(
-      ellipse 1470px 400px at -15% 75%,
+      ellipse 1472px 402px at -15% 36%,
       rgba(224, 45, 55, 0.06),
       transparent 100%
     ),
-    #0e1014; */
-  background-image: url("../img/Illustration.png");
+    url("../img/Illustration.png");
+}
+
+.why-us {
   overflow: hidden;
   view-timeline-name: --why-us;
   view-timeline-axis: block;

@@ -1,0 +1,119 @@
+.area-sponsors {
+  background-color: #151619;
+  background-image:
+    radial-gradient(
+      ellipse 700px 245px at 50% 78%,
+      rgba(224, 45, 55, 0.08),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 643px 248px at 62% 68%,
+      rgba(224, 72, 45, 0.08),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 412px 159px at 63% 73%,
+      rgba(224, 135, 45, 0.08),
+      transparent 100%
+    );
+}
+
+.area-of-work {
+  background-color: transparent;
+}
+.area-of-work-content {
+  padding: 100px 80px;
+}
+.area-of-work.is-pinned {
+  height: calc(100svh + var(--area-scroll));
+}
+.area-of-work.is-pinned .area-of-work-content {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  padding-block: clamp(16px, calc((100svh - 650px) / 2), 100px);
+  overflow: hidden;
+}
+.card {
+  flex: 0 0 416px;
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.02);
+  clip-path: polygon(
+    25px 0,
+    100% 0,
+    100% calc(100% - 25px),
+    calc(100% - 25px) 100%,
+    0 100%,
+    0 25px
+  );
+}
+.card img {
+  width: 280px;
+  height: 300px;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 25px),
+    calc(100% - 25px) 100%,
+    0 100%,
+    0 10px
+  );
+}
+.card .card-text {
+  display: flex;
+  flex-direction: column;
+}
+.collection-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+}
+.area-of-work.is-pinned .collection-cards {
+  width: max-content;
+  overflow: visible;
+  will-change: transform;
+}
+.first-line-card {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.card-text {
+  margin-top: 32px;
+  max-width: 344px;
+}
+.card-content {
+  padding: 28px;
+}
+.card-text h2 {
+  font-family: Fira Sans Extra Condensed;
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 28px;
+
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+}
+.card-text p {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: Onest;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .area-of-work-content {
+    padding: 60px 20px;
+  }
+
+  .card {
+    flex-basis: min(416px, calc(100vw - 40px));
+  }
+}

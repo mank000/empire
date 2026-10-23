@@ -19,7 +19,7 @@
 }
 nav a {
   text-decoration: none;
-  font-family: "Onest", Regular;
+  font-family: "Onest", sans-serif;
   font-weight: 400;
   font-size: 16px;
 }
@@ -41,19 +41,15 @@ nav a {
 .header-phone a {
   font-family: "Onest";
   font-weight: 700;
-  font-style: Bold;
   font-size: 18px;
   line-height: 100%;
-  letter-spacing: 0%;
   vertical-align: middle;
 }
 .header-phone span {
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 14px;
   line-height: 100%;
-  letter-spacing: 0%;
   vertical-align: middle;
   color: rgba(14, 16, 20, 0.6);
   margin-top: 4px;

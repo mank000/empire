@@ -138,10 +138,8 @@
 .service-card h3 {
   font-family: Fira Sans Extra Condensed;
   font-weight: 600;
-  font-style: SemiBold;
   font-size: 28px;
   line-height: 120%;
-  letter-spacing: 0%;
   text-transform: uppercase;
   color: white;
 }
@@ -149,10 +147,8 @@
   padding-top: 12px;
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 130%;
-  letter-spacing: 0%;
   color: rgba(255, 255, 255, 0.6);
   text-transform: none;
   display: block;
@@ -165,7 +161,7 @@
 }
 
 .services-content {
-  padding: 100px 80px 80px 80px;
+  padding: 100px 80px 0;
   background:
     radial-gradient(
       ellipse 700px 340px at 88% 22%,
@@ -201,28 +197,6 @@
 
   margin-inline: auto;
 }
-.services-top {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.services-top > span {
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
-}
-.services-top h2 {
-  font-family: "Fira Sans Extra Condensed", sans-serif;
-  font-weight: 500;
-  font-size: 60px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: white;
-}
 .services-description {
   max-width: 500px;
   font-family: "Onest", sans-serif;
@@ -233,7 +207,6 @@
 .service-card a {
   font-family: JetBrains Mono;
   font-weight: 700;
-  font-style: Bold;
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0px;
@@ -249,180 +222,9 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  text-decoration: none;
 }
 
 .service-card a:hover {
   text-decoration: underline;
   color: rgba(184, 33, 41, 1);
-}
-.arrow-default {
-  display: block;
-}
-.arrow-hover {
-  display: none;
-}
-a:hover .arrow-default {
-  display: none;
-}
-a:hover .arrow-hover {
-  display: block;
-}
-
-.ticket-creator {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  min-height: 332px;
-  view-timeline-name: --ticket;
-  view-timeline-axis: block;
-  background: #151619;
-  clip-path: polygon(
-    var(--cut) 0,
-    100% 0,
-    100% calc(100% - var(--cut)),
-    calc(100% - var(--cut)) 100%,
-    0 100%,
-    0 var(--cut)
-  );
-  margin-top: 80px;
-}
-.ticket-creator::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      ellipse 520px 290px at 96% 90%,
-      rgba(224, 135, 45, 0.68),
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 760px 330px at 82% 60%,
-      rgba(224, 72, 45, 0.72),
-      transparent 100%
-    ),
-    radial-gradient(
-      ellipse 820px 370px at 58% 65%,
-      rgba(224, 45, 55, 0.5),
-      transparent 100%
-    );
-  pointer-events: none;
-}
-.ticket-creator::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: min(607px, 50%);
-  height: 100%;
-  background: url("../img/ticket-camera.png") center / cover no-repeat;
-  mix-blend-mode: color-dodge;
-  opacity: 0.25;
-  pointer-events: none;
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .ticket-creator::before {
-      animation: ticket-glow 1s linear both;
-      animation-timeline: --ticket;
-      animation-range: entry 0% cover 45%;
-    }
-  }
-}
-@keyframes ticket-glow {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.ticket-content {
-  position: relative;
-  z-index: 1;
-  padding: 60px 60px 48px;
-}
-.ticket-content .advantages {
-  flex: 0 0 auto;
-}
-.ticket-content .advantages div {
-  flex: 0 0 auto;
-}
-.ticket-content .advantages div span {
-  white-space: nowrap;
-}
-.ticket-header {
-  display: flex;
-  justify-content: space-between;
-}
-.ticket-header .header-phone {
-  display: flex;
-  flex-direction: column;
-}
-.ticket-header .header-phone a {
-  font-family: Onest;
-  font-weight: 700;
-  font-style: Bold;
-  font-size: 18px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  vertical-align: middle;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 1);
-}
-.ticket-header .header-phone span {
-  display: block;
-  font-family: Onest;
-  font-weight: 400;
-  font-style: Regular;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: right;
-}
-.ticket-header h1 {
-  font-family: Fira Sans Extra Condensed;
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 60px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 1);
-  padding-bottom: 10px;
-}
-.ticket-under-problem {
-  display: block;
-  font-family: Onest;
-  font-weight: 400;
-  font-style: Regular;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: 0%;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 537px;
-  padding-bottom: 28px;
-}
-.ticket-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.ticket-creation-button {
-  padding-top: 28px;
-  flex: 0 0 auto;
-}
-.ticket-creation-button .red-button {
-  color: black;
-  background-color: white;
-}
-.ticket-creation-button .red-button:hover {
-  background: rgba(245, 240, 240, 1);
-}
-.ticket-creation-button .red-button-arrow {
-  border: none;
 }

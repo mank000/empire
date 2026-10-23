@@ -21,9 +21,6 @@
 .area-of-work {
   background-color: transparent;
 }
-.area-of-work-content {
-  padding: 100px 80px;
-}
 .area-of-work.is-pinned {
   height: calc(100svh + var(--area-scroll));
 }
@@ -49,7 +46,7 @@
   );
 }
 .card img {
-  width: 280px;
+  width: 300px;
   height: 300px;
   clip-path: polygon(
     10px 0,
@@ -59,6 +56,7 @@
     0 100%,
     0 10px
   );
+  object-fit: cover;
 }
 .card .card-text {
   display: flex;
@@ -86,14 +84,12 @@
 .card-content {
   padding: 28px;
 }
-.card-text h2 {
+.card-text h3 {
   font-family: Fira Sans Extra Condensed;
   font-weight: 600;
-  font-style: SemiBold;
   font-size: 28px;
 
   line-height: 120%;
-  letter-spacing: 0%;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
 }
@@ -101,10 +97,8 @@
   color: rgba(255, 255, 255, 0.6);
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 130%;
-  letter-spacing: 0%;
   margin-top: 8px;
 }
 

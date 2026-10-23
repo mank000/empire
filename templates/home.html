@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/running-string.css' %}">
     <link rel="stylesheet" href="{% static 'css/01-expertise.css' %}">
     <link rel="stylesheet" href="{% static 'css/02-services.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ticket-creator.css' %}">
     <link rel="stylesheet" href="{% static 'css/03-why-us.css' %}">
     <link rel="stylesheet" href="{% static 'css/04-stage-works.css' %}">
     <link rel="stylesheet" href="{% static 'css/05-area-of-work.css' %}">
     <link rel="stylesheet" href="{% static 'css/sponsors-string.css' %}">
+    <link rel="stylesheet" href="{% static 'css/06-cases.css' %}">
 {% endblock %}
 {% block title %}Монтажная Империя{% endblock %}
 {% block content %}
@@ -18,6 +18,7 @@
     {% include "includes/running-string.html" %}
     {% include "includes/01-expertise.html" %}
     {% include "includes/02-services.html" %}
+    {% include "includes/ticket-creator.html" %}
     <div class="why-stages">
         {% include "includes/03-why-us.html" %}
         {% include "includes/04-stage-works.html" %}
@@ -26,4 +27,6 @@
         {% include "includes/05-area-of-work.html" %}
         {% include "includes/sponsors-string.html" %}
     </div>
+    {% include "includes/06-cases.html" %}
+    {% include "includes/ticket-creator.html" %}
 {% endblock %}

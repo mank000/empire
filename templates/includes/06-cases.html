@@ -1,0 +1,21 @@
+{% load static %}
+<section class="cases">
+    <div class="cases-content section-content">
+        <p class="redline">
+            06
+            <svg width="24" height="2" viewBox="0 0 24 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="2" fill="#E02D37" />
+            </svg>
+            КЕЙСЫ
+        </p>
+        <div class="cases-header">
+            <h2>Объекты, которые мы защитили</h2>
+            <p class="cases-header-text">Не просто устанавливаем системы — <strong>управляем всем процессом: от подбора оборудования до установки и сдачи объекта. Держим в курсе на каждом этапе.</strong></p>
+        </div>
+        <div class="cases-collection">
+            {% include "includes/cases-item.html" with image="img/administrativeobjects.png" %}
+            {% include "includes/cases-item.html" with image="img/socialobjects.png" %}
+            {% include "includes/cases-item.html" with image="img/businesssberbank.png" %}
+        </div>
+    </div>
+</section>

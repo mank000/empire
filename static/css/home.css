@@ -70,10 +70,8 @@
 .top span {
   font-family: JetBrains Mono;
   font-weight: 400;
-  font-style: Regular;
   font-size: 14px;
   line-height: 100%;
-  letter-spacing: 0%;
   vertical-align: middle;
   text-transform: uppercase;
 }
@@ -99,7 +97,7 @@
 }
 .heading span {
   display: block;
-  font-family: "Onest", Regular;
+  font-family: "Onest", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.1;
@@ -109,41 +107,6 @@
   width: 375px;
   flex-shrink: 0;
   color: #ffffffcc;
-}
-.advantages {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-top: rgba(255, 255, 255, 0.2) solid 1px;
-  padding-top: 28px;
-}
-.advantages div {
-  background-color: #ffff;
-  clip-path: polygon(
-    12px 0,
-    100% 0,
-    100% calc(100% - 12px),
-    calc(100% - 12px) 100%,
-    0 100%,
-    0 12px
-  );
-}
-.advantages div:not(:first-child) {
-  margin-left: 10px;
-}
-
-.advantages div span {
-  font-family: "JetBrains Mono";
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 16px;
-  line-height: 14px;
-  letter-spacing: 0%;
-  text-transform: uppercase;
-
-  color: rgba(14, 16, 20, 1);
-  display: block;
-  padding: 12px 18px 12px 18px;
 }
 .footer {
   margin-top: 170px;
@@ -159,7 +122,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 14px;
-  letter-spacing: 0%;
   vertical-align: middle;
   text-transform: uppercase;
 }
@@ -172,47 +134,8 @@
 .upper-button {
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 20px;
   line-height: 120%;
-  letter-spacing: 0%;
   vertical-align: middle;
   color: rgba(255, 255, 255, 1);
-}
-.red-button {
-  display: inline-flex;
-  align-items: stretch;
-  width: 244px;
-  height: 50px;
-  box-sizing: border-box;
-  background-color: #e02d37;
-  border: 2px solid white;
-  color: white;
-  text-decoration: none;
-}
-
-.red-button-text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  font-family: "JetBrains Mono";
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  text-align: center;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-
-.red-button-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 46px;
-  border-left: 2px solid white;
-}
-.red-button:hover {
-  background: rgba(184, 33, 41, 1);
 }

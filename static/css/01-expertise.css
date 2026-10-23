@@ -1,5 +1,4 @@
 .expertise {
-  background-image: url("../img/Illustration.png");
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -9,10 +8,6 @@
   background-position: center;
 }
 .expertise-content {
-  padding-top: 100px;
-  padding-left: 80px;
-  padding-right: 80px;
-  padding-bottom: 100px;
   position: relative;
   z-index: 1;
 }
@@ -23,31 +18,15 @@
   align-items: flex-end;
 }
 .expertise-top {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
   max-width: 840px;
-}
-.expertise-top h2 {
-  margin: 0;
-  font-family: Fira Sans Extra Condensed;
-  font-weight: 500;
-  font-style: Medium;
-  font-size: 60px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  text-transform: uppercase;
-  color: white;
 }
 
 .expertise-description {
   text-align: left;
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 20px;
   line-height: 120%;
-  letter-spacing: 0%;
   vertical-align: middle;
   color: rgba(243, 242, 242, 0.5);
   max-width: 500px;
@@ -70,28 +49,22 @@
   min-width: 0;
 
   box-sizing: border-box;
-  background: #151619;
-
   background: rgba(21, 22, 25, 1);
   padding: 32px;
 }
-.expertise-card h2 {
+.expertise-card h3 {
   font-family: Fira Sans Extra Condensed;
   font-weight: 600;
-  font-style: SemiBold;
   font-size: 24px;
   line-height: 120%;
-  letter-spacing: 0%;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
 }
 .expertise-card span {
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 130%;
-  letter-spacing: 0%;
   color: rgba(255, 255, 255, 0.8);
   padding-top: 12px;
 }
@@ -161,10 +134,4 @@
   background: rgba(224, 72, 45, 0.08);
   filter: blur(91.2032px);
   transform: matrix(1, 0.03, 0.16, -0.99, 0, 0);
-}
-
-/* Контент поверх засвета */
-.expertise-content {
-  position: relative;
-  z-index: 1;
 }

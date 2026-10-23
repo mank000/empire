@@ -25,7 +25,6 @@
   view-timeline-axis: block;
 }
 .why-us-content {
-  padding: 100px 80px;
   display: flex;
   flex-direction: column;
 }
@@ -79,20 +78,19 @@
   gap: 20px;
   align-items: center;
 }
-.achievements div {
+.achievements > div {
   min-width: 305px;
 }
 
-.achievements h1 {
+.achievements .achievement-number {
   font-family: Fira Sans Extra Condensed;
   font-weight: 400;
-  font-style: Regular;
   font-size: 60px;
   line-height: 100%;
-  letter-spacing: 0%;
+  text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
 }
-.achievements h1 strong {
+.achievements .achievement-number strong {
   font-family: JetBrains Mono;
   font-weight: 500;
   font-size: 98px;
@@ -101,10 +99,8 @@
 .achievements p {
   font-family: JetBrains Mono;
   font-weight: 700;
-  font-style: Bold;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
   vertical-align: middle;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
@@ -112,10 +108,8 @@
 .achievements span {
   font-family: Onest;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 100%;
-  letter-spacing: 0%;
   color: rgba(255, 255, 255, 0.6);
 }
 

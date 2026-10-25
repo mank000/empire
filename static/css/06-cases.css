@@ -112,14 +112,22 @@
   pointer-events: none;
   --corner-color: rgba(255, 255, 255, 0.45);
   background:
-    linear-gradient(var(--corner-color), var(--corner-color)) top left / 20px 1px,
-    linear-gradient(var(--corner-color), var(--corner-color)) top left / 1px 20px,
-    linear-gradient(var(--corner-color), var(--corner-color)) top right / 20px 1px,
-    linear-gradient(var(--corner-color), var(--corner-color)) top right / 1px 20px,
-    linear-gradient(var(--corner-color), var(--corner-color)) bottom left / 20px 1px,
-    linear-gradient(var(--corner-color), var(--corner-color)) bottom left / 1px 20px,
-    linear-gradient(var(--corner-color), var(--corner-color)) bottom right / 20px 1px,
-    linear-gradient(var(--corner-color), var(--corner-color)) bottom right / 1px 20px;
+    linear-gradient(var(--corner-color), var(--corner-color)) top left / 20px
+      1px,
+    linear-gradient(var(--corner-color), var(--corner-color)) top left / 1px
+      20px,
+    linear-gradient(var(--corner-color), var(--corner-color)) top right / 20px
+      1px,
+    linear-gradient(var(--corner-color), var(--corner-color)) top right / 1px
+      20px,
+    linear-gradient(var(--corner-color), var(--corner-color)) bottom left / 20px
+      1px,
+    linear-gradient(var(--corner-color), var(--corner-color)) bottom left / 1px
+      20px,
+    linear-gradient(var(--corner-color), var(--corner-color)) bottom right /
+      20px 1px,
+    linear-gradient(var(--corner-color), var(--corner-color)) bottom right / 1px
+      20px;
   background-repeat: no-repeat;
 }
 
@@ -146,28 +154,41 @@
   display: block;
   padding: 1px;
   background: rgba(160, 174, 190, 0.35);
-  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+  clip-path: polygon(
+    8px 0,
+    100% 0,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    0 100%,
+    0 8px
+  );
 }
 
 .cases-tag > span {
   display: block;
-  padding: 5px 9px;
-  background: #191b1f;
-  clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
-  color: rgba(190, 200, 212, 0.7);
+  padding: 8px 12px;
+  background: rgba(24, 25, 28, 1);
+  clip-path: polygon(
+    7px 0,
+    100% 0,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    0 100%,
+    0 7px
+  );
 }
 
 .cases-tag,
 .cases-status,
 .cases-item-footer span {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11px;
-  line-height: 1.2;
+  font-size: 14px;
+  line-height: 1;
   text-transform: uppercase;
+  color: rgba(123, 137, 158, 1);
 }
 
 .cases-status {
-  color: rgba(190, 200, 212, 0.45);
   white-space: nowrap;
 }
 
@@ -181,47 +202,48 @@
 
 .cases-item-description h3 {
   font-family: "Fira Sans Extra Condensed", sans-serif;
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.2;
   text-transform: uppercase;
   color: white;
 }
 
 .cases-item-description p {
-  max-width: 470px;
+  max-width: 600px;
   margin-top: 10px;
   font-family: Onest, sans-serif;
-  font-size: 14px;
-  line-height: 1.35;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .cases-item-footer {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
 .cases-item-footer > div {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  min-width: 90px;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 16px 16px 14px 16px;
   background: #202227;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
 }
 
-.cases-item-footer strong {
+.cases-item-footer strong,
+.cases-item-footer small {
   font-family: "JetBrains Mono", monospace;
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
   color: white;
 }
 
 .cases-item-footer strong small {
-  font-size: 14px;
+  font-size: 24px;
 }
 
 .cases-item-footer span {

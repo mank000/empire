@@ -1,3 +1,30 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body > header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+body > header.header-hidden {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body > header {
+    transition: none;
+  }
+}
+
 .header-container {
   width: auto;
   height: 80px;
@@ -44,6 +71,7 @@ nav a {
   font-size: 18px;
   line-height: 100%;
   vertical-align: middle;
+  color: black;
 }
 .header-phone span {
   font-family: Onest;

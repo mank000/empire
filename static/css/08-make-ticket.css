@@ -3,17 +3,17 @@
   background-color: #0e1014;
   background-image:
     radial-gradient(
-      ellipse 1732px 886px at 42% 58%,
+      ellipse 1732px 886px at 42% 0%,
       rgba(224, 45, 55, 0.06),
       transparent 72%
     ),
     radial-gradient(
-      ellipse 1582px 789px at 62% 55%,
+      ellipse 1582px 789px at 62% 0%,
       rgba(224, 72, 45, 0.08),
       transparent 72%
     ),
     radial-gradient(
-      ellipse 1014px 441px at 78% 62%,
+      ellipse 1014px 441px at 78% 0%,
       rgba(224, 135, 45, 0.08),
       transparent 72%
     ),
@@ -63,7 +63,7 @@
   margin-top: 28px;
   padding-top: 28px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  width: 486px;
+  width: min(100%, 486px);
 }
 
 .make-ticket-benefits span {

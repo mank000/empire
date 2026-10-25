@@ -33,8 +33,26 @@ body > header.header-hidden {
   justify-content: space-between;
   padding: 0 80px;
 }
+.header-menu {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin-inline: 24px;
+}
+.header-menu-top,
+.header-menu-bottom,
+.header-menu-caption,
+.header-menu-backdrop {
+  display: none;
+}
+.header-menu-toggle {
+  display: none;
+}
 .header-logo {
   display: block;
+  flex-shrink: 0;
   width: 138.65px;
   height: 44px;
 }
@@ -44,7 +62,7 @@ body > header.header-hidden {
   height: 100%;
   object-fit: contain;
 }
-nav a {
+.header-menu nav a {
   text-decoration: none;
   font-family: "Onest", sans-serif;
   font-weight: 400;
@@ -129,10 +147,246 @@ nav a {
 
 /* псевдоклассы */
 
-nav a:hover {
+.header-menu nav a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-nav a:not(:first-child) {
+.header-menu nav a + a {
   margin-left: 20px;
+}
+
+@media (max-width: 1200px) {
+  .header-container {
+    padding-inline: 32px;
+  }
+
+  .header-menu {
+    margin-inline: 16px;
+  }
+
+  .header-menu nav a {
+    font-size: 14px;
+  }
+
+  .header-menu nav a + a {
+    margin-left: 12px;
+  }
+
+  .header-phone a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-container {
+    padding-inline: 16px;
+  }
+
+  .header-logo {
+    width: 116px;
+    height: auto;
+  }
+
+  .header-socials {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .header-container {
+    height: 80px;
+    padding-inline: 32px;
+  }
+
+  .header-logo {
+    width: 128px;
+  }
+
+  .header-menu-toggle {
+    order: 3;
+    display: flex;
+    flex: 0 0 44px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-left: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .header-menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #0e1014;
+  }
+
+  body.header-menu-open {
+    overflow: hidden;
+  }
+
+  .header-menu-backdrop.is-open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .header-menu {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    width: 360px;
+    max-width: 100%;
+    height: 100dvh;
+    margin: 0;
+    padding: 16px 32px 32px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background: #fff;
+  }
+
+  .header-menu.is-open {
+    display: flex;
+  }
+
+  .header-menu-top {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-menu-logo img {
+    display: block;
+    width: 110px;
+    height: auto;
+  }
+
+  .header-menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    background: #eeeeef;
+    color: #62666c;
+    cursor: pointer;
+  }
+
+  .header-menu nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 56px;
+  }
+
+  .header-menu-caption {
+    display: block;
+    margin-bottom: 4px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: #aeb0b3;
+  }
+
+  .header-menu nav a {
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #0e1014;
+  }
+
+  .header-menu nav a + a {
+    margin-left: 0;
+  }
+
+  .header-menu-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px 12px;
+    margin-top: auto;
+    padding-top: 32px;
+  }
+
+  .header-menu-phone {
+    margin-right: auto;
+  }
+
+  .header-menu-phone a {
+    font-family: "Onest", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0e1014;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .header-menu-phone span {
+    display: block;
+    margin-top: 2px;
+    font-family: "Onest", sans-serif;
+    font-size: 11px;
+    color: rgb(14 16 20 / 60%);
+  }
+
+  .header-menu-cta {
+    width: 100%;
+    height: 40px;
+    border: 0;
+  }
+
+  .header-menu-cta .red-button-text {
+    font-family: "Fira Sans Extra Condensed", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .header-menu-cta .red-button-arrow {
+    flex-basis: 40px;
+  }
+
+  .header-contact {
+    order: 2;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+  }
+
+  .header-socials {
+    display: flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-container {
+    padding-inline: 16px;
+  }
+
+  .header-contact .header-phone {
+    display: none;
+  }
+
+  .header-menu {
+    width: 100%;
+    padding-inline: 24px;
+  }
 }

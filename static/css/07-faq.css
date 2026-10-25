@@ -1,5 +1,24 @@
 .faq {
-  background-image: url("../img/Illustration.png");
+  background-color: #0e1014;
+  background-image:
+    radial-gradient(
+      ellipse 1732px 886px at 42% 85%,
+      rgba(224, 45, 55, 0.06),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 1582px 789px at 62% 100%,
+      rgba(224, 72, 45, 0.08),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 1014px 441px at 78% 100%,
+      rgba(224, 135, 45, 0.08),
+      transparent 72%
+    ),
+    url("../img/Illustration.png");
+  background-position: center;
+  background-size: auto, auto, auto, cover;
   color: white;
 }
 .faq-header {
@@ -95,6 +114,22 @@
 
 .faq-item[open] .faq-icon {
   transform: rotate(45deg);
+}
+
+@media (max-width: 600px) {
+  .faq-header .section-title {
+    overflow-wrap: anywhere;
+  }
+
+  .faq-item summary {
+    gap: 8px;
+    padding-inline: 8px;
+  }
+
+  .faq-item h3 {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

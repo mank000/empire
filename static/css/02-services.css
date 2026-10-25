@@ -246,6 +246,16 @@
   stroke: #b82129;
 }
 
+@media (max-width: 900px) {
+  .services-header {
+    flex-wrap: wrap;
+  }
+
+  .services-description {
+    max-width: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .service-card a svg,
   .service-card a svg path {

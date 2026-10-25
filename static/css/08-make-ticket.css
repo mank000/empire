@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 40px;
+  padding: 40px 0px 40px 40px;
 }
 
 .make-ticket-intro h2 {
@@ -97,9 +97,11 @@
 }
 
 .form-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: min(100%, 566px);
 }
 
 .form-field label {
@@ -113,9 +115,9 @@
 
 .form-field input {
   width: 100%;
-  height: 46px;
-  padding: 0 16px;
-  background: #1c1d20;
+  height: 56px;
+  padding: 0 48px 0 20px;
+  background: #1b1c1f;
   border: 1px solid transparent;
   border-radius: 0;
   outline: none;
@@ -123,15 +125,85 @@
   font-size: 16px;
   line-height: 120%;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .form-field input::placeholder {
-  color: #696a70;
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.form-field input:focus-visible {
-  border-color: #e02d37;
+.form-field input:hover {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.form-field input:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-field input:user-invalid,
+.form-field input.is-invalid {
+  border-color: #d44747;
+}
+
+.form-field-clear {
+  display: none;
+  position: absolute;
+  right: 16px;
+  top: 42px;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.form-field-clear:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.form-field input:not(:placeholder-shown) + .form-field-clear {
+  display: grid;
+  place-items: center;
+}
+
+.form-field-error {
+  display: none;
+  position: relative;
+  align-self: flex-start;
+  margin: -6px 0 0 20px;
+  padding: 8px 10px;
+  border: 1px solid #d44747;
+  background: #1b1c1f;
+  color: rgba(255, 255, 255, 0.9);
+  font:
+    14px/1.2 "Onest",
+    sans-serif;
+}
+
+.form-field-error::before {
+  content: "⚠";
+  margin-right: 6px;
+  color: #d44747;
+}
+
+.form-field-error::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  width: 10px;
+  height: 10px;
+  background: #1b1c1f;
+  border-top: 1px solid #d44747;
+  border-left: 1px solid #d44747;
+  transform: rotate(45deg);
+}
+
+.form-field input:user-invalid ~ .form-field-error,
+.form-field input.is-invalid ~ .form-field-error {
+  display: block;
 }
 
 .form-agreement {
@@ -144,9 +216,9 @@
 
 .form-agreement input {
   appearance: none;
-  flex: 0 0 17px;
-  width: 17px;
-  height: 17px;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
   margin: 5px 0 0;
   border: 1.2px solid rgba(255, 255, 255, 0.8);
   background: transparent;
@@ -171,7 +243,7 @@
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
-.form-agreement input:hover {
+.form-agreement input:hover:not(:checked) {
   border: 1.2px solid rgba(255, 255, 255, 1);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -187,8 +259,8 @@
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  width: 100%;
-  height: 42px;
+  width: min(100%, 566px);
+  height: 50px;
   background: #e02d37;
   border: 2px solid #fff;
   border-radius: 0;
@@ -202,8 +274,8 @@
   align-items: center;
   justify-content: center;
   font-family: "JetBrains Mono", monospace;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -217,6 +289,10 @@
 
 .make-ticket-submit:hover {
   background: #b82129;
+}
+
+.make-ticket-submit:hover svg {
+  transform: rotate(-45deg);
 }
 
 .make-ticket-submit:focus-visible {

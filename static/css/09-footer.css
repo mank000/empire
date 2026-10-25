@@ -1,0 +1,164 @@
+.footer {
+  background-color: rgba(21, 22, 25, 1);
+  clip-path: polygon(
+    28px 0,
+    100% 0,
+    100% calc(100% - 28px),
+    calc(100% - 28px) 100%,
+    0 100%,
+    0 28px
+  );
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  padding: 80px 80px;
+}
+.footer-first-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.footer-name {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer-text-name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footer-name h3 {
+  font-family: Onest;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: white;
+}
+.footer-name p {
+  font-family: JetBrains Mono;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+.footer-phone {
+  display: flex;
+  flex-direction: row;
+  font-family: JetBrains Mono;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  gap: 141px;
+}
+.footer-phone a {
+  font-family: JetBrains Mono;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 28px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+}
+.footer-contacts a:not(:first-child) {
+  margin-top: 20px;
+}
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+}
+.footer-socials-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.footer-socials-buttons a {
+  width: 28px;
+  height: 28px;
+}
+.footer-city {
+  font-family: JetBrains Mono;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  leading-trim: NONE;
+  line-height: 14px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 22px;
+  padding-bottom: 28px;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.footer-city span {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-second-line {
+  font-family: JetBrains Mono;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  padding-top: 28px;
+  border-top: 1px rgba(255, 255, 255, 0.1) solid;
+}
+.footer-contact-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+}
+.footer-right-links {
+  display: flex;
+  gap: 76px;
+}
+.footer-right-links a {
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+}
+.footer-right-links a:hover {
+  text-decoration: underline;
+  color: rgba(255, 255, 255, 0.8);
+}
+.company-name {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+}
+.company-name p {
+  position: absolute;
+  transform: translateX(10%) scaleX(1.3);
+  /* font-size: 9vw; */
+  margin: 0;
+  white-space: nowrap;
+
+  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 168px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.03);
+}

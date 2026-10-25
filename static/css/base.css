@@ -6,6 +6,9 @@
 a {
   color: black;
 }
+main {
+  background-color: #0e1014;
+}
 .redline {
   font-family: JetBrains Mono;
   font-weight: 500;

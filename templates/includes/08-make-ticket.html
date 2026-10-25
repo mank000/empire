@@ -1,0 +1,75 @@
+{% load static %}
+<section class="big-ticket-creator">
+    <div class="big-ticket-creator-content">
+        <div class="make-ticket-panel">
+            <div class="make-ticket-intro">
+                <h2>Обсудим ваш проект?</h2>
+                <p>
+                    Опишите задачу — свяжемся, уточним детали
+                    <br>
+                    и согласуем время осмотра объекта.
+                </p>
+                <div class="make-ticket-benefits">
+                    <span>Гарантия 1 год на монтаж</span>
+                    <span>Любые формы оплаты</span>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-field">
+                    <label for="make-ticket-name">Имя</label>
+                    <input type="text"
+                           id="make-ticket-name"
+                           name="name"
+                           placeholder="Как к вам обращаться?"
+                           autocomplete="name"
+                           required>
+                </div>
+                <div class="form-field">
+                    <label for="make-ticket-phone">Телефон</label>
+                    <input type="tel"
+                           id="make-ticket-phone"
+                           name="phone"
+                           placeholder="+7 (___) ___-__-__"
+                           autocomplete="tel"
+                           required>
+                </div>
+                <label class="form-agreement">
+                    <input type="checkbox" name="agreement" required>
+                    <span>Согласен на обработку персональных данных
+                        <br>
+                    и с политикой конфиденциальности</span>
+                </label>
+                <button type="button" class="make-ticket-submit">
+                    <span>Оставить заявку</span>
+                    <span class="make-ticket-submit-arrow" aria-hidden="true">
+                        <svg width="24"
+                             height="24"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.5 12H20.33M14.43 5.93L20.5 12L14.43 18.07" stroke="white" stroke-width="2" stroke-linejoin="bevel" />
+                        </svg>
+                    </span>
+                </button>
+            </form>
+        </div>
+        <div class="make-ticket-photo">
+            <img src="{% static 'img/lastpic.jpg' %}"
+                 alt="Инженер проверяет электрический щит">
+            <div class="make-ticket-viewfinder" aria-hidden="true"></div>
+            <div class="make-ticket-status"><span></span>На связи с 9:00 до 21:00</div>
+            <svg class="make-ticket-battery"
+                 width="20"
+                 height="10"
+                 viewBox="0 0 20 10"
+                 fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.5 0.5H17.5V9.5H0.5V0.5Z" stroke="white" />
+                <path d="M2 2H5L4 8H2V2Z" fill="white" />
+                <path d="M6 2H9L8 8H5L6 2Z" fill="white" />
+                <path d="M10 2H13L12 8H9L10 2Z" fill="white" />
+                <path d="M18 2.5H20V7.5H18V2.5Z" fill="white" />
+            </svg>
+        </div>
+    </div>
+</section>

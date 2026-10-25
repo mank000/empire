@@ -228,3 +228,27 @@
   text-decoration: underline;
   color: rgba(184, 33, 41, 1);
 }
+
+.service-card a svg {
+  transform-origin: center;
+  transition: transform 240ms ease;
+}
+
+.service-card a svg path {
+  transition: stroke 240ms ease;
+}
+
+.service-card a:hover svg {
+  transform: rotate(45deg);
+}
+
+.service-card a:hover svg path {
+  stroke: #b82129;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card a svg,
+  .service-card a svg path {
+    transition: none;
+  }
+}

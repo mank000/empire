@@ -287,6 +287,10 @@
   border-left: 2px solid #fff;
 }
 
+.make-ticket-submit-arrow svg {
+  transition: transform 240ms ease;
+}
+
 .make-ticket-submit:hover {
   background: #b82129;
 }
@@ -422,5 +426,11 @@
 
   .make-ticket-photo {
     min-height: 320px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .make-ticket-submit-arrow svg {
+    transition: none;
   }
 }

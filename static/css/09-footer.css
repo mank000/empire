@@ -12,7 +12,7 @@
 .footer-content {
   display: flex;
   flex-direction: column;
-  padding: 80px 80px;
+  padding: 80px;
 }
 .footer-first-line {
   display: flex;
@@ -35,9 +35,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
-  letter-spacing: 0%;
   text-transform: uppercase;
-  vertical-align: middle;
   color: white;
 }
 .footer-name p {
@@ -45,8 +43,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  letter-spacing: 0%;
-  vertical-align: middle;
   text-transform: uppercase;
 }
 .footer-phone {
@@ -56,8 +52,6 @@
   font-weight: 700;
   font-size: 28px;
   line-height: 100%;
-  letter-spacing: 0%;
-  vertical-align: middle;
   gap: 141px;
 }
 .footer-phone a {
@@ -65,7 +59,6 @@
   font-weight: 700;
   font-size: 28px;
   line-height: 100%;
-  letter-spacing: 0%;
   color: rgba(255, 255, 255, 1);
   text-decoration: none;
 }
@@ -89,10 +82,7 @@
   font-family: JetBrains Mono;
   font-weight: 500;
   font-size: 14px;
-  leading-trim: NONE;
   line-height: 14px;
-  letter-spacing: 0%;
-  vertical-align: middle;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.8);
   padding-top: 22px;
@@ -111,8 +101,6 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 14px;
-  letter-spacing: 0%;
-  vertical-align: middle;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
   padding-top: 28px;

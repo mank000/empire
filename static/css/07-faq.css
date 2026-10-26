@@ -137,3 +137,38 @@
     transition: none;
   }
 }
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* FAQ */
+  .faq-content {
+    padding: 64px 32px;
+  }
+
+  .faq-header {
+    margin: 20px 0 32px;
+  }
+
+  .faq-grid {
+    display: block;
+  }
+
+  .faq-column:first-child .faq-item:last-child {
+    border-bottom: 0;
+  }
+
+  .faq-item summary {
+    padding: 18px 16px;
+  }
+
+  .faq-item h3 {
+    font-size: 16px;
+  }
+
+  .faq-answer {
+    padding-inline: 16px 48px;
+  }
+
+  .faq-answer p {
+    font-size: 14px;
+  }
+}

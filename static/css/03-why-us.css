@@ -101,7 +101,6 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
-  vertical-align: middle;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 1);
 }
@@ -144,5 +143,57 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Почему мы */
+  .why-us-timeline span {
+    font-size: 48px;
+  }
+
+  .why-us-timeline img {
+    width: 73px;
+    height: 48px;
+  }
+
+  .why-us-achievements {
+    align-items: flex-end;
+    margin-top: 64px;
+  }
+
+  .achievements {
+    display: grid;
+    grid-template-columns: repeat(2, 210px);
+    gap: 36px 24px;
+  }
+
+  .achievements > div {
+    min-width: 0;
+  }
+
+  .achievements .achievement-number {
+    font-size: 42px;
+  }
+
+  .achievements .achievement-number strong {
+    font-size: 72px;
+  }
+
+  .achievements p {
+    font-size: 12px;
+  }
+
+  .achievements span {
+    font-size: 13px;
+  }
+
+  .why-us-achievements .red-button {
+    width: 212px;
+    height: 44px;
+  }
+
+  .why-us-achievements .red-button-text {
+    font-size: 12px;
   }
 }

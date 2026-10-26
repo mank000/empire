@@ -124,36 +124,91 @@
 
 /* Ellipse 1 — оранжевая */
 .ellipse-1 {
-  width: 861.81px;
-  height: 263.78px;
-  left: 477.39px;
-  top: -172.36px;
+  width: 862px;
+  height: 264px;
+  left: 477px;
+  top: -172px;
 
   background: rgba(224, 135, 45, 0.08);
-  filter: blur(62.0182px);
+  filter: blur(62px);
   transform: matrix(1, 0.03, 0.16, -0.99, 0, 0);
 }
 
 /* Ellipse 2 — красная */
 .ellipse-2 {
-  width: 1471.65px;
-  height: 402.02px;
-  left: -75.62px;
-  top: -273.74px;
+  width: 1472px;
+  height: 402px;
+  left: -76px;
+  top: -274px;
 
   background: rgba(224, 45, 55, 0.06);
-  filter: blur(109.444px);
+  filter: blur(109px);
   transform: matrix(1, -0.01, 0.09, -1, 0, 0);
 }
 
 /* Ellipse 3 — красно-оранжевая */
 .ellipse-3 {
-  width: 1344.06px;
-  height: 411.38px;
-  left: 224.28px;
-  top: -252.56px;
+  width: 1344px;
+  height: 411px;
+  left: 224px;
+  top: -253px;
 
   background: rgba(224, 72, 45, 0.08);
-  filter: blur(91.2032px);
+  filter: blur(91px);
   transform: matrix(1, 0.03, 0.16, -0.99, 0, 0);
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Экспертиза */
+  .expertise-header {
+    display: block;
+  }
+
+  .expertise-top {
+    max-width: 660px;
+  }
+
+  .expertise-description {
+    max-width: 480px;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .expertise-cards {
+    gap: 12px;
+    margin-top: 44px;
+  }
+
+  .expertise-card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 306px;
+    padding: 20px;
+  }
+
+  .expertise-card-image {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    width: 110px;
+    transform: translateX(-50%);
+  }
+
+  .expertise-card-image img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .expertise-card h3 {
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  .expertise-card span {
+    display: block;
+    padding-top: 8px;
+    font-size: 13px;
+    line-height: 1.25;
+  }
 }

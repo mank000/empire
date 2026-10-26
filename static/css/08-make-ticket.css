@@ -434,3 +434,80 @@
     transition: none;
   }
 }
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Основная форма заявки */
+  .big-ticket-creator {
+    padding: 64px 32px;
+  }
+
+  .big-ticket-creator-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .make-ticket-photo {
+    order: -1;
+    height: 300px;
+    min-height: 0;
+  }
+
+  .make-ticket-panel {
+    padding: 32px;
+  }
+
+  .make-ticket-intro h2 {
+    font-size: 44px;
+  }
+
+  .make-ticket-intro p {
+    font-size: 16px;
+  }
+
+  .make-ticket-benefits {
+    width: 100%;
+    margin-top: 22px;
+    padding-top: 22px;
+  }
+
+  .make-ticket-benefits span {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+    padding-top: 40px;
+  }
+
+  .form-field,
+  .make-ticket-submit,
+  .form-agreement {
+    width: 100%;
+  }
+
+  .form-agreement,
+  .make-ticket-submit {
+    grid-column: 1 / -1;
+  }
+
+  .form-field label {
+    font-size: 12px;
+  }
+
+  .form-field input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .make-ticket-submit {
+    margin-top: 18px;
+    height: 46px;
+  }
+
+  .make-ticket-submit > span:first-child {
+    font-size: 12px;
+  }
+}

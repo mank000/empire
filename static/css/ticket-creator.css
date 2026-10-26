@@ -143,3 +143,71 @@
 .ticket-creation-button .red-button-arrow {
   border: none;
 }
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Заявка между секциями */
+  .ticket-section {
+    padding: 60px 32px;
+  }
+
+  .ticket-creator {
+    min-height: 394px;
+  }
+
+  .ticket-content {
+    min-height: 394px;
+    padding: 48px;
+  }
+
+  .ticket-header h2 {
+    font-size: 48px;
+  }
+
+  .ticket-under-problem {
+    max-width: 490px;
+    padding-bottom: 22px;
+    font-size: 18px;
+  }
+
+  .ticket-content .advantages {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 20px;
+  }
+
+  .ticket-content .advantages div:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .ticket-content .advantages div span {
+    padding: 9px 12px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .ticket-header .ticket-phone {
+    position: absolute;
+    left: 48px;
+    bottom: 48px;
+  }
+
+  .ticket-phone span {
+    text-align: left;
+  }
+
+  .ticket-creation-button {
+    position: absolute;
+    right: 48px;
+    bottom: 48px;
+    padding: 0;
+  }
+
+  .ticket-creation-button .red-button {
+    width: 210px;
+    height: 44px;
+  }
+
+  .ticket-creation-button .red-button-text {
+    font-size: 12px;
+  }
+}

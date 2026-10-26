@@ -210,7 +210,6 @@
   font-size: 14px;
   line-height: 100%;
   text-align: center;
-  vertical-align: middle;
   text-transform: uppercase;
   color: rgba(224, 45, 55, 1);
   text-decoration: none;
@@ -281,5 +280,66 @@
   .service-card a svg,
   .service-card a svg path {
     transition: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Услуги */
+  .services-content {
+    padding: 64px 32px 0;
+  }
+
+  .services-header {
+    display: block;
+  }
+
+  .services-description {
+    max-width: 450px;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 270px repeat(3, 264px);
+    grid-template-areas:
+      "video video"
+      "security access"
+      "fire intercom"
+      "network electrical";
+    gap: 12px;
+    margin-top: 44px;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+
+  .service-card h3 {
+    font-size: 24px;
+  }
+
+  .service-card span {
+    max-width: 260px;
+    padding-top: 8px;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .service-card a {
+    font-size: 12px;
+  }
+
+  .access .service-image,
+  .security .service-image,
+  .fire .service-image,
+  .intercom .service-image,
+  .network .service-image {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .service-card.electrical > a {
+    margin-top: auto;
   }
 }

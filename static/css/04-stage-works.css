@@ -79,3 +79,51 @@
     font-size: clamp(36px, 8vw, 60px);
   }
 }
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Этапы работы */
+  .stages-works-content {
+    padding: 64px 32px 80px;
+  }
+
+  .stages-works-content .section-title {
+    margin-top: 20px;
+    font-size: 48px;
+  }
+
+  .stages-container {
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .stages-row-container {
+    flex: 0 0 400px;
+    width: 400px;
+  }
+
+  .stage {
+    padding: 20px 0;
+  }
+
+  .stage-header h3,
+  .stage-header span {
+    font-size: 20px;
+  }
+
+  .stage p {
+    font-size: 14px;
+  }
+
+  .stages-img {
+    flex: 1 1 auto;
+    align-self: flex-start;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+
+  .stages-img img {
+    width: 340px;
+    max-width: none;
+  }
+}

@@ -156,10 +156,6 @@ h1,
 .advantages > div:nth-child(3) {
   animation-delay: 450ms;
 }
-.header-phone a:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
 @keyframes show-card {
   to {
     opacity: 1;
@@ -176,5 +172,30 @@ h1,
     animation: none;
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  .section-content {
+    padding: 64px 32px;
+  }
+
+  .redline {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .redline svg {
+    width: 24px;
+    margin-bottom: 2px;
+  }
+
+  .section-top {
+    gap: 20px;
+  }
+
+  .section-top h2,
+  .section-title {
+    font-size: 48px;
   }
 }

@@ -31,7 +31,7 @@
   padding-block: clamp(16px, calc((100svh - 650px) / 2), 100px);
   overflow: hidden;
 }
-.card {
+.area-of-work .card {
   flex: 0 0 416px;
   backdrop-filter: blur(40px);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -45,7 +45,7 @@
     0 25px
   );
 }
-.card img {
+.area-of-work .card img {
   width: 300px;
   height: 300px;
   clip-path: polygon(
@@ -58,7 +58,7 @@
   );
   object-fit: cover;
 }
-.card .card-text {
+.area-of-work .card .card-text {
   display: flex;
   flex-direction: column;
 }
@@ -107,7 +107,56 @@
     padding: 60px 20px;
   }
 
-  .card {
+  .area-of-work .card {
     flex-basis: min(416px, calc(100vw - 40px));
+  }
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Область работы */
+  .area-of-work-content {
+    padding: 64px 32px;
+  }
+
+  .area-of-work .section-top h2 {
+    white-space: nowrap;
+  }
+
+  .collection-cards {
+    margin-top: 44px;
+  }
+
+  .area-of-work .card {
+    flex-basis: 340px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .first-line-card {
+    gap: 12px;
+  }
+
+  .area-of-work .first-line-card img {
+    width: 252px;
+    height: 250px;
+  }
+
+  .first-line-card svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-text {
+    margin-top: 24px;
+  }
+
+  .card-text h3 {
+    font-size: 24px;
+  }
+
+  .card-text p {
+    font-size: 14px;
   }
 }

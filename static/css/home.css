@@ -67,7 +67,7 @@
 
   background-repeat: no-repeat;
 }
-.top span {
+.first-page .top span {
   font-family: JetBrains Mono;
   font-weight: 400;
   font-size: 14px;
@@ -75,17 +75,17 @@
   vertical-align: middle;
   text-transform: uppercase;
 }
-.top svg {
+.first-page .top svg {
   margin-bottom: 1.5px;
 }
-.heading {
+.first-page .heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 44px;
   margin-bottom: 28px;
 }
-.heading h1 {
+.first-page .heading h1 {
   font-family: "Fira Sans Extra Condensed", sans-serif;
   font-weight: 500;
   font-style: normal;
@@ -95,7 +95,7 @@
   text-transform: uppercase;
   margin: 0;
 }
-.heading span {
+.first-page .heading span {
   display: block;
   font-family: "Onest", sans-serif;
   font-weight: 400;
@@ -122,7 +122,6 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 14px;
-  vertical-align: middle;
   text-transform: uppercase;
 }
 .video-footer-left {
@@ -138,4 +137,82 @@
   line-height: 120%;
   vertical-align: middle;
   color: rgba(255, 255, 255, 1);
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  /* Первый экран */
+  .block-with-video {
+    height: 590px;
+  }
+
+  .rectangles {
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    padding: 32px 16px 28px;
+  }
+
+  .first-page .top span,
+  .video-footer-date {
+    font-size: 12px;
+  }
+
+  .first-page .heading {
+    display: block;
+    margin: 32px 0 20px;
+  }
+
+  .first-page .heading h1 {
+    font-size: 80px;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+
+  .first-page .heading span {
+    width: min(506px, 100%);
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .first-page .advantages {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 24px;
+  }
+
+  .first-page .advantages div:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .first-page .advantages div span {
+    padding: 9px 14px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .video-footer {
+    margin-top: auto;
+  }
+
+  .video-footer-left {
+    gap: 20px;
+  }
+
+  .upper-button {
+    max-width: 510px;
+    font-size: 16px;
+  }
+
+  .first-page .red-button {
+    width: 214px;
+    height: 44px;
+  }
+
+  .first-page .red-button-text {
+    font-size: 14px;
+  }
+
+  .video-footer-date {
+    margin-top: -18px;
+  }
 }

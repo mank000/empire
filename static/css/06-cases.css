@@ -250,6 +250,25 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
+@media (min-width: 1101px) {
+  .cases-item {
+    height: 530px;
+  }
+
+  .cases-item-content {
+    padding: 36px 34px;
+  }
+
+  .cases-item-details {
+    padding-top: 36px;
+  }
+
+  .cases-item-footer > div {
+    gap: 8px;
+    padding: 12px 16px;
+  }
+}
+
 @media (max-width: 900px) {
   .cases-content {
     padding: 80px 24px;

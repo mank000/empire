@@ -80,8 +80,8 @@
   grid-area: access;
 }
 .access .service-image {
-  width: 232px;
-  height: 134px;
+  width: 181px;
+  height: 105px;
   right: 8px;
   bottom: 9px;
 }
@@ -209,7 +209,6 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
-  letter-spacing: 0px;
   text-align: center;
   vertical-align: middle;
   text-transform: uppercase;
@@ -253,6 +252,28 @@
 
   .services-description {
     max-width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 760px) {
+  .service-image img {
+    height: 100%;
+    object-fit: contain;
+    object-position: right bottom;
+  }
+
+  .surveillance .service-image {
+    width: 330px;
+    height: 255px;
+    right: 8px;
+    bottom: 0;
+  }
+
+  .electrical .service-image {
+    width: 150px;
+    height: 228px;
+    right: 0;
+    bottom: 0;
   }
 }
 

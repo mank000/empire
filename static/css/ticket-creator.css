@@ -9,8 +9,6 @@
   isolation: isolate;
   overflow: hidden;
   min-height: 332px;
-  view-timeline-name: --ticket;
-  view-timeline-axis: block;
   background: #151619;
   clip-path: polygon(
     var(--cut) 0,
@@ -55,22 +53,13 @@
   opacity: 0.25;
   pointer-events: none;
 }
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .ticket-creator::before {
-      animation: ticket-glow 1s linear both;
-      animation-timeline: --ticket;
-      animation-range: entry 0% cover 45%;
-    }
-  }
+.ticket-creator.is-glow-ready::before {
+  opacity: 0;
+  transition: opacity 1s ease-out;
 }
-@keyframes ticket-glow {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+
+.ticket-creator.is-glow-ready.is-visible::before {
+  opacity: 1;
 }
 .ticket-content {
   position: relative;

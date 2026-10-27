@@ -216,3 +216,81 @@
     margin-top: -18px;
   }
 }
+@media (max-width: 600px) {
+  .block-with-video {
+    height: 645px;
+  }
+
+  .rectangles {
+    width: 100%;
+    height: 100%;
+    padding: 32px 16px;
+    background: none;
+  }
+
+  .first-page .top span,
+  .video-footer-date {
+    font-size: 12px;
+  }
+
+  .first-page .heading {
+    display: block;
+    margin: 28px 0 18px;
+  }
+
+  .first-page .heading h1 {
+    font-size: 60px;
+    line-height: 0.9;
+  }
+
+  .first-page .heading span {
+    width: min(328px, 100%);
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.1;
+  }
+
+  .first-page .advantages {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 24px;
+  }
+
+  .first-page .advantages div:not(:first-child) {
+    margin-left: 0;
+  }
+
+  .first-page .advantages div span {
+    padding: 9px 14px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .video-footer {
+    margin-top: auto;
+  }
+
+  .video-footer-left {
+    gap: 16px;
+  }
+
+  .upper-button {
+    font-size: 18px;
+  }
+  .upper-button br {
+    display: none;
+  }
+
+  .first-page .red-button {
+    width: 214px;
+    height: 46px;
+  }
+
+  .first-page .red-button-text {
+    font-size: 14px;
+  }
+
+  .video-footer-date {
+    display: none;
+  }
+}

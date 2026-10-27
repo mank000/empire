@@ -199,3 +199,27 @@ h1,
     font-size: 48px;
   }
 }
+@media (max-width: 600px) {
+  .section-content {
+    padding: 32px 16px;
+  }
+
+  .redline {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .redline svg {
+    width: 16px;
+    margin-bottom: 4px;
+  }
+
+  .section-top {
+    gap: 12px;
+  }
+
+  .section-top h2,
+  .section-title {
+    font-size: 36px;
+  }
+}

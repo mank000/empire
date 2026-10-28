@@ -197,3 +197,78 @@
     font-size: 12px;
   }
 }
+
+@media (max-width: 600px) {
+  .why-us-content {
+    padding-block: 52px 32px;
+  }
+
+  .why-us-timeline {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .first-line,
+  .second-line {
+    gap: 8px;
+  }
+
+  .why-us-timeline span {
+    font-size: 36px;
+  }
+
+  .why-us-timeline img {
+    width: 56px;
+    height: 36px;
+  }
+
+  .why-us-achievements {
+    display: block;
+    margin-top: 72px;
+  }
+
+  .achievements {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 12px;
+  }
+
+  .achievements > div {
+    min-width: 0;
+  }
+
+  .achievements > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .achievements .achievement-number {
+    font-size: 30px;
+  }
+
+  .achievements .achievement-number strong {
+    font-size: 52px;
+  }
+
+  .achievements p {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .achievements span {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .why-us-achievements .red-button {
+    width: 214px;
+    height: 44px;
+    margin-top: 32px;
+  }
+
+  .why-us-achievements .red-button-text {
+    font-size: 12px;
+  }
+}

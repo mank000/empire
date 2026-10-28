@@ -1,0 +1,10 @@
+.git
+.venv
+__pycache__
+*.pyc
+*.sqlite3
+staticfiles
+.env
+deploy/certs
+deploy/nginx.conf.example
+deploy/README.md

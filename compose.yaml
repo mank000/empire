@@ -1,0 +1,16 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    environment:
+      DJANGO_DEBUG: "true"
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+    volumes:
+      - .:/app
+      - dev_database:/app/data
+    ports:
+      - "127.0.0.1:8000:8000"
+
+volumes:
+  dev_database:

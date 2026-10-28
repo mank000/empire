@@ -13,5 +13,7 @@ wheels/
 .ruff_cache/
 .DS_Store
 media/
+staticfiles/
+deploy/certs/
 
 *.sqlite3

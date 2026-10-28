@@ -127,3 +127,37 @@
     max-width: none;
   }
 }
+
+@media (max-width: 600px) {
+  .stages-works-content {
+    padding: 52px 16px;
+  }
+
+  .stages-works-content .section-title {
+    margin-top: 20px;
+    font-size: 36px;
+  }
+
+  .stages-container {
+    gap: 0;
+    margin-top: 32px;
+  }
+
+  .stage {
+    padding: 20px 0;
+  }
+
+  .stage-header h3,
+  .stage-header span {
+    font-size: 20px;
+  }
+
+  .stage p {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .stages-img {
+    display: none;
+  }
+}

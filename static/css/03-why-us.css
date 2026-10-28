@@ -124,6 +124,12 @@
   }
 }
 
+@media (min-width: 1500px) {
+  .first-line {
+    --why-line-end: 0px;
+  }
+}
+
 @supports (animation-timeline: view()) {
   @media (min-width: 601px) and (prefers-reduced-motion: no-preference) {
     .first-line {

@@ -36,7 +36,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 40px 0 40px 40px;
+  padding: 40px;
 }
 
 .make-ticket-intro h2 {
@@ -398,37 +398,6 @@
   }
 }
 
-@media (max-width: 600px) {
-  .big-ticket-creator {
-    padding: 40px 16px;
-  }
-
-  .make-ticket-panel {
-    padding: 24px;
-  }
-
-  .make-ticket-intro h2 {
-    font-size: 36px;
-  }
-
-  .make-ticket-intro p br,
-  .form-agreement br {
-    display: none;
-  }
-
-  .make-ticket-benefits span {
-    font-size: 10px;
-  }
-
-  .contact-form {
-    padding-top: 48px;
-  }
-
-  .make-ticket-photo {
-    min-height: 320px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .make-ticket-submit-arrow svg {
     transition: none;
@@ -505,6 +474,95 @@
   .make-ticket-submit {
     margin-top: 18px;
     height: 46px;
+  }
+
+  .make-ticket-submit > span:first-child {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .big-ticket-creator {
+    padding: 52px 16px;
+  }
+
+  .make-ticket-intro p br,
+  .form-agreement br {
+    display: none;
+  }
+
+  .big-ticket-creator-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .make-ticket-photo {
+    order: -1;
+    height: 180px;
+    min-height: 0;
+  }
+
+  .make-ticket-status,
+  .make-ticket-battery {
+    top: 20px;
+  }
+
+  .make-ticket-status {
+    left: 20px;
+  }
+
+  .make-ticket-battery {
+    right: 20px;
+  }
+
+  .make-ticket-panel {
+    padding: 20px;
+  }
+
+  .make-ticket-intro h2 {
+    font-size: 36px;
+  }
+
+  .make-ticket-intro p {
+    font-size: 16px;
+  }
+
+  .make-ticket-benefits {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .make-ticket-benefits span {
+    padding: 9px 12px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .contact-form {
+    gap: 16px;
+    margin-top: 0;
+    padding-top: 40px;
+  }
+
+  .form-field label {
+    font-size: 12px;
+  }
+
+  .form-field input {
+    height: 48px;
+    font-size: 14px;
+  }
+
+  .form-agreement {
+    margin: 12px 0 8px;
+  }
+
+  .make-ticket-submit {
+    height: 44px;
   }
 
   .make-ticket-submit > span:first-child {

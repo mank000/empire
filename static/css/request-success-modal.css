@@ -1,0 +1,146 @@
+.request-success-modal {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 32px;
+  border: 0;
+  background: rgba(14, 16, 20, 0.72);
+  color: #fff;
+}
+
+.request-success-modal[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-success-modal::backdrop {
+  background: rgba(14, 16, 20, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.request-success-card {
+  position: relative;
+  width: min(740px, 100%);
+  height: 300px;
+  overflow: hidden;
+  background: radial-gradient(circle at 93% 95%, #d35b27 0, #8d2724 34%, #38191c 68%, #151619 100%);
+  box-shadow: 0 24px 45px rgba(0, 0, 0, 0.25);
+}
+
+.request-success-image {
+  position: absolute;
+  right: -35px;
+  bottom: -108px;
+  width: 460px;
+  max-width: none;
+  opacity: 0.8;
+  filter: sepia(1) saturate(6) hue-rotate(315deg);
+  pointer-events: none;
+}
+
+.request-success-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 40px;
+}
+
+.request-success-content h2 {
+  font: 500 48px/1 "Fira Sans Extra Condensed", sans-serif;
+  text-transform: uppercase;
+}
+
+.request-success-content p {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font: 16px/1.25 "Onest", sans-serif;
+}
+
+.request-success-home {
+  width: 196px;
+  height: 50px;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+.request-success-home .red-button-text {
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .request-success-card {
+    width: min(580px, 100%);
+    height: 240px;
+  }
+
+  .request-success-content {
+    padding: 32px;
+  }
+
+  .request-success-content h2 {
+    font-size: 40px;
+  }
+
+  .request-success-image {
+    width: 360px;
+    right: -30px;
+    bottom: -100px;
+  }
+
+  .request-success-home {
+    width: 170px;
+    height: 46px;
+  }
+
+  .request-success-home .red-button-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .request-success-modal {
+    padding: 16px;
+  }
+
+  .request-success-card {
+    width: 100%;
+    height: 392px;
+  }
+
+  .request-success-content {
+    padding: 20px;
+  }
+
+  .request-success-content h2 {
+    max-width: 230px;
+    font-size: 36px;
+  }
+
+  .request-success-content p {
+    max-width: 270px;
+    font-size: 16px;
+  }
+
+  .request-success-content p br {
+    display: none;
+  }
+
+  .request-success-image {
+    top: 113px;
+    right: -40px;
+    bottom: auto;
+    width: 340px;
+    opacity: 0.7;
+  }
+
+  .request-success-home {
+    width: 180px;
+    height: 44px;
+  }
+}

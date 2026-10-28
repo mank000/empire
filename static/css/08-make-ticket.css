@@ -569,3 +569,12 @@
     font-size: 12px;
   }
 }
+.form-submit-error {
+  color: #c92929;
+  font-size: 14px;
+}
+
+.make-ticket-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}

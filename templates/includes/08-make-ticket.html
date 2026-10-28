@@ -14,7 +14,8 @@
                     <span>Любые формы оплаты</span>
                 </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" data-url="{% url 'create_ticket' %}">
+                {% csrf_token %}
                 <div class="form-field">
                     <label for="make-ticket-name">Имя</label>
                     <input type="text"
@@ -43,6 +44,7 @@
                         <br>
                     и с политикой конфиденциальности</span>
                 </label>
+                <p class="form-submit-error" role="alert" hidden></p>
                 <button type="submit" class="make-ticket-submit">
                     <span>Оставить заявку</span>
                     <span class="make-ticket-submit-arrow" aria-hidden="true">

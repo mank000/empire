@@ -1,0 +1,216 @@
+.error-page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: max(840px, calc(100svh - 80px));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse 780px 550px at 76% 20%, rgba(224, 93, 44, 0.3), transparent 75%),
+    radial-gradient(ellipse 900px 660px at 43% 43%, rgba(224, 45, 55, 0.16), transparent 78%),
+    repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.035) 79px 80px),
+    #0e1014;
+}
+
+.error-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: min(674px, calc(100% - 32px));
+  text-align: center;
+  transform: translateY(-18px);
+}
+
+.error-number,
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-number {
+  gap: 8px;
+}
+
+.error-label {
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.6);
+  font: 700 16px/21px "JetBrains Mono", monospace;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.error-code {
+  color: #fff;
+  font: 500 280px/0.8 "Fira Sans Extra Condensed", sans-serif;
+}
+
+.error-message {
+  gap: 32px;
+}
+
+.error-message > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.error-message h1 {
+  font-size: 52px;
+}
+
+.error-message p {
+  max-width: 396px;
+  color: rgba(255, 255, 255, 0.7);
+  font: 400 16px/1.1 "Onest", sans-serif;
+}
+
+.error-message .red-button {
+  width: 196px;
+  height: 50px;
+}
+
+.error-message .red-button-text {
+  font-size: 16px;
+}
+
+.error-message .red-button-arrow {
+  flex-basis: 46px;
+}
+
+.error-camera {
+  position: absolute;
+  z-index: 0;
+  width: 450px;
+  aspect-ratio: 1;
+  background: url("../img/error-camera.png") center / contain no-repeat;
+  pointer-events: none;
+}
+
+.error-camera-right {
+  top: -35px;
+  right: -80px;
+  transform: rotate(-13deg);
+}
+
+.error-camera-left {
+  top: 210px;
+  left: -145px;
+  transform: scaleX(-1) rotate(13deg);
+}
+
+@media (max-width: 900px) {
+  .error-page {
+    min-height: max(588px, calc(100svh - 80px));
+  }
+
+  .error-content {
+    gap: 24px;
+  }
+
+  .error-label {
+    padding-inline: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .error-code {
+    font-size: 180px;
+  }
+
+  .error-message {
+    gap: 28px;
+  }
+
+  .error-message > div {
+    gap: 8px;
+  }
+
+  .error-message h1 {
+    font-size: 40px;
+  }
+
+  .error-message p {
+    font-size: 14px;
+  }
+
+  .error-message .red-button {
+    width: 172px;
+    height: 46px;
+  }
+
+  .error-message .red-button-text {
+    font-size: 14px;
+  }
+
+  .error-message .red-button-arrow {
+    flex-basis: 42px;
+  }
+
+  .error-camera {
+    width: 270px;
+  }
+
+  .error-camera-right {
+    top: -12px;
+    right: -55px;
+  }
+
+  .error-camera-left {
+    top: 117px;
+    left: -120px;
+  }
+}
+
+@media (max-width: 760px) {
+  .error-page {
+    min-height: max(588px, calc(100svh - 68px));
+  }
+}
+
+@media (max-width: 600px) {
+  .error-page {
+    min-height: max(645px, calc(100svh - 56px));
+    background:
+      radial-gradient(ellipse 440px 450px at 73% 18%, rgba(224, 93, 44, 0.25), transparent 75%),
+      radial-gradient(ellipse 420px 480px at 48% 42%, rgba(224, 45, 55, 0.16), transparent 78%),
+      repeating-linear-gradient(90deg, transparent 0 81px, rgba(255, 255, 255, 0.035) 81px 82px),
+      #0e1014;
+  }
+
+  .error-content {
+    gap: 24px;
+    transform: translateY(-31px);
+  }
+
+  .error-code {
+    font-size: clamp(130px, 44vw, 160px);
+  }
+
+  .error-message h1 {
+    font-size: clamp(28px, 8.9vw, 32px);
+  }
+
+  .error-message p {
+    max-width: 256px;
+  }
+
+  .error-camera-right {
+    top: -17px;
+    right: -65px;
+    width: 205px;
+  }
+
+  .error-camera-left {
+    top: 420px;
+    left: -70px;
+    width: 230px;
+  }
+}

@@ -1,10 +1,17 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from django.shortcuts import render
+
+
+def not_found(request, exception=None):
+    return render(request, "404.html", status=404)
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("admin/", admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
-
+    re_path(r"^.*$", not_found, name="not_found"),
 ]
+
+handler404 = not_found

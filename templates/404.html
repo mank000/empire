@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Страница не найдена — Монтажная Империя{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="error-page" aria-labelledby="error-title">
+        <div class="error-camera error-camera-right" aria-hidden="true"></div>
+        <div class="error-camera error-camera-left" aria-hidden="true"></div>
+
+        <div class="error-content">
+            <div class="error-number">
+                <span class="error-label">System error</span>
+                <span class="error-code" aria-hidden="true">404</span>
+            </div>
+
+            <div class="error-message">
+                <div>
+                    <h1 id="error-title">Страница не найдена</h1>
+                    <p>Запрашиваемая страница не существует, была удалена или перенесена по новому адресу.</p>
+                </div>
+                <a class="red-button" href="{% url 'home' %}">
+                    <span class="red-button-text">На главную</span>
+                    <span class="red-button-arrow" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.5 12H20.33M14.43 5.93L20.5 12L14.43 18.07" stroke="currentColor" stroke-width="2" stroke-linejoin="bevel" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

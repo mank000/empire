@@ -34,11 +34,11 @@
             </div>
             <nav aria-label="Основная навигация">
                 <span class="header-menu-caption">НАВИГАЦИЯ</span>
-                <a href="#services">Услуги</a>
-                <a href="#about">О компании</a>
-                <a href="#cases">Кейсы</a>
-                <a href="#customers">Заказчики</a>
-                <a href="#contacts">Контакты</a>
+                <a href="{% url 'home' %}#services">Услуги</a>
+                <a href="{% url 'home' %}#about">О компании</a>
+                <a href="{% url 'home' %}#cases">Кейсы</a>
+                <a href="{% url 'home' %}#customers">Заказчики</a>
+                <a href="{% url 'home' %}#contacts">Контакты</a>
             </nav>
             <div class="header-menu-bottom">
                 <div class="header-menu-phone">
@@ -67,7 +67,7 @@
                         </svg>
                     </a>
                 </div>
-                <a href="#request" class="red-button header-menu-cta">
+                <a href="{% url 'home' %}#request" class="red-button header-menu-cta">
                     <span class="red-button-text">Оставить заявку</span>
                     <span class="red-button-arrow">
                         <svg width="24"

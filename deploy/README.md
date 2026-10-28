@@ -7,7 +7,7 @@
 ## Docker Compose: production
 
 1. Скопируйте `.env.example` в `.env`, задайте реальный домен и случайный `DJANGO_SECRET_KEY` (команда для генерации ниже). `.env` исключён из Git.
-   Укажите канонический адрес главной в `DJANGO_PUBLIC_SITE_URL` (например, `https://example.com`), чтобы включить canonical и Open Graph метаданные.
+   Укажите канонический адрес главной в `DJANGO_PUBLIC_SITE_URL` (например, `https://example.com`), чтобы включить canonical и Open Graph метаданные и использовать этот адрес в `robots.txt` и `sitemap.xml`.
 2. Положите сертификат и ключ для домена в `deploy/certs/fullchain.pem` и `deploy/certs/privkey.pem`. Каталог исключён из Git. Сертификат нужно получать и обновлять отдельно; Compose сам этого не делает.
 3. Запустите `docker compose -f compose.prod.yaml up --build -d`. Контейнер `web` выполнит миграции и `collectstatic`, затем запустит Gunicorn. Nginx отдаёт `/static/` и перенаправляет HTTP на HTTPS.
 4. Проверьте `docker compose -f compose.prod.yaml logs web nginx` и `docker compose -f compose.prod.yaml exec web python manage.py check --deploy`. Два предупреждения HSTS описаны ниже.

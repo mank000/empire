@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include, re_path, reverse
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
+from xml.sax.saxutils import escape
 from .views import create_ticket
 
 
@@ -11,12 +12,35 @@ def not_found(request, exception=None):
     return render(request, "404.html", status=404)
 
 
+def absolute_public_url(request, route_name):
+    path = reverse(route_name)
+    if settings.PUBLIC_SITE_URL:
+        return f"{settings.PUBLIC_SITE_URL}{path}"
+    return request.build_absolute_uri(path)
+
+
 def robots_txt(request):
-    return HttpResponse("User-agent: *\nDisallow: /admin/\n", content_type="text/plain; charset=utf-8")
+    sitemap_url = absolute_public_url(request, "sitemap")
+    return HttpResponse(
+        f"User-agent: *\nDisallow: /admin/\nSitemap: {sitemap_url}\n",
+        content_type="text/plain; charset=utf-8",
+    )
+
+
+def sitemap_xml(request):
+    home_url = escape(absolute_public_url(request, "home"))
+    content = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"  <url><loc>{home_url}</loc></url>\n"
+        "</urlset>\n"
+    )
+    return HttpResponse(content, content_type="application/xml; charset=utf-8")
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html", extra_context={"public_site_url": settings.PUBLIC_SITE_URL}), name="home"),
     path("robots.txt", robots_txt, name="robots_txt"),
+    path("sitemap.xml", sitemap_xml, name="sitemap"),
     path("admin/", admin.site.urls),
     path("api/tickets/", create_ticket, name="create_ticket"),
     re_path(r"^.*$", not_found, name="not_found"),

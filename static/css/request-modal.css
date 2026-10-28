@@ -1,0 +1,180 @@
+body.request-modal-open {
+  overflow: hidden;
+}
+
+.request-modal {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 70px 0;
+  border: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  background: rgba(14, 16, 20, 0.72);
+  color: #fff;
+}
+
+.request-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.request-modal[open] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.request-modal::backdrop {
+  background: rgba(14, 16, 20, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.request-modal-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #191b20;
+  color: #aaa;
+  font: 24px/1 "Onest", sans-serif;
+  cursor: pointer;
+}
+
+.request-modal-close:hover {
+  color: #fff;
+}
+
+.request-modal-close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.request-modal-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(1280px, calc(100% - 80px));
+  min-height: 700px;
+  margin: auto;
+  background: #151619;
+  box-shadow: 0 30px 45px rgba(0, 0, 0, 0.28);
+}
+
+.request-modal .make-ticket-panel {
+  padding: 40px;
+}
+
+.request-modal .make-ticket-benefits {
+  margin-top: 24px;
+  padding-top: 24px;
+}
+
+.request-modal .contact-form {
+  padding-top: 40px;
+}
+
+.request-modal .make-ticket-photo {
+  min-height: 700px;
+}
+
+.request-modal .make-ticket-photo::after {
+  background: rgba(14, 18, 24, 0.3);
+}
+
+@media (max-width: 900px) {
+  .request-modal-card {
+    display: flex;
+    flex-direction: column;
+    width: min(696px, calc(100% - 64px));
+    min-height: 0;
+    margin: auto;
+  }
+
+  .request-modal .make-ticket-photo {
+    order: -1;
+    height: 300px;
+    min-height: 0;
+  }
+
+  .request-modal .make-ticket-panel {
+    min-height: 440px;
+    padding: 32px;
+  }
+
+  .request-modal .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 12px;
+    padding-top: 32px;
+  }
+
+  .request-modal .form-agreement,
+  .request-modal .make-ticket-submit {
+    grid-column: 1 / -1;
+  }
+
+  .request-modal .form-field,
+  .request-modal .make-ticket-submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .request-modal {
+    padding: 84px 0 40px;
+  }
+
+  .request-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 21px;
+  }
+
+  .request-modal-card {
+    width: calc(100% - 32px);
+    margin: 0 auto;
+  }
+
+  .request-modal .make-ticket-photo {
+    height: 180px;
+  }
+
+  .request-modal .make-ticket-panel {
+    min-height: 0;
+    padding: 20px;
+  }
+
+  .request-modal .make-ticket-intro h2 {
+    font-size: 36px;
+  }
+
+  .request-modal .make-ticket-intro p {
+    font-size: 16px;
+  }
+
+  .request-modal .make-ticket-intro p br,
+  .request-modal .form-agreement br {
+    display: none;
+  }
+
+  .request-modal .make-ticket-benefits {
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .request-modal .contact-form {
+    display: flex;
+    gap: 16px;
+    padding-top: 32px;
+  }
+
+  .request-modal .form-agreement {
+    margin: 12px 0 8px;
+  }
+}

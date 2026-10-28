@@ -47,3 +47,14 @@
     height: 48px;
   }
 }
+
+@media (max-width: 600px) {
+  .running-string {
+    height: 32px;
+  }
+
+  .running-string .track-item {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

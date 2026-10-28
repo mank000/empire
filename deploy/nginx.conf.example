@@ -1,3 +1,5 @@
+limit_req_zone $binary_remote_addr zone=ticket_requests:10m rate=6r/m;
+
 server {
     listen 80;
     server_name example.com www.example.com;
@@ -13,6 +15,15 @@ server {
 
     location /static/ {
         alias /srv/mantage-empire/staticfiles/;
+    }
+
+    location = /api/tickets/ {
+        limit_req zone=ticket_requests burst=2 nodelay;
+        limit_req_status 429;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:8000;
     }
 
     location / {

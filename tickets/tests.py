@@ -1,7 +1,6 @@
 import json
 from unittest.mock import patch
 
-from django.core.cache import cache
 from django.test import Client, TestCase
 from django.urls import reverse
 
@@ -10,7 +9,6 @@ from .models import Ticket
 
 class TicketSubmissionTests(TestCase):
     def setUp(self):
-        cache.clear()
         self.client = Client(enforce_csrf_checks=True)
         self.url = reverse("create_ticket")
         self.payload = {"name": "Иван", "phone": "+7 (999) 123-45-67", "agreement": True}
@@ -46,10 +44,10 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(Ticket.objects.count(), 0)
         self.assertEqual(self.post().status_code, 201)
 
-    def test_repeat_from_same_ip_is_throttled(self):
+    def test_repeat_from_same_ip_reaches_django(self):
         self.assertEqual(self.post().status_code, 201)
-        self.assertEqual(self.post().status_code, 429)
-        self.assertEqual(Ticket.objects.count(), 1)
+        self.assertEqual(self.post().status_code, 201)
+        self.assertEqual(Ticket.objects.count(), 2)
 
     def test_same_phone_from_another_ip_is_accepted(self):
         self.assertEqual(self.post().status_code, 201)

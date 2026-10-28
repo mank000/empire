@@ -65,7 +65,7 @@ if (requestSuccessModal) {
               if (fieldError) fieldError.textContent = messages[0].message;
             });
           }
-          throw new Error(result.error || (result.errors ? "Проверьте данные формы." : "Не удалось отправить заявку. Попробуйте позже."));
+          throw new Error(result.error || (response.status === 429 ? "Слишком много заявок. Попробуйте немного позже." : result.errors ? "Проверьте данные формы." : "Не удалось отправить заявку. Попробуйте позже."));
         }
         if (requestModal?.open) requestModal.close();
         requestSuccessModal.showModal();

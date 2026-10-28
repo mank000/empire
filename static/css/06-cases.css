@@ -492,3 +492,119 @@
     padding: 6px 8px;
   }
 }
+
+@media (max-width: 600px) {
+  .cases-content {
+    padding: 52px 16px;
+  }
+
+  .cases-header {
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .cases-header h2 {
+    font-size: 36px;
+  }
+
+  .cases-header-text {
+    font-size: 16px;
+  }
+
+  .cases-collection {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    margin-right: -16px;
+    padding-right: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .cases-collection::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cases-item {
+    flex: 0 0 min(328px, calc(100vw - 32px));
+    min-width: 0;
+    margin: 0;
+    scroll-snap-align: start;
+  }
+
+  .cases-item:nth-child(3) {
+    order: -1;
+  }
+
+  .cases-preview-corners {
+    height: 180px;
+  }
+
+  .cases-item-content {
+    min-height: 300px;
+    padding: 18px;
+  }
+
+  .cases-item-header,
+  .cases-item-details,
+  .cases-item-description {
+    display: contents;
+  }
+
+  .cases-item-description h3 {
+    order: 1;
+    font-size: 24px;
+  }
+
+  .cases-status {
+    order: 2;
+    margin-top: 4px;
+    font-size: 10px;
+  }
+
+  .cases-item-description p {
+    order: 3;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  .cases-tags {
+    order: 4;
+    margin-top: 14px;
+  }
+
+  .cases-tag {
+    font-size: 10px;
+  }
+
+  .cases-tag > span {
+    padding: 6px 8px;
+  }
+
+  .cases-item-footer {
+    order: 5;
+    flex-wrap: nowrap;
+    margin-top: auto;
+  }
+
+  .cases-item-footer > div {
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 5px;
+    padding: 8px;
+  }
+
+  .cases-item-footer strong,
+  .cases-item-footer small {
+    font-size: 20px;
+  }
+
+  .cases-item-footer strong small {
+    font-size: 14px;
+  }
+
+  .cases-item-footer span {
+    font-size: 9px;
+  }
+}

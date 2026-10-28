@@ -40,3 +40,19 @@
     animation: none;
   }
 }
+
+@media (max-width: 600px) {
+  .sponsors-string {
+    height: 52px;
+  }
+
+  .sponsors-group {
+    gap: 28px;
+    padding-right: 28px;
+  }
+
+  .sponsors-group img {
+    max-height: 36px;
+    max-width: 140px;
+  }
+}

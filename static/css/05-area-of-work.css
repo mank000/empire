@@ -160,3 +160,57 @@
     font-size: 14px;
   }
 }
+
+@media (max-width: 600px) {
+  .area-of-work-content {
+    padding: 52px 16px;
+  }
+
+  .collection-cards {
+    gap: 12px;
+    margin-top: 32px;
+    margin-right: -16px;
+    padding-right: 16px;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+
+  .collection-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .area-of-work .card {
+    flex-basis: min(320px, calc(100vw - 32px));
+    scroll-snap-align: start;
+  }
+
+  .card-content {
+    padding: 18px;
+  }
+
+  .first-line-card {
+    gap: 40px;
+  }
+
+  .area-of-work .card img {
+    width: min(204px, calc(100vw - 148px));
+    height: 228px;
+  }
+
+  .first-line-card svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-text {
+    margin-top: 28px;
+  }
+
+  .card-text h3 {
+    font-size: 24px;
+  }
+
+  .card-text p {
+    font-size: 14px;
+  }
+}

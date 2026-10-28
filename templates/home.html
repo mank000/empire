@@ -17,7 +17,24 @@
     <link rel="stylesheet" href="{% static 'css/request-success-modal.css' %}">
     <link rel="stylesheet" href="{% static 'css/09-footer.css' %}">
 {% endblock %}
-{% block title %}Монтажная Империя{% endblock %}
+{% block title %}Системы безопасности и электрика во Владивостоке — Монтажная Империя{% endblock %}
+{% block description %}Проектирование, монтаж и настройка видеонаблюдения, СКУД, сигнализации и электрики во Владивостоке. Системы защиты под ключ для бизнеса и частных клиентов.{% endblock %}
+{% block seo_meta %}
+    {% if public_site_url %}
+        <link rel="canonical" href="{{ public_site_url|escape }}/">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="ru_RU">
+        <meta property="og:site_name" content="Монтажная Империя">
+        <meta property="og:title"
+              content="Системы безопасности и электрика во Владивостоке — Монтажная Империя">
+        <meta property="og:description"
+              content="Проектирование и монтаж видеонаблюдения, СКУД, сигнализации и электрики во Владивостоке под ключ.">
+        <meta property="og:url" content="{{ public_site_url|escape }}/">
+        <meta property="og:image"
+              content="{{ public_site_url|escape }}{% static 'img/icons/company-logo.png' %}">
+        <meta property="og:image:alt" content="Логотип Монтажной Империи">
+    {% endif %}
+{% endblock %}
 {% block content %}
     {% include "includes/first-page.html" %}
     {% include "includes/running-string.html" %}

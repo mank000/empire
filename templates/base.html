@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="{% static 'css/header.css' %}">
         <script src="{% static 'js/header-scroll.js' %}" defer></script>
         {% block extra_css %}{% endblock %}
-        <title>{% block title %}Сайт{% endblock %}</title>
+        <title>{% block title %}Монтажная Империя{% endblock %}</title>
+        <meta name="description" content="{% block description %}Монтажная Империя — проектирование и монтаж систем безопасности.{% endblock %}">
+        {% block seo_meta %}{% endblock %}
     </head>
     <body>
         {% include "header.html" %}

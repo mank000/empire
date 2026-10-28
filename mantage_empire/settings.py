@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [host.strip() for host in os.getenv("DJANGO_ALLOWED_HOSTS", "").
 if not DEBUG and not ALLOWED_HOSTS:
     raise RuntimeError("DJANGO_ALLOWED_HOSTS must be set in production")
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",") if origin.strip()]
+PUBLIC_SITE_URL = os.getenv("DJANGO_PUBLIC_SITE_URL", "").rstrip("/")
 
 if not DEBUG:
     # Только если Django доступен через доверенный reverse proxy.

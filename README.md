@@ -96,11 +96,11 @@ docker compose up --build
 Подробные команды и вариант запуска без Docker приведены в [deploy/README.md](deploy/README.md). Кратко для production Compose на Linux:
 
 1. Скопируйте `.env.example` в `.env` и задайте домен, случайный `DJANGO_SECRET_KEY`, доверенные адреса и `DJANGO_PUBLIC_SITE_URL`.
-2. Поместите сертификат и ключ в `deploy/certs/fullchain.pem` и `deploy/certs/privkey.pem`. Получение и обновление сертификата не автоматизировано.
-3. Запустите `docker compose -f compose.prod.yaml up --build -d`.
-4. Проверьте `docker compose -f compose.prod.yaml logs web nginx` и `docker compose -f compose.prod.yaml exec web python manage.py check --deploy`.
+2. Выпустите сертификат через временный HTTP Nginx по инструкции в `deploy/README.md`.
+3. Запустите `docker compose -f compose.prod.yaml up --build -d` и настройте ежедневный запуск `deploy/renew-certificate.sh` через cron.
+4. Проверьте `docker compose -f compose.prod.yaml run --rm certbot renew --dry-run`, логи `web` и `nginx`, а также `docker compose -f compose.prod.yaml exec web python manage.py check --deploy`.
 
-При старте контейнер `web` выполняет миграции и `collectstatic`, затем запускает Gunicorn. Nginx перенаправляет HTTP на HTTPS и отдаёт статику. SQLite хранится в томе `database`, собранная статика — в `staticfiles`. Команда `docker compose -f compose.prod.yaml down -v` удаляет тома и вместе с ними заявки; для базы нужен отдельный проверенный порядок резервного копирования и восстановления.
+При старте контейнер `web` выполняет миграции и `collectstatic`, затем запускает Gunicorn. Nginx отдаёт ACME challenge по HTTP, перенаправляет остальные HTTP-запросы на HTTPS и отдаёт статику. SQLite хранится в томе `database`, собранная статика — в `staticfiles`, а сертификаты — в `deploy/letsencrypt/`. Команда `docker compose -f compose.prod.yaml down -v` удаляет тома и вместе с ними заявки; для базы нужен отдельный проверенный порядок резервного копирования и восстановления.
 
 ## Перед публичным запуском
 

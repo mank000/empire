@@ -1,12 +1,13 @@
 from django import forms
 from django.contrib import admin
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
 from django.utils import timezone
 
 from .models import NotificationChannelState, NotificationDelivery, NotificationSettings, Ticket
 from .phones import normalize_phone
-from .secrets import encrypt_token
+from .secrets import DEV_PREFIX, encrypt_token
 
 
 @admin.register(Ticket)
@@ -57,7 +58,7 @@ class NotificationSettingsForm(forms.ModelForm):
 
     class Meta:
         model = NotificationSettings
-        fields = ("telegram_enabled", "telegram_chat_id", "max_enabled", "max_chat_id")
+        fields = ("telegram_enabled", "telegram_chat_id", "max_enabled", "max_chat_id", "email_enabled", "email_recipient")
 
     def clean(self):
         data = super().clean()
@@ -75,11 +76,15 @@ class NotificationSettingsForm(forms.ModelForm):
                     self.add_error(f"{channel}_token", str(exc))
             if data.get(f"{channel}_enabled") and (not (new_token or old_token) or clear_token or not chat_id):
                 self.add_error(f"{channel}_enabled", "Для отправки укажите токен и ID чата.")
+            if data.get(f"{channel}_enabled") and not settings.DEBUG and old_token.startswith(DEV_PREFIX) and not new_token:
+                self.add_error(f"{channel}_token", "Токен из dev нужно заменить перед production.")
             if chat_id:
                 try:
                     int(chat_id)
                 except ValueError:
                     self.add_error(f"{channel}_chat_id", "ID чата должен быть числом.")
+        if data.get("email_enabled") and not data.get("email_recipient"):
+            self.add_error("email_recipient", "Укажите адрес получателя.")
         return data
 
     def save(self, commit=True):
@@ -101,6 +106,7 @@ class NotificationSettingsAdmin(admin.ModelAdmin):
     fieldsets = (
         ("Telegram", {"fields": ("telegram_enabled", "telegram_chat_id", "telegram_token", "clear_telegram_token", "telegram_token_is_set")}),
         ("MAX", {"fields": ("max_enabled", "max_chat_id", "max_token", "clear_max_token", "max_token_is_set")}),
+        ("Почта", {"fields": ("email_enabled", "email_recipient")}),
     )
     readonly_fields = ("telegram_token_is_set", "max_token_is_set")
 

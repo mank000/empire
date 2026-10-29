@@ -59,6 +59,7 @@ def create_ticket(request):
                 for channel, enabled in (
                     (NotificationDelivery.Channel.TELEGRAM, config.telegram_enabled),
                     (NotificationDelivery.Channel.MAX, config.max_enabled),
+                    (NotificationDelivery.Channel.EMAIL, config.email_enabled),
                 ):
                     if enabled:
                         NotificationDelivery.objects.create(ticket=ticket, channel=channel)

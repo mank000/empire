@@ -47,6 +47,8 @@ class NotificationSettings(models.Model):
     max_enabled = models.BooleanField("Отправлять в MAX", default=False)
     max_chat_id = models.CharField("ID чата MAX", max_length=100, blank=True)
     max_token_encrypted = models.TextField("Токен MAX", blank=True, editable=False)
+    email_enabled = models.BooleanField("Отправлять на почту", default=False)
+    email_recipient = models.EmailField("Почта получателя", blank=True)
 
     class Meta:
         verbose_name = "Настройки уведомлений"
@@ -68,6 +70,7 @@ class NotificationDelivery(models.Model):
     class Channel(models.TextChoices):
         TELEGRAM = "telegram", "Telegram"
         MAX = "max", "MAX"
+        EMAIL = "email", "Почта"
 
     class Status(models.TextChoices):
         PENDING = "pending", "Ожидает"
@@ -76,7 +79,7 @@ class NotificationDelivery(models.Model):
         SENT = "sent", "Отправлено"
         FAILED = "failed", "Ошибка"
         SKIPPED = "skipped", "Отключено"
-        EXPIRED = "expired", "Срок истёк"
+        SUMMARIZED = "summarized", "В сводке"
 
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name="notifications", verbose_name="Заявка")
     channel = models.CharField("Канал", max_length=10, choices=Channel.choices)

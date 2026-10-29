@@ -5,6 +5,7 @@ from unittest.mock import AsyncMock, patch
 from cryptography.fernet import Fernet
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
+from django.contrib.auth.models import Group
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
@@ -38,6 +39,23 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["ticket_id"], Ticket.objects.get().pk)
         self.assertIsNotNone(Ticket.objects.get().consent_at)
+        self.assertEqual(Ticket.objects.get().phone_normalized, "+79991234567")
+
+    def test_admin_can_change_status_and_find_any_phone_format(self):
+        self.post()
+        user = get_user_model().objects.create_superuser("manager", "manager@example.test", "password")
+        admin_client = Client()
+        admin_client.force_login(user)
+        ticket = Ticket.objects.get()
+        url = reverse("admin:tickets_ticket_change", args=[ticket.pk])
+        response = admin_client.post(url, {"status": "in_progress", "manager_comment": "Позвонили", "_save": "Сохранить"})
+        self.assertEqual(response.status_code, 302)
+        ticket.refresh_from_db()
+        self.assertEqual((ticket.status, ticket.manager_comment), ("in_progress", "Позвонили"))
+        self.assertEqual(ticket.assignee, user)
+        for phone in ("+7 (999) 123-45-67", "89991234567", "999 123 45 67"):
+            response = admin_client.get(reverse("admin:tickets_ticket_changelist"), {"q": phone})
+            self.assertContains(response, ticket.name)
 
     def test_api_failure_retries_without_delaying_ticket_response(self):
         config = NotificationSettings.objects.get(pk=1)
@@ -225,6 +243,41 @@ class TicketSubmissionTests(TestCase):
         config.refresh_from_db()
         self.assertFalse(config.telegram_enabled)
         self.assertEqual(config.token_for(NotificationDelivery.Channel.TELEGRAM), "secret-in-admin")
+
+    def test_manager_can_take_ticket_without_superuser_access(self):
+        self.post()
+        user = get_user_model().objects.create_user("manager", password="password", is_staff=True)
+        group = Group.objects.get(name="Менеджеры заявок")
+        user.groups.add(group)
+        self.assertTrue(user.has_perm("tickets.view_ticket"))
+        self.assertTrue(user.has_perm("tickets.change_ticket"))
+        self.assertFalse(user.has_perm("tickets.delete_ticket"))
+        admin_client = Client()
+        admin_client.force_login(user)
+        ticket = Ticket.objects.get()
+        url = reverse("admin:tickets_ticket_change", args=[ticket.pk])
+        self.assertEqual(admin_client.get(url).status_code, 200)
+        response = admin_client.post(url, {"status": "in_progress", "manager_comment": "Принял", "_save": "Сохранить"})
+        self.assertEqual(response.status_code, 302)
+        ticket.refresh_from_db()
+        self.assertEqual(ticket.assignee, user)
+        self.assertEqual(ticket.manager_comment, "Принял")
+
+    def test_manager_action_takes_only_unassigned_new_ticket(self):
+        self.post()
+        user = get_user_model().objects.create_user("manager", password="password", is_staff=True)
+        user.groups.add(Group.objects.get(name="Менеджеры заявок"))
+        admin_client = Client()
+        admin_client.force_login(user)
+        ticket = Ticket.objects.get()
+        url = reverse("admin:tickets_ticket_changelist")
+        response = admin_client.post(url, {
+            "action": "take_in_progress", "_selected_action": str(ticket.pk), "index": "0",
+        })
+        self.assertEqual(response.status_code, 302)
+        ticket.refresh_from_db()
+        self.assertEqual(ticket.status, Ticket.Status.IN_PROGRESS)
+        self.assertEqual(ticket.assignee, user)
 
     def test_csrf_is_required(self):
         self.assertEqual(self.post(csrf=False).status_code, 403)

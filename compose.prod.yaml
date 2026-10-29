@@ -10,6 +10,7 @@ services:
     volumes:
       - database:/app/data
       - staticfiles:/app/staticfiles
+      - ./backups:/app/backups
     expose:
       - "8000"
     restart: unless-stopped

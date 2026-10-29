@@ -17,5 +17,6 @@ staticfiles/
 deploy/certs/
 deploy/letsencrypt/
 deploy/acme/
+backups/
 
 *.sqlite3

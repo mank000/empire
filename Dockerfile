@@ -14,6 +14,7 @@ COPY tickets ./tickets
 COPY templates ./templates
 COPY static ./static
 COPY deploy/docker-entrypoint.sh ./deploy/docker-entrypoint.sh
+COPY deploy/backup_database.py ./deploy/backup_database.py
 
 RUN chmod +x ./deploy/docker-entrypoint.sh
 

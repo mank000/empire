@@ -27,6 +27,7 @@ class TicketSubmissionTests(TestCase):
         response = self.post()
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["ticket_id"], Ticket.objects.get().pk)
+        self.assertIsNotNone(Ticket.objects.get().consent_at)
 
     def test_csrf_is_required(self):
         self.assertEqual(self.post(csrf=False).status_code, 403)

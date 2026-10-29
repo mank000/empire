@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Реквизиты — Монтажная Империя{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/09-footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/legal-pages.css' %}">
+{% endblock %}
+{% block content %}
+<article class="legal-page">
+    <h1>Реквизиты</h1>
+    <dl>
+        <dt>Юридическое лицо</dt><dd>{{ site_settings.legal_name }}</dd>
+        <dt>ИНН</dt><dd>{{ site_settings.inn }}</dd>
+        <dt>ОГРН</dt><dd>{{ site_settings.ogrn }}</dd>
+        <dt>Адрес</dt><dd>{{ site_settings.address }}</dd>
+        <dt>Электронная почта</dt><dd><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></dd>
+    </dl>
+</article>
+{% include "includes/09-footer.html" %}
+{% endblock %}

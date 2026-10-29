@@ -5,6 +5,7 @@ class Ticket(models.Model):
     name = models.CharField("Имя", max_length=100)
     phone = models.CharField("Телефон", max_length=25)
     created_at = models.DateTimeField("Получена", auto_now_add=True)
+    consent_at = models.DateTimeField("Согласие получено", null=True, blank=True)
 
     class Meta:
         ordering = ["-created_at"]

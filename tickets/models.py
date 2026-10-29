@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from .phones import normalize_phone
 
 
@@ -13,6 +14,11 @@ class Ticket(models.Model):
     phone_normalized = models.CharField("Телефон для поиска", max_length=12, blank=True, db_index=True)
     status = models.CharField("Статус", max_length=20, choices=Status.choices, default=Status.NEW)
     manager_comment = models.TextField("Комментарий менеджера", blank=True)
+    assignee = models.ForeignKey(
+        settings.AUTH_USER_MODEL, verbose_name="Ответственный менеджер",
+        on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="assigned_tickets",
+    )
     created_at = models.DateTimeField("Получена", auto_now_add=True)
 
     def save(self, *args, **kwargs):

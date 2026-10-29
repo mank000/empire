@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "tickets",
+    "tickets.apps.TicketsConfig",
 ]
 if DEBUG:
     INSTALLED_APPS.append("django_browser_reload")

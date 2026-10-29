@@ -50,7 +50,6 @@ urlpatterns = [
     path("sitemap.xml", sitemap_xml, name="sitemap"),
     path("admin/", admin.site.urls),
     path("api/tickets/", create_ticket, name="create_ticket"),
-    re_path(r"^.*$", not_found, name="not_found"),
 ]
 if settings.DEBUG:
     urlpatterns.insert(2, path("__reload__/", include("django_browser_reload.urls")))

@@ -6,11 +6,19 @@ services:
     environment:
       DJANGO_DEBUG: "true"
       DJANGO_DB_PATH: /app/data/db.sqlite3
+      REDIS_URL: redis://redis:6379/1
     volumes:
       - .:/app
       - dev_database:/app/data
     ports:
       - "127.0.0.1:8000:8000"
 
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+
 volumes:
   dev_database:
+  redis_data:

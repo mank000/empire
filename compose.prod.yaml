@@ -7,14 +7,25 @@ services:
     environment:
       DJANGO_DEBUG: "false"
       DJANGO_DB_PATH: /app/data/db.sqlite3
-      DJANGO_CACHE_DIR: /app/cache
+      REDIS_URL: redis://redis:6379/1
     volumes:
       - database:/app/data
       - staticfiles:/app/staticfiles
       - media:/app/media
-      - sitecache:/app/cache
     expose:
       - "8000"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     restart: unless-stopped
 
   nginx:
@@ -52,4 +63,4 @@ volumes:
   database:
   staticfiles:
   media:
-  sitecache:
+  redis_data:

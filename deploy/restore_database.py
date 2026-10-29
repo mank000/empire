@@ -4,12 +4,13 @@ import os
 import shutil
 import sqlite3
 import sys
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 def check_database(path):
-    with sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True) as database:
+    with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as database:
         if database.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise RuntimeError(f"База повреждена: {path}")
 
@@ -23,8 +24,8 @@ def restore_database(source, target, backup_dir):
     backup_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     before = backup_dir / f"pre-restore-{stamp}.sqlite3"
-    with sqlite3.connect(target) as current:
-        with sqlite3.connect(before) as saved:
+    with closing(sqlite3.connect(target)) as current:
+        with closing(sqlite3.connect(before)) as saved:
             current.backup(saved)
         if current.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchone()[0]:
             raise RuntimeError("Текущая база занята; остановите все сервисы")

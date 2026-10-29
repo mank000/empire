@@ -4,7 +4,8 @@ from unittest.mock import AsyncMock, patch
 
 from cryptography.fernet import Fernet
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.core import mail
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
@@ -12,6 +13,7 @@ from datetime import timedelta
 from .models import NotificationChannelState, NotificationDelivery, NotificationSettings, Ticket
 from .secrets import encrypt_token
 from .tasks import dispatch_pending_notifications, send_notification
+from .management.commands.dispatch_notifications import Command
 
 
 class TicketSubmissionTests(TestCase):
@@ -151,18 +153,75 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(second.attempts, 0)
         self.assertGreater(second.next_attempt_at, timezone.now())
 
-    def test_old_backlog_expires_without_queueing(self):
+    def test_old_backlog_is_sent_as_one_summary(self):
         config = NotificationSettings.objects.get(pk=1)
         config.telegram_enabled = True
+        config.telegram_chat_id = "123"
+        config.telegram_token_encrypted = encrypt_token("test-token")
+        config.save()
+        self.assertEqual(self.post().status_code, 201)
+        self.assertEqual(self.post().status_code, 201)
+        NotificationDelivery.objects.update(created_at=timezone.now() - timedelta(hours=2))
+        with patch("tickets.tasks.send_notification.apply_async") as publish:
+            dispatch_pending_notifications.run()
+        publish.assert_called_once()
+        delivery = NotificationDelivery.objects.filter(status=NotificationDelivery.Status.QUEUED).get()
+        with patch("tickets.tasks.send_telegram") as sender:
+            send_notification.run(delivery.pk)
+        self.assertIn("2 заявок", sender.call_args.args[2])
+        self.assertEqual(NotificationDelivery.objects.filter(status=NotificationDelivery.Status.SUMMARIZED).count(), 2)
+
+    def test_dispatcher_does_not_publish_without_worker(self):
+        with patch("tickets.management.commands.dispatch_notifications.app.control.ping", return_value=[]):
+            with patch("tickets.management.commands.dispatch_notifications.dispatch_pending_notifications") as dispatch:
+                self.assertFalse(Command().dispatch_once())
+        dispatch.run.assert_not_called()
+
+    def test_email_channel_uses_same_outbox(self):
+        config = NotificationSettings.objects.get(pk=1)
+        config.email_enabled = True
+        config.email_recipient = "manager@example.test"
         config.save()
         self.assertEqual(self.post().status_code, 201)
         delivery = NotificationDelivery.objects.get()
-        NotificationDelivery.objects.filter(pk=delivery.pk).update(created_at=timezone.now() - timedelta(hours=2))
-        with patch("tickets.tasks.send_notification.apply_async") as publish:
+        self.assertEqual(delivery.channel, NotificationDelivery.Channel.EMAIL)
+        with patch("tickets.tasks.send_notification.apply_async"):
             dispatch_pending_notifications.run()
-        publish.assert_not_called()
+        with patch("tickets.tasks.send_email") as sender:
+            send_notification.run(delivery.pk)
+        sender.assert_called_once()
+        self.assertEqual(sender.call_args.args[0], "manager@example.test")
         delivery.refresh_from_db()
-        self.assertEqual(delivery.status, NotificationDelivery.Status.EXPIRED)
+        self.assertEqual(delivery.status, NotificationDelivery.Status.SENT)
+
+    @override_settings(MAILERS={"default": {"BACKEND": "django.core.mail.backends.locmem.EmailBackend"}})
+    def test_email_message_contains_ticket(self):
+        from .notifications import send_email
+
+        send_email("manager@example.test", "Новая заявка #42")
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, ["manager@example.test"])
+        self.assertIn("#42", mail.outbox[0].body)
+
+    def test_dev_token_works_without_encryption_key(self):
+        with patch.dict(os.environ, {"NOTIFICATION_ENCRYPTION_KEY": ""}):
+            with override_settings(DEBUG=True):
+                encrypted = encrypt_token("local-token")
+                self.assertEqual(encrypted, "dev-plaintext:local-token")
+                config = NotificationSettings.objects.get(pk=1)
+                config.telegram_token_encrypted = encrypted
+                self.assertEqual(config.token_for(NotificationDelivery.Channel.TELEGRAM), "local-token")
+            with override_settings(DEBUG=False):
+                with self.assertRaisesMessage(Exception, "dev нельзя использовать в production"):
+                    config.token_for(NotificationDelivery.Channel.TELEGRAM)
+
+    def test_production_token_is_encrypted(self):
+        with override_settings(DEBUG=False):
+            encrypted = encrypt_token("production-token")
+            self.assertNotIn("production-token", encrypted)
+            config = NotificationSettings.objects.get(pk=1)
+            config.telegram_token_encrypted = encrypted
+            self.assertEqual(config.token_for(NotificationDelivery.Channel.TELEGRAM), "production-token")
 
     def test_three_failures_pause_channel(self):
         config = NotificationSettings.objects.get(pk=1)

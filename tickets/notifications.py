@@ -2,11 +2,21 @@ import asyncio
 import json
 from urllib.request import Request, urlopen
 
+from django.core.mail import send_mail
 from maxo import Bot
 
 
 def message_for(ticket):
     return f"Новая заявка #{ticket.pk}\nИмя: {ticket.name}\nТелефон: {ticket.phone}"
+
+
+def backlog_message(count):
+    return f"За время простоя накопилось {count} заявок. Проверьте новые заявки в админке сайта."
+
+
+def send_email(recipient, text):
+    if send_mail("Новые заявки с сайта", text, None, [recipient], fail_silently=False) != 1:
+        raise RuntimeError("Почтовый сервер не подтвердил отправку")
 
 
 def send_telegram(token, chat_id, text):

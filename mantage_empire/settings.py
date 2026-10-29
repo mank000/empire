@@ -142,9 +142,19 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 CELERY_TASK_PUBLISH_RETRY = False
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 300}
-CELERY_BEAT_SCHEDULE = {
-    "dispatch-pending-notifications": {
-        "task": "tickets.tasks.dispatch_pending_notifications",
-        "schedule": 5.0,
+
+DEFAULT_FROM_EMAIL = os.getenv("DJANGO_FROM_EMAIL", "no-reply@localhost")
+MAILERS = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "OPTIONS": {
+            "host": os.getenv("DJANGO_SMTP_HOST", "localhost"),
+            "port": int(os.getenv("DJANGO_SMTP_PORT", "587")),
+            "username": os.getenv("DJANGO_SMTP_USER", ""),
+            "password": os.getenv("DJANGO_SMTP_PASSWORD", ""),
+            "use_tls": os.getenv("DJANGO_SMTP_USE_TLS", "true").lower() == "true",
+            "use_ssl": os.getenv("DJANGO_SMTP_USE_SSL", "false").lower() == "true",
+            "timeout": 5,
+        },
     },
 }

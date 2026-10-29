@@ -13,8 +13,23 @@ services:
       - database:/app/data
       - staticfiles:/app/staticfiles
       - media:/app/media
+      - ./backups:/app/backups
     expose:
       - "8000"
+    restart: unless-stopped
+
+  backup:
+    build:
+      context: .
+      target: prod
+    depends_on:
+      - web
+    environment:
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+    volumes:
+      - database:/app/data
+      - ./backups:/app/backups
+    command: ["sh", "-c", "until test -f /app/data/db.sqlite3; do sleep 5; done; while true; do python deploy/backup_database.py; sleep 86400; done"]
     restart: unless-stopped
 
   worker:

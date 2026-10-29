@@ -1,4 +1,5 @@
 import re
+from .phones import normalize_phone
 
 from django import forms
 
@@ -16,7 +17,6 @@ class TicketForm(forms.Form):
 
     def clean_phone(self):
         phone = self.cleaned_data["phone"]
-        digits = re.sub(r"\D", "", phone)
-        if not re.fullmatch(r"[+\d\s()\-]+", phone) or not 10 <= len(digits) <= 15:
+        if not re.fullmatch(r"[+\d\s()\-]+", phone) or not normalize_phone(phone):
             raise forms.ValidationError("Укажите корректный номер телефона.")
         return phone

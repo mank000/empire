@@ -1,5 +1,7 @@
 from django.core.cache import cache
+from django.db import connection
 from django.test import TestCase
+from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
 from .models import Case, FAQ, SiteSettings
@@ -45,3 +47,9 @@ class HomeContentTests(TestCase):
         settings.pk = None
         settings.save()
         self.assertEqual(SiteSettings.objects.count(), 1)
+
+    def test_repeated_home_request_uses_cached_content(self):
+        self.client.get(reverse("home"))
+        with CaptureQueriesContext(connection) as queries:
+            self.client.get(reverse("home"))
+        self.assertFalse([query for query in queries if '"site_content_' in query["sql"]])

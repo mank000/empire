@@ -2,6 +2,7 @@ import shutil
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
 from pathlib import Path
 
 from restore_database import restore_database
@@ -36,4 +37,15 @@ class RestoreDatabaseTests(unittest.TestCase):
         with self.assertRaises(sqlite3.DatabaseError):
             restore_database(self.source, self.target, self.backups)
         with sqlite3.connect(self.target) as database:
+            self.assertEqual(database.execute("SELECT phone FROM tickets").fetchall(), [("first",)])
+
+    def test_restore_removes_old_wal_sidecars(self):
+        with closing(sqlite3.connect(self.target)) as database:
+            database.execute("PRAGMA journal_mode=WAL")
+            database.execute("INSERT INTO tickets VALUES ('second')")
+            database.commit()
+
+        restore_database(self.source, self.target, self.backups)
+
+        with closing(sqlite3.connect(self.target)) as database:
             self.assertEqual(database.execute("SELECT phone FROM tickets").fetchall(), [("first",)])

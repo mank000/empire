@@ -15,5 +15,7 @@ wheels/
 media/
 staticfiles/
 deploy/certs/
+deploy/letsencrypt/
+deploy/acme/
 
 *.sqlite3

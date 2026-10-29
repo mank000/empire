@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
 from xml.sax.saxutils import escape
-from .views import create_ticket, home
+from .views import create_ticket, home, privacy_policy, requisites
 
 
 def not_found(request, exception=None):
@@ -29,17 +29,23 @@ def robots_txt(request):
 
 
 def sitemap_xml(request):
-    home_url = escape(absolute_public_url(request, "home"))
+    urls = ("home", "privacy_policy", "requisites")
+    entries = "".join(
+        f"  <url><loc>{escape(absolute_public_url(request, name))}</loc></url>\n"
+        for name in urls
+    )
     content = (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        f"  <url><loc>{home_url}</loc></url>\n"
+        f"{entries}"
         "</urlset>\n"
     )
     return HttpResponse(content, content_type="application/xml; charset=utf-8")
 
 urlpatterns = [
     path("", home, name="home"),
+    path("privacy-policy/", privacy_policy, name="privacy_policy"),
+    path("requisites/", requisites, name="requisites"),
     path("robots.txt", robots_txt, name="robots_txt"),
     path("sitemap.xml", sitemap_xml, name="sitemap"),
     path("admin/", admin.site.urls),

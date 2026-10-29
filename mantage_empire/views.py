@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.shortcuts import render
 from django.db import transaction
+from django.utils import timezone
 
 from tickets.forms import TicketForm
 from tickets.models import NotificationDelivery, NotificationSettings, Ticket
@@ -25,6 +26,14 @@ def home(request):
     })
 
 
+def privacy_policy(request):
+    return render(request, "privacy-policy.html")
+
+
+def requisites(request):
+    return render(request, "requisites.html")
+
+
 @require_POST
 def create_ticket(request):
     if request.content_type != "application/json":
@@ -42,7 +51,8 @@ def create_ticket(request):
     try:
         with transaction.atomic():
             ticket = Ticket.objects.create(
-                name=form.cleaned_data["name"], phone=form.cleaned_data["phone"]
+                name=form.cleaned_data["name"], phone=form.cleaned_data["phone"],
+                consent_at=timezone.now(),
             )
             config = NotificationSettings.objects.filter(pk=1).first()
             if config:

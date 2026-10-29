@@ -37,6 +37,7 @@ class TicketSubmissionTests(TestCase):
         response = self.post()
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["ticket_id"], Ticket.objects.get().pk)
+        self.assertIsNotNone(Ticket.objects.get().consent_at)
 
     def test_api_failure_retries_without_delaying_ticket_response(self):
         config = NotificationSettings.objects.get(pk=1)

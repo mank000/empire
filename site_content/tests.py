@@ -48,6 +48,18 @@ class HomeContentTests(TestCase):
         settings.save()
         self.assertEqual(SiteSettings.objects.count(), 1)
 
+    def test_policy_requisites_links_and_sitemap(self):
+        settings = SiteSettings.objects.get(pk=1)
+        settings.privacy_policy = "Текст политики клиента"
+        settings.save()
+        self.assertContains(self.client.get(reverse("privacy_policy")), "Текст политики клиента")
+        self.assertContains(self.client.get(reverse("requisites")), settings.inn)
+        home = self.client.get(reverse("home"))
+        self.assertContains(home, 'href="/privacy-policy/"', count=3)
+        self.assertContains(home, 'href="/requisites/"')
+        sitemap = self.client.get(reverse("sitemap"))
+        self.assertContains(sitemap, "/privacy-policy/")
+
     def test_repeated_home_request_uses_cached_content(self):
         self.client.get(reverse("home"))
         with CaptureQueriesContext(connection) as queries:

@@ -255,6 +255,18 @@
   color: #aaa;
 }
 
+.form-agreement a {
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.form-agreement a:hover,
+.form-agreement a:focus-visible {
+  color: rgba(255, 255, 255, 0.98);
+}
+
 .make-ticket-submit {
   display: flex;
   align-items: stretch;

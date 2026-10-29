@@ -8,12 +8,51 @@ services:
       DJANGO_DEBUG: "false"
       DJANGO_DB_PATH: /app/data/db.sqlite3
       REDIS_URL: redis://redis:6379/1
+      CELERY_BROKER_URL: redis://redis:6379/0
     volumes:
       - database:/app/data
       - staticfiles:/app/staticfiles
       - media:/app/media
     expose:
       - "8000"
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      target: prod
+    env_file: .env
+    environment:
+      DJANGO_DEBUG: "false"
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+      REDIS_URL: redis://redis:6379/1
+      CELERY_BROKER_URL: redis://redis:6379/0
+    volumes:
+      - database:/app/data
+    depends_on:
+      web:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "mantage_empire", "worker", "--loglevel=INFO", "--concurrency=1"]
+    restart: unless-stopped
+
+  beat:
+    build:
+      context: .
+      target: prod
+    env_file: .env
+    environment:
+      DJANGO_DEBUG: "false"
+      DJANGO_DB_PATH: /app/data/db.sqlite3
+      REDIS_URL: redis://redis:6379/1
+      CELERY_BROKER_URL: redis://redis:6379/0
+    depends_on:
+      web:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "mantage_empire", "beat", "--loglevel=INFO", "--schedule=/tmp/celerybeat-schedule"]
     restart: unless-stopped
 
   redis:

@@ -51,7 +51,15 @@ SQLite хранится в томе `database`, статика — в томе `
 23 3 * * * /absolute/path/to/project/deploy/backup-database.sh >> /var/log/empire-backup.log 2>&1
 ```
 
-Для проверки восстановления скопируйте последнюю копию в отдельный тестовый каталог и запустите тестовый экземпляр проекта с `DJANGO_DB_PATH` на этот файл. Сравните количество заявок и несколько последних номеров с исходной базой. Для восстановления production сначала остановите приём заявок (`docker compose -f compose.prod.yaml stop nginx web`), сохраните текущую базу отдельно, затем скопируйте выбранный файл в том `database` как `/app/data/db.sqlite3` через временный контейнер с подключённым томом. После этого запустите `docker compose -f compose.prod.yaml up -d` и проверьте заявки в админке. Не восстанавливайте файл поверх работающего SQLite-процесса.
+Для проверки восстановления скопируйте файл копии в отдельный тестовый каталог и запустите тестовый экземпляр проекта с `DJANGO_DB_PATH` на этот файл. Сравните количество заявок и несколько последних номеров с исходной базой. Для восстановления production выполните из корня проекта (замените имя файла на нужную копию):
+
+```sh
+docker compose -f compose.prod.yaml stop nginx web
+docker compose -f compose.prod.yaml run --rm --no-deps web sh -c 'cp /app/data/db.sqlite3 /app/backups/pre-restore.sqlite3 && cp /app/backups/empire-YYYYMMDDTHHMMSSffffffZ.sqlite3 /app/data/db.sqlite3'
+docker compose -f compose.prod.yaml up -d
+```
+
+Первый `cp` сохраняет базу перед восстановлением в `backups/pre-restore.sqlite3`. После запуска проверьте заявки в админке. Не восстанавливайте файл поверх работающего SQLite-процесса.
 
 ## Запуск без Docker
 

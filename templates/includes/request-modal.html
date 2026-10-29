@@ -43,7 +43,7 @@
         <div class="make-ticket-photo">
             <img src="{% static 'img/lastpic.jpg' %}" alt="Инженер проверяет электрический щит" loading="lazy" decoding="async">
             <div class="make-ticket-viewfinder" aria-hidden="true"></div>
-            <div class="make-ticket-status"><span></span>На связи с 9:00 до 21:00</div>
+            <div class="make-ticket-status"><span></span>{{ site_settings.work_hours }}</div>
             <svg class="make-ticket-battery" width="20" height="10" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0.5 0.5H17.5V9.5H0.5V0.5Z" stroke="white" />
                 <path d="M2 2H5L4 8H2V2Z" fill="white" />

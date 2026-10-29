@@ -3,27 +3,26 @@
     <div class="cases-preview-corners">
         <div class="cases-preview-gradient">
             <div class="cases-preview">
-                <img src="{% static image %}" alt="" loading="lazy" decoding="async">
+                {% if case.photo %}<img src="{{ case.photo.url }}" alt="{{ case.title }}" loading="lazy" decoding="async">{% else %}<img src="{% static case.initial_image %}" alt="{{ case.title }}" loading="lazy" decoding="async">{% endif %}
             </div>
         </div>
     </div>
     <div class="cases-item-content">
         <div class="cases-item-header">
             <div class="cases-tags">
-                <span class="cases-tag"><span>Видеонаблюдение</span></span>
-                <span class="cases-tag"><span>СКУД</span></span>
+                {% for tag in case.tag_list %}<span class="cases-tag"><span>{{ tag }}</span></span>{% endfor %}
             </div>
-            <span class="cases-status">Объект сдан · на обслуживании</span>
+            <span class="cases-status">{{ case.status_text }}</span>
         </div>
         <div class="cases-item-details">
             <div class="cases-item-description">
-                <h3>Бизнес-центр Сбербанка</h3>
-                <p>Комплексная система безопасности класса А: 48 IP-камер с видеоаналитикой, СКУД на 6 входных групп и интеграция с постом охраны.</p>
+                <h3>{{ case.title }}</h3>
+                <p>{{ case.description }}</p>
             </div>
             <div class="cases-item-footer">
-                <div><strong>48</strong><span>IP-камер</span></div>
-                <div><strong>14<small> дн</small></strong><span>Срок сдачи</span></div>
-                <div><strong>6</strong><span>Точек СКУД</span></div>
+                <div><strong>{{ case.metric_1_value }}</strong><span>{{ case.metric_1_label }}</span></div>
+                <div><strong>{{ case.metric_2_value }}</strong><span>{{ case.metric_2_label }}</span></div>
+                <div><strong>{{ case.metric_3_value }}</strong><span>{{ case.metric_3_label }}</span></div>
             </div>
         </div>
     </div>

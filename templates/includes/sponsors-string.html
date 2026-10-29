@@ -3,11 +3,9 @@
     <div class="sponsors-track">
         {% for group in "123456" %}
             <div class="sponsors-group" aria-hidden="true">
-                <img src="{% static 'img/sponsors/sber.png' %}" alt="Сбербанк" loading="lazy" decoding="async">
-                <img src="{% static 'img/sponsors/mchs.png' %}" alt="МЧС России" loading="lazy" decoding="async">
-                <img src="{% static 'img/sponsors/gazprom.png' %}" alt="Газпром" loading="lazy" decoding="async">
-                <img src="{% static 'img/sponsors/tbank.png' %}" alt="Т-Банк" loading="lazy" decoding="async">
-                <img src="{% static 'img/sponsors/fssp.png' %}" alt="ФССП России" loading="lazy" decoding="async">
+                {% for logo in customer_logos %}
+                    {% if logo.image %}<img src="{{ logo.image.url }}" alt="{{ logo.name }}" loading="lazy" decoding="async">{% else %}<img src="{% static logo.initial_image %}" alt="{{ logo.name }}" loading="lazy" decoding="async">{% endif %}
+                {% endfor %}
             </div>
         {% endfor %}
     </div>

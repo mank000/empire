@@ -1,5 +1,6 @@
 asgiref==3.12.1
 Django==6.1.2
+Pillow>=11,<13
 gunicorn>=23,<24; platform_system != "Windows"
 sqlparse==0.6.0
 tzdata==2026.5

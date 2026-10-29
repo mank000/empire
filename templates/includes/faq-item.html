@@ -1,0 +1,7 @@
+<details class="faq-item"{% if open_first %} open{% endif %}>
+    <summary>
+        <h3>{{ faq.question }}</h3>
+        <span class="faq-icon" aria-hidden="true"></span>
+    </summary>
+    <div class="faq-answer"><p>{{ faq.answer|linebreaksbr }}</p></div>
+</details>

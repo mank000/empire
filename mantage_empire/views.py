@@ -3,11 +3,25 @@ import logging
 
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.conf import settings
+from django.shortcuts import render
 
 from tickets.forms import TicketForm
 from tickets.models import Ticket
+from site_content.content import get_home_content
 
 logger = logging.getLogger(__name__)
+
+
+def home(request):
+    content = get_home_content()
+    middle = (len(content["faq_items"]) + 1) // 2
+    return render(request, "home.html", {
+        "public_site_url": settings.PUBLIC_SITE_URL,
+        **content,
+        "faq_left": content["faq_items"][:middle],
+        "faq_right": content["faq_items"][middle:],
+    })
 
 
 @require_POST

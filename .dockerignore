@@ -5,6 +5,8 @@ __pycache__
 *.sqlite3
 staticfiles
 .env
+media
+.cache
 deploy/certs
 deploy/nginx.conf.example
 deploy/README.md

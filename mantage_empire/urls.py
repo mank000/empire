@@ -3,9 +3,10 @@ from django.urls import path, include, re_path, reverse
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.conf import settings
+from django.conf.urls.static import static
 from django.http import HttpResponse
 from xml.sax.saxutils import escape
-from .views import create_ticket
+from .views import create_ticket, home
 
 
 def not_found(request, exception=None):
@@ -38,7 +39,7 @@ def sitemap_xml(request):
     return HttpResponse(content, content_type="application/xml; charset=utf-8")
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="home.html", extra_context={"public_site_url": settings.PUBLIC_SITE_URL}), name="home"),
+    path("", home, name="home"),
     path("robots.txt", robots_txt, name="robots_txt"),
     path("sitemap.xml", sitemap_xml, name="sitemap"),
     path("admin/", admin.site.urls),
@@ -47,5 +48,6 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns.insert(2, path("__reload__/", include("django_browser_reload.urls")))
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = not_found

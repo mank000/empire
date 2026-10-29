@@ -16,57 +16,14 @@
         </div>
         <div class="faq-grid">
             <div class="faq-column">
-                <details class="faq-item" open>
-                    <summary>
-                        <h3>ВЫЕЗД ИНЖЕНЕРА ДЕЙСТВИТЕЛЬНО БЕСПЛАТНЫЙ?</h3>
-                        <span class="faq-icon" aria-hidden="true"></span>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>
-                            Да, инженер бесплатно приедет на объект,
-                            проведёт осмотр и поможет определить
-                            необходимое оборудование.
-                        </p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>
-                        <h3>У НАС НЕТ ПРОЕКТА. СДЕЛАЕТЕ САМИ?</h3>
-                        <span class="faq-icon" aria-hidden="true"></span>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>Да, мы можем разработать проект с нуля.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>
-                        <h3>У НАС УЖЕ СТОИТ СИСТЕМА. ВОЗЬМЁТЕСЬ?</h3>
-                        <span class="faq-icon" aria-hidden="true"></span>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>Да, работаем с уже установленными системами.</p>
-                    </div>
-                </details>
+                {% for faq in faq_left %}
+                    {% include "includes/faq-item.html" with open_first=forloop.first %}
+                {% endfor %}
             </div>
             <div class="faq-column">
-                <details class="faq-item">
-                    <summary>
-                        <h3>КАКАЯ ГАРАНТИЯ НА РАБОТЫ?</h3>
-                        <span class="faq-icon" aria-hidden="true"></span>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>Условия гарантии зависят от выполненных работ.</p>
-                    </div>
-                </details>
-                <details class="faq-item">
-                    <summary>
-                        <h3>КАК МОЖНО ОПЛАТИТЬ?</h3>
-                        <span class="faq-icon" aria-hidden="true"></span>
-                    </summary>
-                    <div class="faq-answer">
-                        <p>Доступные способы оплаты уточняются при заключении договора.</p>
-                    </div>
-                </details>
+                {% for faq in faq_right %}
+                    {% include "includes/faq-item.html" %}
+                {% endfor %}
             </div>
         </div>
     </div>

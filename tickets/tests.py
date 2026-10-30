@@ -354,7 +354,7 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(set(response.json()["errors"]), {"name", "phone", "agreement"})
 
     def test_storage_error_does_not_report_success(self):
-        with patch("mantage_empire.views.Ticket.objects.create", side_effect=Exception("db unavailable")):
+        with patch("tickets.views.Ticket.objects.create", side_effect=Exception("db unavailable")):
             response = self.post()
         self.assertEqual(response.status_code, 503)
         self.assertEqual(Ticket.objects.count(), 0)

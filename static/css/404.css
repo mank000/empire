@@ -9,7 +9,7 @@
     radial-gradient(ellipse 780px 550px at 76% 20%, rgba(224, 93, 44, 0.3), transparent 75%),
     radial-gradient(ellipse 900px 660px at 43% 43%, rgba(224, 45, 55, 0.16), transparent 78%),
     repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.035) 79px 80px),
-    #0e1014;
+    var(--color-background);
 }
 
 .error-content {
@@ -41,14 +41,14 @@
   border-radius: 100px;
   background: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.6);
-  font: 700 16px/21px "JetBrains Mono", monospace;
+  font: 700 16px/21px var(--font-mono);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .error-code {
-  color: #fff;
-  font: 500 280px/0.8 "Fira Sans Extra Condensed", sans-serif;
+  color: var(--color-white);
+  font: 500 280px/0.8 var(--font-display);
 }
 
 .error-message {
@@ -69,21 +69,11 @@
 .error-message p {
   max-width: 396px;
   color: rgba(255, 255, 255, 0.7);
-  font: 400 16px/1.1 "Onest", sans-serif;
+  font: 400 16px/1.1 var(--font-body);
 }
 
-.error-message .red-button {
-  width: 196px;
-  height: 50px;
-}
 
-.error-message .red-button-text {
-  font-size: 16px;
-}
 
-.error-message .red-button-arrow {
-  flex-basis: 46px;
-}
 
 .error-camera {
   position: absolute;
@@ -141,18 +131,8 @@
     font-size: 14px;
   }
 
-  .error-message .red-button {
-    width: 172px;
-    height: 46px;
-  }
 
-  .error-message .red-button-text {
-    font-size: 14px;
-  }
 
-  .error-message .red-button-arrow {
-    flex-basis: 42px;
-  }
 
   .error-camera {
     width: 270px;
@@ -182,7 +162,7 @@
       radial-gradient(ellipse 440px 450px at 73% 18%, rgba(224, 93, 44, 0.25), transparent 75%),
       radial-gradient(ellipse 420px 480px at 48% 42%, rgba(224, 45, 55, 0.16), transparent 78%),
       repeating-linear-gradient(90deg, transparent 0 81px, rgba(255, 255, 255, 0.035) 81px 82px),
-      #0e1014;
+      var(--color-background);
   }
 
   .error-content {

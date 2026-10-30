@@ -13,7 +13,7 @@ body.request-modal-open {
   overflow-y: auto;
   scrollbar-width: none;
   background: rgba(14, 16, 20, 0.72);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .request-modal::-webkit-scrollbar {
@@ -40,17 +40,17 @@ body.request-modal-open {
   height: 36px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #191b20;
-  color: #aaa;
-  font: 24px/1 "Onest", sans-serif;
+  color: var(--color-text-muted);
+  font: 24px/1 var(--font-body);
   cursor: pointer;
 }
 
 .request-modal-close:hover {
-  color: #fff;
+  color: var(--color-white);
 }
 
 .request-modal-close:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-white);
   outline-offset: 3px;
 }
 
@@ -60,7 +60,7 @@ body.request-modal-open {
   width: min(1280px, calc(100% - 80px));
   min-height: 700px;
   margin: auto;
-  background: #151619;
+  background: var(--color-surface);
   box-shadow: 0 30px 45px rgba(0, 0, 0, 0.28);
 }
 

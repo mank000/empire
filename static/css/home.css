@@ -20,7 +20,7 @@
   pointer-events: none;
 
   background:
-    linear-gradient(0deg, rgba(14, 16, 20, 0) 0%, #0e1014 110.83%), #0e10141a;
+    linear-gradient(0deg, rgba(14, 16, 20, 0) 0%, var(--color-background) 110.83%), #0e10141a;
 }
 
 .video-overlay::after {
@@ -68,7 +68,7 @@
   background-repeat: no-repeat;
 }
 .first-page .top span {
-  font-family: JetBrains Mono;
+  font-family: var(--font-mono);
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -86,7 +86,7 @@
   margin-bottom: 28px;
 }
 .first-page .heading h1 {
-  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-style: normal;
   font-size: 100px;
@@ -97,7 +97,7 @@
 }
 .first-page .heading span {
   display: block;
-  font-family: "Onest", sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
   line-height: 1.1;
@@ -118,7 +118,7 @@
   display: flex;
   flex-direction: row-reverse;
   color: #ffffff66;
-  font-family: JetBrains Mono;
+  font-family: var(--font-mono);
   font-weight: 400;
   font-size: 16px;
   line-height: 14px;
@@ -131,7 +131,7 @@
   gap: 22px;
 }
 .upper-button {
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
@@ -203,14 +203,7 @@
     font-size: 16px;
   }
 
-  .first-page .red-button {
-    width: 214px;
-    height: 44px;
-  }
 
-  .first-page .red-button-text {
-    font-size: 14px;
-  }
 
   .video-footer-date {
     margin-top: -18px;
@@ -224,7 +217,7 @@
   .rectangles {
     width: 100%;
     height: 100%;
-    padding: 32px 16px;
+    padding: var(--space-section-mobile) var(--space-page-mobile);
     background: none;
   }
 
@@ -281,14 +274,7 @@
     display: none;
   }
 
-  .first-page .red-button {
-    width: 214px;
-    height: 46px;
-  }
 
-  .first-page .red-button-text {
-    font-size: 14px;
-  }
 
   .video-footer-date {
     display: none;

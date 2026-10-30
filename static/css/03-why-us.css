@@ -1,5 +1,5 @@
 .why-stages {
-  background-color: #0e1014;
+  background-color: var(--color-background);
   background-image:
     radial-gradient(
       ellipse 860px 265px at -5% 44%,
@@ -58,7 +58,7 @@
 }
 .why-us-timeline span {
   flex: 0 0 auto;
-  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 60px;
   line-height: 1;
@@ -83,7 +83,7 @@
 }
 
 .achievements .achievement-number {
-  font-family: Fira Sans Extra Condensed;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 60px;
   line-height: 100%;
@@ -91,13 +91,13 @@
   color: rgba(255, 255, 255, 1);
 }
 .achievements .achievement-number strong {
-  font-family: JetBrains Mono;
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 98px;
   color: rgba(255, 255, 255, 1);
 }
 .achievements p {
-  font-family: JetBrains Mono;
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: 16px;
   line-height: 100%;
@@ -105,7 +105,7 @@
   color: rgba(255, 255, 255, 1);
 }
 .achievements span {
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
   line-height: 100%;
@@ -124,9 +124,9 @@
   }
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1201px) {
   .first-line {
-    --why-line-end: 0px;
+    --why-line-end: clamp(-243px, calc(81vw - 1215px), 0px);
   }
 }
 
@@ -204,15 +204,6 @@
 
   .achievements span {
     font-size: 13px;
-  }
-
-  .why-us-achievements .red-button {
-    width: 212px;
-    height: 44px;
-  }
-
-  .why-us-achievements .red-button-text {
-    font-size: 12px;
   }
 }
 
@@ -344,13 +335,7 @@
     line-height: 1.2;
   }
 
-  .why-us-achievements .red-button {
-    width: 214px;
-    height: 44px;
+  .why-us-achievements .red-button--why {
     margin-top: 32px;
-  }
-
-  .why-us-achievements .red-button-text {
-    font-size: 12px;
   }
 }

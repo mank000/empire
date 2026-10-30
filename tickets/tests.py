@@ -41,7 +41,13 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["ticket_id"], Ticket.objects.get().pk)
         self.assertIsNotNone(Ticket.objects.get().consent_at)
+        self.assertEqual(Ticket.objects.get().phone, "+79991234567")
         self.assertEqual(Ticket.objects.get().phone_normalized, "+79991234567")
+
+    def test_programmatic_ticket_save_normalizes_phone_for_admin(self):
+        ticket = Ticket.objects.create(name="Анна", phone="8 (999) 123-45-67")
+        self.assertEqual(ticket.phone, "+79991234567")
+        self.assertEqual(ticket.phone_normalized, ticket.phone)
 
     def test_admin_can_change_status_and_find_any_phone_format(self):
         self.post()

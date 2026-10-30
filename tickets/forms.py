@@ -19,4 +19,4 @@ class TicketForm(forms.Form):
         phone = self.cleaned_data["phone"]
         if not re.fullmatch(r"[+\d\s()\-]+", phone) or not normalize_phone(phone):
             raise forms.ValidationError("Укажите корректный номер телефона.")
-        return phone
+        return normalize_phone(phone)

@@ -27,6 +27,8 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         self.phone_normalized = normalize_phone(self.phone)
+        if self.phone_normalized:
+            self.phone = self.phone_normalized
         if kwargs.get("update_fields") is not None and "phone" in kwargs["update_fields"]:
             kwargs["update_fields"] = set(kwargs["update_fields"]) | {"phone_normalized"}
         super().save(*args, **kwargs)

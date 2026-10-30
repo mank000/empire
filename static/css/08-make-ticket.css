@@ -586,6 +586,11 @@
   font-size: 14px;
 }
 
+.form-submit-success {
+  color: #fff;
+  font-size: 14px;
+}
+
 .make-ticket-submit:disabled {
   opacity: 0.6;
   cursor: wait;

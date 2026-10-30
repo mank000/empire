@@ -65,3 +65,10 @@ class HomeContentTests(TestCase):
         with CaptureQueriesContext(connection) as queries:
             self.client.get(reverse("home"))
         self.assertFalse([query for query in queries if '"site_content_' in query["sql"]])
+
+    def test_ticket_forms_do_not_submit_without_javascript(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, 'method="post" action="/api/tickets/"', count=2)
+        self.assertContains(response, '<button type="submit" class="make-ticket-submit" disabled>', count=2)
+        self.assertContains(response, 'id="make-ticket-phone"')
+        self.assertContains(response, 'id="request-modal-phone"')

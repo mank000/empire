@@ -1,4 +1,24 @@
+x-logging: &bounded-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
 services:
+  volume-permissions:
+    build:
+      context: .
+      target: prod
+    user: "0:0"
+    volumes:
+      - database:/app/data
+      - staticfiles:/app/staticfiles
+      - media:/app/media
+      - ./backups:/app/backups
+    command: ["sh", "-c", "chown -R 10001:10001 /app/data /app/staticfiles /app/media /app/backups"]
+    restart: "no"
+    logging: *bounded-logging
+
   web:
     build:
       context: .
@@ -16,7 +36,17 @@ services:
       - ./backups:/app/backups
     expose:
       - "8000"
+    depends_on:
+      volume-permissions:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "deploy/healthcheck.py"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
     restart: unless-stopped
+    logging: *bounded-logging
 
   backup:
     build:
@@ -31,6 +61,7 @@ services:
       - ./backups:/app/backups
     command: ["sh", "-c", "until test -f /app/data/db.sqlite3; do sleep 5; done; while true; do if python deploy/backup_database.py; then sleep 86400; else echo 'Ошибка резервного копирования; повтор через 5 минут' >&2; sleep 300; fi; done"]
     restart: unless-stopped
+    logging: *bounded-logging
 
   worker:
     build:
@@ -51,6 +82,7 @@ services:
         condition: service_healthy
     command: ["celery", "-A", "mantage_empire", "worker", "--loglevel=INFO", "--concurrency=1"]
     restart: unless-stopped
+    logging: *bounded-logging
 
   dispatcher:
     build:
@@ -69,6 +101,7 @@ services:
         condition: service_healthy
     command: ["python", "manage.py", "dispatch_notifications"]
     restart: unless-stopped
+    logging: *bounded-logging
 
   redis:
     image: redis:7.4-alpine
@@ -81,11 +114,13 @@ services:
       timeout: 3s
       retries: 5
     restart: unless-stopped
+    logging: *bounded-logging
 
   nginx:
     image: nginx:stable-alpine
     depends_on:
-      - web
+      web:
+        condition: service_healthy
     ports:
       - "80:80"
       - "443:443"
@@ -96,6 +131,7 @@ services:
       - ./deploy/letsencrypt:/etc/letsencrypt:ro
       - ./deploy/acme:/var/www/certbot:ro
     restart: unless-stopped
+    logging: *bounded-logging
 
   nginx-bootstrap:
     image: nginx:stable-alpine

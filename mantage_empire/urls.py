@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
 from xml.sax.saxutils import escape
-from .views import create_ticket, home, privacy_policy, requisites
+from .views import create_ticket, health, home, privacy_policy, requisites
 
 
 def not_found(request, exception=None):
@@ -43,6 +43,7 @@ def sitemap_xml(request):
     return HttpResponse(content, content_type="application/xml; charset=utf-8")
 
 urlpatterns = [
+    path("health/", health, name="health"),
     path("", home, name="home"),
     path("privacy-policy/", privacy_policy, name="privacy_policy"),
     path("requisites/", requisites, name="requisites"),

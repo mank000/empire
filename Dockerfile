@@ -9,7 +9,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY manage.py ./
-COPY mantage_empire ./mantage_empire
+COPY montage_empire ./montage_empire
 COPY tickets ./tickets
 COPY site_content ./site_content
 COPY templates ./templates

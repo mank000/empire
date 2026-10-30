@@ -53,7 +53,7 @@ MIDDLEWARE = [
 if DEBUG:
     MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
-ROOT_URLCONF = "mantage_empire.urls"
+ROOT_URLCONF = "montage_empire.urls"
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "mantage_empire.wsgi.application"
+WSGI_APPLICATION = "montage_empire.wsgi.application"
 
 
 DATABASES = {
@@ -123,7 +123,7 @@ LOGGING = {
     },
     "loggers": {
         "django.request": {"handlers": ["stdout"], "level": "ERROR", "propagate": False},
-        "mantage_empire": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "montage_empire": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
         "tickets": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
         "site_content": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
     },

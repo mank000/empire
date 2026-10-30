@@ -13,6 +13,8 @@
 3. Запустите `docker compose -f compose.prod.yaml up --build -d`. Контейнер `web` выполнит миграции и `collectstatic`, затем запустит Gunicorn. Redis хранит очередь и кеш, `worker` отправляет уведомления, `dispatcher` проверяет ожидающие записи каждые 5 секунд только при доступном worker. Nginx отдаёт `/static/`, пропускает HTTP-запросы к ACME challenge и перенаправляет остальной HTTP на HTTPS.
 4. Настройте ежедневное продление по инструкции ниже. Проверьте `docker compose -f compose.prod.yaml logs web nginx redis worker dispatcher` и `docker compose -f compose.prod.yaml exec web python manage.py check --deploy`. Два предупреждения HSTS описаны ниже.
 
+При обновлении существующей установки пересоберите контейнеры после переименования пакета проекта. Если Gunicorn, Celery или `DJANGO_SETTINGS_MODULE` заданы во внешних конфигурациях, укажите в них `montage_empire`. Путь к существующей базе и Docker-тома при этом не меняются.
+
 ### Уведомления о заявках
 
 В админке откройте «Настройки уведомлений». Суперпользователь может указать или заменить токены Telegram и MAX, ID чатов, почтовый адрес получателя и отдельно включить каждый канал. Токены в production хранятся зашифрованными, форма не показывает сохранённый токен. Добавьте ботов в нужные чаты и разрешите им отправлять сообщения. В локальном `DEBUG=true` ключ не нужен: токены сохраняются с префиксом `dev-plaintext:` и работают только в dev. Не переносите такую базу в production без замены токенов.
@@ -80,8 +82,8 @@ SQLite хранится в томе `database`, статика — в томе `
 1. Установите зависимости: `python -m pip install -r requirements.txt`. Для локальной разработки используйте `requirements-dev.txt`.
 2. Задайте переменные окружения из `.env.example` с реальным доменом и собственным секретом. Файл `.env.example` — только образец; Django не читает `.env` автоматически. Секрет можно получить командой `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`. Не добавляйте секрет в Git.
 3. Выполните `python manage.py check --deploy`, `python manage.py migrate` и `python manage.py collectstatic --noinput` в том же окружении.
-4. Запустите `gunicorn mantage_empire.wsgi:application --bind 127.0.0.1:8000 --workers 2` под менеджером процессов (например, systemd). Не открывайте порт 8000 наружу: Django доверяет заголовку `X-Forwarded-Proto` от локального Nginx.
-5. Настройте Nginx по `nginx.conf.example`, заменив домен, пути к сертификату и `/srv/mantage-empire/staticfiles/` на фактический `STATIC_ROOT`. Получите действительный TLS-сертификат и перезагрузите Nginx.
+4. Запустите `gunicorn montage_empire.wsgi:application --bind 127.0.0.1:8000 --workers 2` под менеджером процессов (например, systemd). Не открывайте порт 8000 наружу: Django доверяет заголовку `X-Forwarded-Proto` от локального Nginx.
+5. Настройте Nginx по `nginx.conf.example`, заменив домен, пути к сертификату и `/srv/montage-empire/staticfiles/` на фактический `STATIC_ROOT`. Получите действительный TLS-сертификат и перезагрузите Nginx.
 
 Начальное HSTS — 1 час. Увеличивайте его только после проверки HTTPS на всех используемых доменах. SQLite требует резервного копирования и подходит для одного небольшого экземпляра; при росте нагрузки настройте отдельную СУБД. В production Nginx ограничивает `/api/tickets/` по IP: средняя скорость 6 запросов в минуту с кратким всплеском до 2 дополнительных запросов; превышение возвращает 429. Это правило общее для обоих Gunicorn workers. В dev без Nginx ограничение не действует. Если перед Nginx появится CDN или ещё один прокси, настройте доверенный real IP на Nginx, иначе лимит будет общим для адреса этого прокси.
 

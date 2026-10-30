@@ -80,7 +80,7 @@ services:
         condition: service_started
       redis:
         condition: service_healthy
-    command: ["celery", "-A", "mantage_empire", "worker", "--loglevel=INFO", "--concurrency=1"]
+    command: ["celery", "-A", "montage_empire", "worker", "--loglevel=INFO", "--concurrency=1"]
     restart: unless-stopped
     logging: *bounded-logging
 

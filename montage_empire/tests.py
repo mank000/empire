@@ -19,6 +19,6 @@ class HealthTests(TestCase):
     @override_settings(SECURE_SSL_REDIRECT=False)
     def test_health_reflects_database_availability(self):
         self.assertEqual(self.client.get("/health/").status_code, 200)
-        with patch("mantage_empire.views.connection.cursor", side_effect=OSError("database unavailable")):
-            with self.assertLogs("mantage_empire.views", level="ERROR"):
+        with patch("montage_empire.views.connection.cursor", side_effect=OSError("database unavailable")):
+            with self.assertLogs("montage_empire.views", level="ERROR"):
                 self.assertEqual(self.client.get("/health/").status_code, 503)

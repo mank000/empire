@@ -3,7 +3,7 @@ import time
 
 from django.core.management.base import BaseCommand
 
-from mantage_empire.celery import app
+from montage_empire.celery import app
 from tickets.tasks import dispatch_pending_notifications
 
 

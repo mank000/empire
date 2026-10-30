@@ -1,5 +1,13 @@
 .footer {
   background-color: var(--color-surface);
+  clip-path: polygon(
+    28px 0,
+    100% 0,
+    100% calc(100% - 28px),
+    calc(100% - 28px) 100%,
+    0 100%,
+    0 28px
+  );
 }
 .footer-content {
   display: flex;

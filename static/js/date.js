@@ -1,6 +1,6 @@
-const date = document.getElementById("date");
-const nowDate = new Date();
-function updateDate() {
-  date.textContent = `DATE / ${nowDate.toLocaleDateString()}`;
-}
-updateDate();
+(() => {
+  const date = document.getElementById("date");
+  if (!date) return;
+
+  date.textContent = `DATE / ${new Date().toLocaleDateString("ru-RU")}`;
+})();

@@ -36,6 +36,7 @@
 ```powershell
 py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+$env:DJANGO_DEBUG = "true"
 .\.venv\Scripts\python.exe manage.py migrate
 .\.venv\Scripts\python.exe manage.py runserver
 ```
@@ -46,7 +47,7 @@ py -3.13 -m venv .venv
 .\.venv\Scripts\python.exe manage.py createsuperuser
 ```
 
-Админка находится по адресу `/admin/`. При локальном запуске `DJANGO_DEBUG` по умолчанию равен `true`. Если `DJANGO_SECRET_KEY` не задан, Django создаёт временный ключ при запуске. Данные сохраняются в `db.sqlite3` в корне проекта, если `DJANGO_DB_PATH` не переопределён. `runserver` запускает сайт без фоновой отправки; для проверки уведомлений запустите Redis, Celery worker и `python manage.py dispatch_notifications` либо используйте Docker Compose ниже.
+Админка находится по адресу `/admin/`. По умолчанию `DJANGO_DEBUG=false`; для локального запуска без Docker установите `DJANGO_DEBUG=true`, как в примере выше. В dev без `DJANGO_SECRET_KEY` Django создаёт временный ключ при запуске. Данные сохраняются в `db.sqlite3` в корне проекта, если `DJANGO_DB_PATH` не переопределён. `runserver` запускает сайт без фоновой отправки; для проверки уведомлений запустите Redis, Celery worker и `python manage.py dispatch_notifications` либо используйте Docker Compose ниже.
 
 ## Локальный запуск через Docker
 
@@ -96,7 +97,7 @@ docker compose up --build
 
 | Переменная                    | Назначение                                                                                                       |
 | ----------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `DJANGO_DEBUG`                | `true` для разработки; в `compose.prod.yaml` принудительно задано `false`                                        |
+| `DJANGO_DEBUG`                | По умолчанию `false`; для разработки задайте `true` явно, в `compose.prod.yaml` закреплено `false`               |
 | `DJANGO_SECRET_KEY`           | Секрет Django; обязателен при `DEBUG=false`                                                                      |
 | `DJANGO_ALLOWED_HOSTS`        | Список разрешённых доменов через запятую; обязателен при `DEBUG=false`                                           |
 | `DJANGO_CSRF_TRUSTED_ORIGINS` | Доверенные HTTPS-адреса для CSRF, через запятую                                                                  |
@@ -109,6 +110,8 @@ docker compose up --build
 | `DJANGO_SMTP_*`               | Хост, порт, логин, пароль и TLS/SSL для почтовых уведомлений                                                         |
 
 Пример значений находится в `.env.example`. Файл `.env` читает production Compose через `env_file`; сам Django не загружает его автоматически при запуске без Docker. Настоящие секреты и сертификаты не следует добавлять в Git.
+
+Время в админке отображается по часовому поясу `Asia/Vladivostok`. Ошибки HTTP-запросов и сообщения приложений пишутся в stdout контейнера и доступны через `docker compose logs web`.
 
 ## Как работает заявка
 

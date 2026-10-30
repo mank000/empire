@@ -5,7 +5,7 @@ from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = os.getenv("DJANGO_DEBUG", "true").lower() == "true"
+DEBUG = os.getenv("DJANGO_DEBUG", "false").lower() == "true"
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
     if not DEBUG:
@@ -98,15 +98,36 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = "RU-ru"
+LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Vladivostok"
 
 USE_I18N = True
 
 USE_TZ = True
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": "%(asctime)s %(levelname)s %(name)s: %(message)s"},
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+            "formatter": "standard",
+        },
+    },
+    "loggers": {
+        "django.request": {"handlers": ["stdout"], "level": "ERROR", "propagate": False},
+        "mantage_empire": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "tickets": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "site_content": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+    },
+}
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_URL = "static/"

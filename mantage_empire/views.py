@@ -1,11 +1,11 @@
 import json
 import logging
 
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.shortcuts import render
-from django.db import transaction
+from django.db import connection, transaction
 from django.utils import timezone
 
 from tickets.forms import TicketForm
@@ -13,6 +13,16 @@ from tickets.models import NotificationDelivery, NotificationSettings, Ticket
 from site_content.content import get_home_content
 
 logger = logging.getLogger(__name__)
+
+
+def health(request):
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+    except Exception:
+        logger.exception("Проверка базы данных не прошла")
+        return HttpResponse(status=503)
+    return HttpResponse("ok", content_type="text/plain")
 
 
 def home(request):

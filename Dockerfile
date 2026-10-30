@@ -17,12 +17,18 @@ COPY static ./static
 COPY deploy/docker-entrypoint.sh ./deploy/docker-entrypoint.sh
 COPY deploy/backup_database.py ./deploy/backup_database.py
 COPY deploy/restore_database.py ./deploy/restore_database.py
+COPY deploy/healthcheck.py ./deploy/healthcheck.py
 
-RUN chmod +x ./deploy/docker-entrypoint.sh
+RUN chmod +x ./deploy/docker-entrypoint.sh \
+    && groupadd --gid 10001 app \
+    && useradd --uid 10001 --gid app --home-dir /app --shell /usr/sbin/nologin app \
+    && mkdir -p /app/data /app/staticfiles /app/media /app/backups \
+    && chown -R app:app /app
 
 EXPOSE 8000
 
 FROM base AS prod
+USER app
 CMD ["./deploy/docker-entrypoint.sh"]
 
 FROM base AS dev

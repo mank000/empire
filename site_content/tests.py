@@ -1,12 +1,45 @@
 from html.parser import HTMLParser
+from xml.etree import ElementTree
 
 from django.core.cache import cache
 from django.db import connection
-from django.test import TestCase
+from django.test import SimpleTestCase, TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
 from .models import Case, FAQ, SiteSettings
+
+
+class PublicRouteTests(SimpleTestCase):
+    @override_settings(PUBLIC_SITE_URL="https://example.test", SECURE_SSL_REDIRECT=False)
+    def test_robots_points_to_public_sitemap_and_blocks_admin(self):
+        response = self.client.get(reverse("robots_txt"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response["Content-Type"].startswith("text/plain"))
+        self.assertEqual(
+            response.content.decode(),
+            "User-agent: *\nDisallow: /admin/\nSitemap: https://example.test/sitemap.xml\n",
+        )
+
+    @override_settings(PUBLIC_SITE_URL="https://example.test", SECURE_SSL_REDIRECT=False)
+    def test_sitemap_is_valid_xml_with_public_urls(self):
+        response = self.client.get(reverse("sitemap"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response["Content-Type"].startswith("application/xml"))
+        root = ElementTree.fromstring(response.content)
+        namespace = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+        self.assertEqual(root.tag, f"{namespace}urlset")
+        self.assertEqual(
+            [element.text for element in root.findall(f"{namespace}url/{namespace}loc")],
+            ["https://example.test/", "https://example.test/privacy-policy/", "https://example.test/requisites/"],
+        )
+
+    @override_settings(DEBUG=False, SECURE_SSL_REDIRECT=False)
+    def test_unknown_page_uses_custom_404_without_indexing(self):
+        response = self.client.get("/missing/")
+        self.assertEqual(response.status_code, 404)
+        self.assertContains(response, "Страница не найдена", status_code=404)
+        self.assertContains(response, '<meta name="robots" content="noindex">', status_code=404)
 
 
 class ImageParser(HTMLParser):

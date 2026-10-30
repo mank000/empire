@@ -155,6 +155,33 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(NotificationDelivery.objects.filter(status=NotificationDelivery.Status.QUEUED).count(), 1)
         self.assertEqual(NotificationDelivery.objects.filter(status=NotificationDelivery.Status.PENDING).count(), 1)
 
+    def test_expired_worker_lease_is_reclaimed_without_duplicate_send(self):
+        config = NotificationSettings.objects.get(pk=1)
+        config.email_enabled = True
+        config.email_recipient = "manager@example.test"
+        config.save()
+        self.assertEqual(self.post().status_code, 201)
+        delivery = NotificationDelivery.objects.get()
+        delivery.status = NotificationDelivery.Status.SENDING
+        delivery.lease_until = timezone.now() - timedelta(seconds=1)
+        delivery.save(update_fields=["status", "lease_until"])
+
+        with patch("tickets.tasks.send_notification.apply_async") as publish:
+            dispatch_pending_notifications.run()
+            dispatch_pending_notifications.run()
+        publish.assert_called_once_with(args=(delivery.pk,), retry=False)
+        delivery.refresh_from_db()
+        self.assertEqual(delivery.status, NotificationDelivery.Status.QUEUED)
+        self.assertGreater(delivery.lease_until, timezone.now())
+
+        with patch("tickets.tasks.send_email") as sender:
+            send_notification.run(delivery.pk)
+            send_notification.run(delivery.pk)
+        sender.assert_called_once()
+        delivery.refresh_from_db()
+        self.assertEqual(delivery.status, NotificationDelivery.Status.SENT)
+        self.assertEqual(delivery.attempts, 1)
+
     def test_global_channel_limit_defers_without_an_api_call(self):
         config = NotificationSettings.objects.get(pk=1)
         config.telegram_enabled = True

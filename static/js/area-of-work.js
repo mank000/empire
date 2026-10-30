@@ -21,7 +21,7 @@
     track.style.transform = "";
     distance = Math.max(0, track.scrollWidth - windowWidth.clientWidth);
 
-    if (distance === 0 || window.innerWidth < 768 || reducedMotion.matches) {
+    if (distance === 0 || window.innerWidth <= 760 || reducedMotion.matches) {
       section.style.removeProperty("--area-scroll");
       return;
     }

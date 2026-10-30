@@ -7,7 +7,7 @@ body > header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #fff;
+  background: var(--color-white);
   transition: transform 0.2s ease;
 }
 
@@ -64,7 +64,7 @@ body > header.header-hidden {
 }
 .header-menu nav a {
   text-decoration: none;
-  font-family: "Onest", sans-serif;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
 }
@@ -84,7 +84,7 @@ body > header.header-hidden {
   margin-right: 16px;
 }
 .header-phone a {
-  font-family: "Onest";
+  font-family: var(--font-body);
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
@@ -95,7 +95,7 @@ body > header.header-hidden {
   text-decoration: underline;
 }
 .header-phone span {
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -229,7 +229,7 @@ body > header.header-hidden {
     display: block;
     width: 24px;
     height: 2px;
-    background: #0e1014;
+    background: var(--color-background);
   }
 
   body.header-menu-open {
@@ -259,7 +259,7 @@ body > header.header-hidden {
     padding: 16px 32px 32px;
     box-sizing: border-box;
     overflow-y: auto;
-    background: #fff;
+    background: var(--color-white);
   }
 
   .header-menu.is-open {
@@ -285,7 +285,7 @@ body > header.header-hidden {
     height: 32px;
     padding: 0;
     border: 0;
-    background: #eeeeef;
+    background: var(--color-border-light);
     color: #62666c;
     cursor: pointer;
   }
@@ -301,19 +301,19 @@ body > header.header-hidden {
   .header-menu-caption {
     display: block;
     margin-bottom: 4px;
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
     color: #aeb0b3;
   }
 
   .header-menu nav a {
-    font-family: "Fira Sans Extra Condensed", sans-serif;
+    font-family: var(--font-display);
     font-size: 28px;
     font-weight: 600;
     line-height: 1.1;
     text-transform: uppercase;
-    color: #0e1014;
+    color: var(--color-background);
   }
 
   .header-menu nav a + a {
@@ -334,10 +334,10 @@ body > header.header-hidden {
   }
 
   .header-menu-phone a {
-    font-family: "Onest", sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     font-weight: 700;
-    color: #0e1014;
+    color: var(--color-background);
     text-decoration: none;
     white-space: nowrap;
   }
@@ -345,7 +345,7 @@ body > header.header-hidden {
   .header-menu-phone span {
     display: block;
     margin-top: 2px;
-    font-family: "Onest", sans-serif;
+    font-family: var(--font-body);
     font-size: 12px;
     color: rgb(14 16 20 / 60%);
   }
@@ -356,15 +356,7 @@ body > header.header-hidden {
     border: 0;
   }
 
-  .header-menu-cta .red-button-text {
-    font-family: "Fira Sans Extra Condensed", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-  }
 
-  .header-menu-cta .red-button-arrow {
-    flex-basis: 40px;
-  }
 
   .header-contact {
     order: 2;
@@ -378,7 +370,7 @@ body > header.header-hidden {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
   .header-container {
     padding-inline: 16px;
   }
@@ -423,7 +415,7 @@ body > header.header-hidden {
     height: 32px;
     margin-left: 12px;
     gap: 4px;
-    background: #eeeeef;
+    background: var(--color-border-light);
   }
 
   .header-menu-toggle span {

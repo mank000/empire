@@ -24,7 +24,7 @@
                     <h1 id="error-title">Страница не найдена</h1>
                     <p>Запрашиваемая страница не существует, была удалена или перенесена по новому адресу.</p>
                 </div>
-                <a class="red-button" href="{% url 'home' %}">
+                <a class="red-button red-button--error" href="{% url 'home' %}">
                     <span class="red-button-text">На главную</span>
                     <span class="red-button-arrow" aria-hidden="true">
                         {% include "includes/icons/arrow-right.html" %}

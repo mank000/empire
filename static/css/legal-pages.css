@@ -1,7 +1,7 @@
-.legal-page { max-width: 960px; min-height: 55vh; margin: 0 auto; padding: 140px 24px 90px; color: #fff; }
+.legal-page { max-width: 960px; min-height: 55vh; margin: 0 auto; padding: 140px 24px 90px; color: var(--color-white); }
 .legal-page h1 { margin-bottom: 40px; font-size: clamp(2rem, 5vw, 4rem); }
 .legal-page p, .legal-page dd { line-height: 1.7; }
-.legal-page a { color: #e02d37; }
+.legal-page a { color: var(--color-accent); }
 .legal-page dl { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 16px 24px; }
 .legal-page dt { opacity: .65; }
 .legal-page dd { margin: 0; overflow-wrap: anywhere; }

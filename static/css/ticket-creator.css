@@ -1,6 +1,6 @@
 .ticket-section {
   padding: 80px;
-  background: #0e1014;
+  background: var(--color-background);
 }
 
 .ticket-creator {
@@ -9,7 +9,7 @@
   isolation: isolate;
   overflow: hidden;
   min-height: 332px;
-  background: #151619;
+  background: var(--color-surface);
   clip-path: polygon(
     var(--cut) 0,
     100% 0,
@@ -85,7 +85,7 @@
   margin-right: 16px;
 }
 .ticket-phone a {
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
@@ -95,7 +95,7 @@
 }
 .ticket-phone span {
   display: block;
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 14px;
   line-height: 100%;
@@ -104,7 +104,7 @@
   margin-top: 4px;
 }
 .ticket-header h2 {
-  font-family: Fira Sans Extra Condensed;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 60px;
   line-height: 100%;
@@ -114,7 +114,7 @@
 }
 .ticket-under-problem {
   display: block;
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
@@ -132,16 +132,6 @@
 .ticket-creation-button {
   padding-top: 28px;
   flex: 0 0 auto;
-}
-.ticket-creation-button .red-button {
-  color: black;
-  background-color: white;
-}
-.ticket-creation-button .red-button:hover {
-  background: rgba(245, 240, 240, 1);
-}
-.ticket-creation-button .red-button-arrow {
-  border: none;
 }
 
 @media (min-width: 601px) and (max-width: 760px) {
@@ -202,14 +192,7 @@
     padding: 0;
   }
 
-  .ticket-creation-button .red-button {
-    width: 210px;
-    height: 44px;
-  }
 
-  .ticket-creation-button .red-button-text {
-    font-size: 12px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -295,12 +278,5 @@
     padding: 0;
   }
 
-  .ticket-creation-button .red-button {
-    width: 100%;
-    height: 44px;
-  }
 
-  .ticket-creation-button .red-button-text {
-    font-size: 12px;
-  }
 }

@@ -27,9 +27,7 @@
                 <a class="red-button" href="{% url 'home' %}">
                     <span class="red-button-text">На главную</span>
                     <span class="red-button-arrow" aria-hidden="true">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.5 12H20.33M14.43 5.93L20.5 12L14.43 18.07" stroke="currentColor" stroke-width="2" stroke-linejoin="bevel" />
-                        </svg>
+                        {% include "includes/icons/arrow-right.html" %}
                     </span>
                 </a>
             </div>

@@ -17,7 +17,7 @@
             {% include "includes/contact-form.html" with prefix="make-ticket" %}
         </div>
         <div class="make-ticket-photo">
-            <img src="{% static 'img/lastpic.jpg' %}" loading="lazy" decoding="async"
+            <img src="{% static 'img/lastpic.jpg' %}" width="1024" height="1024" loading="lazy" decoding="async"
                  alt="Инженер проверяет электрический щит">
             <div class="make-ticket-viewfinder" aria-hidden="true"></div>
             <div class="make-ticket-status"><span></span>{{ site_settings.work_hours }}</div>

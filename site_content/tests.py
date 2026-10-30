@@ -1,3 +1,5 @@
+from html.parser import HTMLParser
+
 from django.core.cache import cache
 from django.db import connection
 from django.test import TestCase
@@ -5,6 +7,16 @@ from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
 from .models import Case, FAQ, SiteSettings
+
+
+class ImageParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.images = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "img":
+            self.images.append(dict(attrs))
 
 
 class HomeContentTests(TestCase):
@@ -72,3 +84,20 @@ class HomeContentTests(TestCase):
         self.assertContains(response, '<button type="submit" class="make-ticket-submit" disabled>', count=2)
         self.assertContains(response, 'id="make-ticket-phone"')
         self.assertContains(response, 'id="request-modal-phone"')
+
+    def test_footer_social_links_and_image_sizes(self):
+        settings = SiteSettings.objects.get(pk=1)
+        settings.telegram_url = "https://t.me/example"
+        settings.whatsapp_url = "https://wa.me/79991234567"
+        settings.save()
+        response = self.client.get(reverse("home"))
+        html = response.content.decode()
+        self.assertIn('<footer class="footer"', html)
+        self.assertLess(html.index("</main>"), html.index('<footer class="footer"'))
+        self.assertContains(response, 'href="https://t.me/example"', count=3)
+        self.assertContains(response, 'href="https://wa.me/79991234567"', count=3)
+        self.assertNotIn('href="#"', html)
+        images = ImageParser()
+        images.feed(html)
+        self.assertTrue(images.images)
+        self.assertTrue(all(image.get("width") and image.get("height") for image in images.images))

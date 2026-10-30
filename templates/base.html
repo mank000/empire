@@ -7,7 +7,6 @@
         <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <link rel="stylesheet" href="{% static 'css/header.css' %}">
-        <script src="{% static 'js/header-scroll.js' %}" defer></script>
         {% block extra_css %}{% endblock %}
         <title>{% block title %}Монтажная Империя{% endblock %}</title>
         <meta name="description" content="{% block description %}Монтажная Империя — проектирование и монтаж систем безопасности.{% endblock %}">
@@ -18,5 +17,9 @@
         <main>
             {% block content %}{% endblock %}
         </main>
+        {% block footer %}{% endblock %}
+        {% block scripts %}
+            <script src="{% static 'js/header-scroll.js' %}" defer></script>
+        {% endblock %}
     </body>
 </html>

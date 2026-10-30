@@ -51,9 +51,12 @@
     {% include "includes/ticket-creator.html" %}
     {% include "includes/07-faq.html" %}
     {% include "includes/08-make-ticket.html" %}
-    {% include "includes/09-footer.html" %}
     {% include "includes/request-modal.html" %}
     {% include "includes/request-success-modal.html" %}
+{% endblock %}
+{% block footer %}{% include "includes/09-footer.html" %}{% endblock %}
+{% block scripts %}
+    {{ block.super }}
     <script src="{% static 'js/timer.js' %}" defer></script>
     <script src="{% static 'js/date.js' %}" defer></script>
     <script src="{% static 'js/expertise-cards.js' %}" defer></script>

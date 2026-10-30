@@ -16,5 +16,5 @@
         <dt>Электронная почта</dt><dd><a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a></dd>
     </dl>
 </article>
-{% include "includes/09-footer.html" %}
 {% endblock %}
+{% block footer %}{% include "includes/09-footer.html" %}{% endblock %}

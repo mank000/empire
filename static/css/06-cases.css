@@ -250,7 +250,7 @@
     z-index: 2;
   }
 
-  .cases-item:nth-child(3) {
+  .cases-item:nth-child(n + 3) {
     top: 264px;
     z-index: 3;
   }

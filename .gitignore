@@ -13,9 +13,11 @@ wheels/
 .ruff_cache/
 .DS_Store
 media/
+.cache/
 staticfiles/
 deploy/certs/
 deploy/letsencrypt/
 deploy/acme/
+backups/
 
 *.sqlite3

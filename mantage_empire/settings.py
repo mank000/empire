@@ -35,7 +35,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "tickets",
+    "tickets.apps.TicketsConfig",
+    "site_content.apps.SiteContentConfig",
 ]
 if DEBUG:
     INSTALLED_APPS.append("django_browser_reload")
@@ -64,6 +65,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "site_content.context_processors.site_settings",
             ],
         },
     },
@@ -109,5 +111,50 @@ USE_TZ = True
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+REDIS_URL = os.getenv("REDIS_URL")
+if REDIS_URL:
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "TIMEOUT": 300,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+                "IGNORE_EXCEPTIONS": True,
+                "SOCKET_CONNECT_TIMEOUT": 1,
+                "SOCKET_TIMEOUT": 1,
+            },
+        }
+    }
+else:
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://redis:6379/0")
+CELERY_TASK_IGNORE_RESULT = True
+CELERY_TASK_ACKS_LATE = True
+CELERY_TASK_REJECT_ON_WORKER_LOST = True
+CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+CELERY_TASK_PUBLISH_RETRY = False
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BROKER_TRANSPORT_OPTIONS = {"visibility_timeout": 300}
+
+DEFAULT_FROM_EMAIL = os.getenv("DJANGO_FROM_EMAIL", "no-reply@localhost")
+MAILERS = {
+    "default": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "OPTIONS": {
+            "host": os.getenv("DJANGO_SMTP_HOST", "localhost"),
+            "port": int(os.getenv("DJANGO_SMTP_PORT", "587")),
+            "username": os.getenv("DJANGO_SMTP_USER", ""),
+            "password": os.getenv("DJANGO_SMTP_PASSWORD", ""),
+            "use_tls": os.getenv("DJANGO_SMTP_USE_TLS", "true").lower() == "true",
+            "use_ssl": os.getenv("DJANGO_SMTP_USE_SSL", "false").lower() == "true",
+            "timeout": 5,
+        },
+    },
+}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Политика конфиденциальности — Монтажная Империя{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/09-footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/legal-pages.css' %}">
+{% endblock %}
+{% block content %}
+<article class="legal-page">
+    <h1>Политика конфиденциальности</h1>
+    {% if site_settings.privacy_policy %}
+        <div class="legal-page-text">{{ site_settings.privacy_policy|linebreaks }}</div>
+    {% else %}
+        <p>Текст политики пока не опубликован. По вопросам обработки персональных данных напишите на <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>.</p>
+    {% endif %}
+</article>
+{% include "includes/09-footer.html" %}
+{% endblock %}

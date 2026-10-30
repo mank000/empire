@@ -3,11 +3,35 @@ import logging
 
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.conf import settings
+from django.shortcuts import render
+from django.db import transaction
+from django.utils import timezone
 
 from tickets.forms import TicketForm
-from tickets.models import Ticket
+from tickets.models import NotificationDelivery, NotificationSettings, Ticket
+from site_content.content import get_home_content
 
 logger = logging.getLogger(__name__)
+
+
+def home(request):
+    content = get_home_content()
+    middle = (len(content["faq_items"]) + 1) // 2
+    return render(request, "home.html", {
+        "public_site_url": settings.PUBLIC_SITE_URL,
+        **content,
+        "faq_left": content["faq_items"][:middle],
+        "faq_right": content["faq_items"][middle:],
+    })
+
+
+def privacy_policy(request):
+    return render(request, "privacy-policy.html")
+
+
+def requisites(request):
+    return render(request, "requisites.html")
 
 
 @require_POST
@@ -25,9 +49,20 @@ def create_ticket(request):
         return JsonResponse({"success": False, "errors": form.errors.get_json_data()}, status=400)
 
     try:
-        ticket = Ticket.objects.create(
-            name=form.cleaned_data["name"], phone=form.cleaned_data["phone"]
-        )
+        with transaction.atomic():
+            ticket = Ticket.objects.create(
+                name=form.cleaned_data["name"], phone=form.cleaned_data["phone"],
+                consent_at=timezone.now(),
+            )
+            config = NotificationSettings.objects.filter(pk=1).first()
+            if config:
+                for channel, enabled in (
+                    (NotificationDelivery.Channel.TELEGRAM, config.telegram_enabled),
+                    (NotificationDelivery.Channel.MAX, config.max_enabled),
+                    (NotificationDelivery.Channel.EMAIL, config.email_enabled),
+                ):
+                    if enabled:
+                        NotificationDelivery.objects.create(ticket=ticket, channel=channel)
     except Exception:
         logger.exception("Не удалось сохранить заявку")
         return JsonResponse({"success": False, "error": "Не удалось принять заявку. Попробуйте позже."}, status=503)

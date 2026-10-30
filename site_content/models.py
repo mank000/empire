@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.functional import cached_property
+
+from .images import image_dimensions
 
 
 class SiteSettings(models.Model):
@@ -60,6 +63,10 @@ class Case(models.Model):
     def tag_list(self):
         return [tag.strip() for tag in self.tags.split(",") if tag.strip()]
 
+    @cached_property
+    def image_dimensions(self):
+        return image_dimensions(self.photo, self.initial_image)
+
     def clean(self):
         if not self.photo and not self.initial_image:
             raise ValidationError({"photo": "Загрузите фото кейса."})
@@ -94,6 +101,10 @@ class CustomerLogo(models.Model):
         ordering = ("order", "pk")
         verbose_name = "Логотип заказчика"
         verbose_name_plural = "Логотипы заказчиков"
+
+    @cached_property
+    def image_dimensions(self):
+        return image_dimensions(self.image, self.initial_image)
 
     def clean(self):
         if not self.image and not self.initial_image:

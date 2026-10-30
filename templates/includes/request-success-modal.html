@@ -2,16 +2,14 @@
 <dialog class="request-success-modal" id="request-success-modal" aria-labelledby="request-success-title">
     <button class="request-modal-close" type="button" aria-label="Закрыть сообщение">×</button>
     <div class="request-success-card">
-        <img class="request-success-image" src="{% static 'img/request-success.png' %}" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="request-success-image" src="{% static 'img/request-success.png' %}" width="668" height="596" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="request-success-content">
             <h2 id="request-success-title">Заявка отправлена</h2>
             <p>Мы свяжемся с вами в ближайшее время<br>для уточнения всех деталей проекта.</p>
             <button class="red-button request-success-home" type="button">
                 <span class="red-button-text">На главную</span>
                 <span class="red-button-arrow" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.5 12H20.33M14.43 5.93L20.5 12L14.43 18.07" stroke="white" stroke-width="2" stroke-linejoin="bevel" />
-                    </svg>
+                    {% include "includes/icons/arrow-right.html" %}
                 </span>
             </button>
         </div>

@@ -1,0 +1,27 @@
+<form class="contact-form" method="post" action="{% url 'create_ticket' %}">
+    {% csrf_token %}
+    <div class="form-field">
+        <label for="{{ prefix }}-name">Имя</label>
+        <input id="{{ prefix }}-name" type="text" name="name" placeholder="Как к вам обращаться?" autocomplete="name" required>
+        <button type="button" class="form-field-clear" aria-label="Очистить имя">×</button>
+        <small class="form-field-error">Укажите имя</small>
+    </div>
+    <div class="form-field">
+        <label for="{{ prefix }}-phone">Телефон</label>
+        <input id="{{ prefix }}-phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" maxlength="18" required>
+        <button type="button" class="form-field-clear" aria-label="Очистить телефон">×</button>
+        <small class="form-field-error">Укажите телефон</small>
+    </div>
+    <label class="form-agreement">
+        <input type="checkbox" name="agreement" required>
+        <span>Согласен на обработку персональных данных <br>и с <a href="{% url 'privacy_policy' %}" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+    </label>
+    <p class="form-submit-error" role="alert" hidden></p>
+    <p class="form-submit-success" role="status" hidden>Заявка отправлена. Мы скоро свяжемся с вами.</p>
+    <button type="submit" class="make-ticket-submit" disabled>
+        <span>Оставить заявку</span>
+        <span class="make-ticket-submit-arrow" aria-hidden="true">
+            {% include "includes/icons/arrow-right.html" %}
+        </span>
+    </button>
+</form>

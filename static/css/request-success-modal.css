@@ -7,7 +7,7 @@
   padding: 32px;
   border: 0;
   background: rgba(14, 16, 20, 0.72);
-  color: #fff;
+  color: var(--color-white);
 }
 
 .request-success-modal[open] {
@@ -26,7 +26,7 @@
   width: min(740px, 100%);
   height: 300px;
   overflow: hidden;
-  background: radial-gradient(circle at 93% 95%, #d35b27 0, #8d2724 34%, #38191c 68%, #151619 100%);
+  background: radial-gradient(circle at 93% 95%, #d35b27 0, #8d2724 34%, #38191c 68%, var(--color-surface) 100%);
   box-shadow: 0 24px 45px rgba(0, 0, 0, 0.25);
 }
 
@@ -52,26 +52,21 @@
 }
 
 .request-success-content h2 {
-  font: 500 48px/1 "Fira Sans Extra Condensed", sans-serif;
+  font: 500 48px/1 var(--font-display);
   text-transform: uppercase;
 }
 
 .request-success-content p {
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.9);
-  font: 16px/1.25 "Onest", sans-serif;
+  font: 16px/1.25 var(--font-body);
 }
 
 .request-success-home {
-  width: 196px;
-  height: 50px;
   margin-top: auto;
   cursor: pointer;
 }
 
-.request-success-home .red-button-text {
-  font-size: 14px;
-}
 
 @media (max-width: 900px) {
   .request-success-card {
@@ -93,14 +88,7 @@
     bottom: -100px;
   }
 
-  .request-success-home {
-    width: 170px;
-    height: 46px;
-  }
 
-  .request-success-home .red-button-text {
-    font-size: 12px;
-  }
 }
 
 @media (max-width: 600px) {

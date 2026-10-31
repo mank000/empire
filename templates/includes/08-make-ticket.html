@@ -5,7 +5,7 @@
             <div class="make-ticket-intro">
                 <h2>Обсудим ваш проект?</h2>
                 <p>
-                    Опишите задачу — свяжемся, уточним детали
+                    Опишите задачу — свяжемся, уточним детали&#32;
                     <br>
                     и согласуем время осмотра объекта.
                 </p>
@@ -14,53 +14,10 @@
                     <span>Любые формы оплаты</span>
                 </div>
             </div>
-            <form class="contact-form" data-url="{% url 'create_ticket' %}">
-                {% csrf_token %}
-                <div class="form-field">
-                    <label for="make-ticket-name">Имя</label>
-                    <input type="text"
-                           id="make-ticket-name"
-                           name="name"
-                           placeholder="Как к вам обращаться?"
-                           autocomplete="name"
-                           required>
-                    <button type="button" class="form-field-clear" aria-label="Очистить имя">×</button>
-                    <small class="form-field-error">Укажите имя</small>
-                </div>
-                <div class="form-field">
-                    <label for="make-ticket-phone">Телефон</label>
-                    <input type="tel"
-                           id="make-ticket-phone"
-                           name="phone"
-                           placeholder="+7 (___) ___-__-__"
-                           autocomplete="tel"
-                           required>
-                    <button type="button" class="form-field-clear" aria-label="Очистить телефон">×</button>
-                    <small class="form-field-error">Укажите телефон</small>
-                </div>
-                <label class="form-agreement">
-                    <input type="checkbox" name="agreement" required>
-                    <span>Согласен на обработку персональных данных
-                        <br>
-                    и с <a href="{% url 'privacy_policy' %}" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
-                </label>
-                <p class="form-submit-error" role="alert" hidden></p>
-                <button type="submit" class="make-ticket-submit">
-                    <span>Оставить заявку</span>
-                    <span class="make-ticket-submit-arrow" aria-hidden="true">
-                        <svg width="24"
-                             height="24"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.5 12H20.33M14.43 5.93L20.5 12L14.43 18.07" stroke="white" stroke-width="2" stroke-linejoin="bevel" />
-                        </svg>
-                    </span>
-                </button>
-            </form>
+            {% include "includes/contact-form.html" with prefix="make-ticket" %}
         </div>
         <div class="make-ticket-photo">
-            <img src="{% static 'img/lastpic.jpg' %}" loading="lazy" decoding="async"
+            <img src="{% static 'img/lastpic.jpg' %}" width="1024" height="1024" loading="lazy" decoding="async"
                  alt="Инженер проверяет электрический щит">
             <div class="make-ticket-viewfinder" aria-hidden="true"></div>
             <div class="make-ticket-status"><span></span>{{ site_settings.work_hours }}</div>

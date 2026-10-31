@@ -1,16 +1,42 @@
+:root {
+  --color-background: #0e1014;
+  --color-surface: #151619;
+  --color-surface-raised: #1b1c1f;
+  --color-surface-deep: #191b1f;
+  --color-text-dark: #383838;
+  --color-accent: #e02d37;
+  --color-accent-hover: #b82129;
+  --color-accent-muted: #d44747;
+  --color-white: #fff;
+  --color-text-muted: #aaa;
+  --color-border-light: #eeeeef;
+  --font-display: "Fira Sans Extra Condensed", sans-serif;
+  --font-body: "Onest", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --space-section: 100px;
+  --space-section-tablet: 64px;
+  --space-section-mobile: 32px;
+  --space-page: 80px;
+  --space-page-tablet: 32px;
+  --space-page-mobile: 16px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+body {
+  background-color: var(--color-background);
+}
 a {
   color: black;
 }
 main {
-  background-color: #0e1014;
+  background-color: var(--color-background);
 }
 .redline {
-  font-family: JetBrains Mono;
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 16px;
   line-height: 18px;
@@ -21,7 +47,7 @@ main {
   margin-bottom: 4.5px;
 }
 .section-content {
-  padding: 100px 80px;
+  padding: var(--space-section) var(--space-page);
 }
 .section-top {
   display: flex;
@@ -31,7 +57,7 @@ main {
 h1,
 .section-title,
 .section-top h2 {
-  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 60px;
   line-height: 1;
@@ -40,35 +66,35 @@ h1,
 }
 @font-face {
   font-family: "Fira Sans Extra Condensed";
-  src: url("../fonts/FiraSansExtraCondensed-Medium.ttf") format("truetype");
+  src: url("../fonts/FiraSansExtraCondensed-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Fira Sans Extra Condensed";
-  src: url("../fonts/FiraSansExtraCondensed-Regular.ttf") format("truetype");
+  src: url("../fonts/FiraSansExtraCondensed-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Fira Sans Extra Condensed";
-  src: url("../fonts/FiraSansExtraCondensed-Bold.ttf") format("truetype");
+  src: url("../fonts/FiraSansExtraCondensed-Bold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Onest";
-  src: url("../fonts/Onest-VariableFont_wght.ttf") format("truetype");
+  src: url("../fonts/Onest-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "JetBrains Mono";
-  src: url("../fonts/JetBrainsMono-Variable.ttf") format("truetype");
+  src: url("../fonts/JetBrainsMono-Variable.woff2") format("woff2");
   font-weight: 100 800;
   font-style: normal;
   font-display: swap;
@@ -76,11 +102,11 @@ h1,
 .red-button {
   display: inline-flex;
   align-items: stretch;
-  width: 244px;
-  height: 50px;
-  background-color: #e02d37;
-  border: 2px solid white;
-  color: white;
+  width: var(--button-width, 244px);
+  height: var(--button-height, 50px);
+  background-color: var(--button-bg, var(--color-accent));
+  border: var(--button-border, 2px solid var(--color-white));
+  color: var(--button-color, var(--color-white));
   text-decoration: none;
 }
 .red-button-text {
@@ -88,9 +114,9 @@ h1,
   align-items: center;
   justify-content: center;
   flex: 1;
-  font-family: "JetBrains Mono", monospace;
-  font-weight: 700;
-  font-size: 16px;
+  font-family: var(--button-font, var(--font-mono));
+  font-weight: var(--button-font-weight, 700);
+  font-size: var(--button-font-size, 16px);
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
@@ -99,11 +125,43 @@ h1,
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 46px;
-  border-left: 2px solid white;
+  flex: 0 0 var(--button-arrow-width, 46px);
+  border-left: var(--button-arrow-border, 2px solid var(--color-white));
 }
 .red-button:hover {
-  background-color: #b82129;
+  background-color: var(--button-hover-bg, var(--color-accent-hover));
+}
+.red-button--light {
+  --button-bg: var(--color-white);
+  --button-color: #000;
+  --button-hover-bg: rgb(245 240 240);
+  --button-arrow-border: 0;
+}
+.red-button--error,
+.red-button--success {
+  --button-width: 196px;
+}
+.red-button--success {
+  --button-font-size: 14px;
+}
+.red-button--menu {
+  --button-font: var(--font-display);
+  --button-font-size: 16px;
+  --button-font-weight: 600;
+  --button-arrow-width: 40px;
+}
+@media (max-width: 900px) {
+  .red-button--error {
+    --button-width: 172px;
+    --button-height: 46px;
+    --button-font-size: 14px;
+    --button-arrow-width: 42px;
+  }
+  .red-button--success {
+    --button-width: 170px;
+    --button-height: 46px;
+    --button-font-size: 12px;
+  }
 }
 .red-button-arrow svg {
   transition: transform 240ms ease;
@@ -119,7 +177,7 @@ h1,
   padding-top: 28px;
 }
 .advantages div {
-  background-color: #fff;
+  background-color: var(--color-white);
   clip-path: polygon(
     12px 0,
     100% 0,
@@ -135,12 +193,12 @@ h1,
 .advantages div span {
   display: block;
   padding: 12px 18px;
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 16px;
   line-height: 14px;
   text-transform: uppercase;
-  color: #0e1014;
+  color: var(--color-background);
 }
 .advantages > div {
   opacity: 0;
@@ -176,8 +234,22 @@ h1,
 }
 
 @media (min-width: 601px) and (max-width: 760px) {
+  .red-button--hero {
+    --button-width: 214px;
+    --button-height: 44px;
+    --button-font-size: 14px;
+  }
+  .red-button--why,
+  .red-button--light {
+    --button-width: 212px;
+    --button-height: 44px;
+    --button-font-size: 12px;
+  }
+  .red-button--light {
+    --button-width: 210px;
+  }
   .section-content {
-    padding: 64px 32px;
+    padding: var(--space-section-tablet) var(--space-page-tablet);
   }
 
   .redline {
@@ -200,8 +272,23 @@ h1,
   }
 }
 @media (max-width: 600px) {
+  .red-button--hero {
+    --button-width: 214px;
+    --button-height: 46px;
+    --button-font-size: 14px;
+  }
+  .red-button--why {
+    --button-width: 214px;
+    --button-height: 44px;
+    --button-font-size: 12px;
+  }
+  .red-button--light {
+    --button-width: 100%;
+    --button-height: 44px;
+    --button-font-size: 12px;
+  }
   .section-content {
-    padding: 32px 16px;
+    padding: var(--space-section-mobile) var(--space-page-mobile);
   }
 
   .redline {

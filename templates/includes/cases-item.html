@@ -3,7 +3,7 @@
     <div class="cases-preview-corners">
         <div class="cases-preview-gradient">
             <div class="cases-preview">
-                {% if case.photo %}<img src="{{ case.photo.url }}" alt="{{ case.title }}" loading="lazy" decoding="async">{% else %}<img src="{% static case.initial_image %}" alt="{{ case.title }}" loading="lazy" decoding="async">{% endif %}
+                {% if case.photo %}<img src="{{ case.photo.url }}" alt="{{ case.title }}" width="{{ case.image_dimensions.0 }}" height="{{ case.image_dimensions.1 }}" loading="lazy" decoding="async">{% else %}<img src="{% static case.initial_image %}" alt="{{ case.title }}" width="{{ case.image_dimensions.0 }}" height="{{ case.image_dimensions.1 }}" loading="lazy" decoding="async">{% endif %}
             </div>
         </div>
     </div>

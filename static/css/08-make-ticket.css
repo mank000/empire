@@ -1,6 +1,6 @@
 .big-ticket-creator {
   padding: 80px;
-  background-color: #0e1014;
+  background-color: var(--color-background);
   background-image:
     radial-gradient(
       ellipse 1732px 886px at 42% 0%,
@@ -28,7 +28,7 @@
   max-width: 1600px;
   min-height: 580px;
   margin: 0 auto;
-  background: #151619;
+  background: var(--color-surface);
   border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -40,17 +40,17 @@
 }
 
 .make-ticket-intro h2 {
-  font-family: "Fira Sans Extra Condensed", sans-serif;
+  font-family: var(--font-display);
   font-size: 52px;
   font-weight: 500;
   line-height: 1;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .make-ticket-intro p {
   margin-top: 10px;
-  font-family: "Onest", sans-serif;
+  font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.2;
   color: rgba(255, 255, 255, 0.9);
@@ -69,7 +69,7 @@
 .make-ticket-benefits span {
   display: block;
   padding: 12px 18px;
-  background: #fff;
+  background: var(--color-white);
   clip-path: polygon(
     10px 0,
     100% 0,
@@ -78,12 +78,12 @@
     0 100%,
     0 10px
   );
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 500;
   line-height: 14px;
   text-transform: uppercase;
-  color: #151619;
+  color: var(--color-surface);
   white-space: nowrap;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .form-field label {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
@@ -117,11 +117,11 @@
   width: 100%;
   height: 56px;
   padding: 0 48px 0 20px;
-  background: #1b1c1f;
+  background: var(--color-surface-raised);
   border: 1px solid transparent;
   border-radius: 0;
   outline: none;
-  font-family: "Onest", sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 120%;
   font-weight: 400;
@@ -142,7 +142,7 @@
 
 .form-field input:user-invalid,
 .form-field input.is-invalid {
-  border-color: #d44747;
+  border-color: var(--color-accent-muted);
 }
 
 .form-field-clear {
@@ -174,8 +174,8 @@
   align-self: flex-start;
   margin: -6px 0 0 20px;
   padding: 8px 10px;
-  border: 1px solid #d44747;
-  background: #1b1c1f;
+  border: 1px solid var(--color-accent-muted);
+  background: var(--color-surface-raised);
   color: rgba(255, 255, 255, 0.9);
   font:
     14px/1.2 "Onest",
@@ -185,7 +185,7 @@
 .form-field-error::before {
   content: "⚠";
   margin-right: 6px;
-  color: #d44747;
+  color: var(--color-accent-muted);
 }
 
 .form-field-error::after {
@@ -195,9 +195,9 @@
   left: 20px;
   width: 10px;
   height: 10px;
-  background: #1b1c1f;
-  border-top: 1px solid #d44747;
-  border-left: 1px solid #d44747;
+  background: var(--color-surface-raised);
+  border-top: 1px solid var(--color-accent-muted);
+  border-left: 1px solid var(--color-accent-muted);
   transform: rotate(45deg);
 }
 
@@ -240,7 +240,7 @@
 }
 
 .form-agreement input:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-white);
   outline-offset: 2px;
 }
 .form-agreement input:hover:not(:checked) {
@@ -249,10 +249,10 @@
 }
 
 .form-agreement span {
-  font-family: "Onest", sans-serif;
+  font-family: var(--font-body);
   font-size: 12px;
   line-height: 1.25;
-  color: #aaa;
+  color: var(--color-text-muted);
 }
 
 .form-agreement a {
@@ -273,11 +273,11 @@
   justify-content: space-between;
   width: min(100%, 566px);
   height: 50px;
-  background: #e02d37;
-  border: 2px solid #fff;
+  background: var(--color-accent);
+  border: 2px solid var(--color-white);
   border-radius: 0;
   cursor: pointer;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .make-ticket-submit > span:first-child {
@@ -285,7 +285,7 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
@@ -296,7 +296,7 @@
   flex: 0 0 40px;
   align-items: center;
   justify-content: center;
-  border-left: 2px solid #fff;
+  border-left: 2px solid var(--color-white);
 }
 
 .make-ticket-submit-arrow svg {
@@ -304,7 +304,7 @@
 }
 
 .make-ticket-submit:hover {
-  background: #b82129;
+  background: var(--color-accent-hover);
 }
 
 .make-ticket-submit:hover svg {
@@ -312,7 +312,7 @@
 }
 
 .make-ticket-submit:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-white);
   outline-offset: 3px;
 }
 
@@ -320,7 +320,7 @@
   position: relative;
   min-height: 580px;
   overflow: hidden;
-  background: #191b1f;
+  background: var(--color-surface-deep);
 }
 
 .make-ticket-photo > img {
@@ -374,7 +374,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
   text-transform: uppercase;
@@ -419,7 +419,7 @@
 @media (min-width: 601px) and (max-width: 760px) {
   /* Основная форма заявки */
   .big-ticket-creator {
-    padding: 64px 32px;
+    padding: var(--space-section-tablet) var(--space-page-tablet);
   }
 
   .big-ticket-creator-content {
@@ -583,6 +583,11 @@
 }
 .form-submit-error {
   color: #c92929;
+  font-size: 14px;
+}
+
+.form-submit-success {
+  color: var(--color-white);
   font-size: 14px;
 }
 

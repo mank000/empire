@@ -41,7 +41,13 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response.json()["ticket_id"], Ticket.objects.get().pk)
         self.assertIsNotNone(Ticket.objects.get().consent_at)
+        self.assertEqual(Ticket.objects.get().phone, "+79991234567")
         self.assertEqual(Ticket.objects.get().phone_normalized, "+79991234567")
+
+    def test_programmatic_ticket_save_normalizes_phone_for_admin(self):
+        ticket = Ticket.objects.create(name="Анна", phone="8 (999) 123-45-67")
+        self.assertEqual(ticket.phone, "+79991234567")
+        self.assertEqual(ticket.phone_normalized, ticket.phone)
 
     def test_admin_can_change_status_and_find_any_phone_format(self):
         self.post()
@@ -148,6 +154,33 @@ class TicketSubmissionTests(TestCase):
         publish.assert_called_once()
         self.assertEqual(NotificationDelivery.objects.filter(status=NotificationDelivery.Status.QUEUED).count(), 1)
         self.assertEqual(NotificationDelivery.objects.filter(status=NotificationDelivery.Status.PENDING).count(), 1)
+
+    def test_expired_worker_lease_is_reclaimed_without_duplicate_send(self):
+        config = NotificationSettings.objects.get(pk=1)
+        config.email_enabled = True
+        config.email_recipient = "manager@example.test"
+        config.save()
+        self.assertEqual(self.post().status_code, 201)
+        delivery = NotificationDelivery.objects.get()
+        delivery.status = NotificationDelivery.Status.SENDING
+        delivery.lease_until = timezone.now() - timedelta(seconds=1)
+        delivery.save(update_fields=["status", "lease_until"])
+
+        with patch("tickets.tasks.send_notification.apply_async") as publish:
+            dispatch_pending_notifications.run()
+            dispatch_pending_notifications.run()
+        publish.assert_called_once_with(args=(delivery.pk,), retry=False)
+        delivery.refresh_from_db()
+        self.assertEqual(delivery.status, NotificationDelivery.Status.QUEUED)
+        self.assertGreater(delivery.lease_until, timezone.now())
+
+        with patch("tickets.tasks.send_email") as sender:
+            send_notification.run(delivery.pk)
+            send_notification.run(delivery.pk)
+        sender.assert_called_once()
+        delivery.refresh_from_db()
+        self.assertEqual(delivery.status, NotificationDelivery.Status.SENT)
+        self.assertEqual(delivery.attempts, 1)
 
     def test_global_channel_limit_defers_without_an_api_call(self):
         config = NotificationSettings.objects.get(pk=1)
@@ -348,7 +381,7 @@ class TicketSubmissionTests(TestCase):
         self.assertEqual(set(response.json()["errors"]), {"name", "phone", "agreement"})
 
     def test_storage_error_does_not_report_success(self):
-        with patch("mantage_empire.views.Ticket.objects.create", side_effect=Exception("db unavailable")):
+        with patch("tickets.views.Ticket.objects.create", side_effect=Exception("db unavailable")):
             response = self.post()
         self.assertEqual(response.status_code, 503)
         self.assertEqual(Ticket.objects.count(), 0)

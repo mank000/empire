@@ -1,37 +1,15 @@
 import json
 import logging
 
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from django.conf import settings
-from django.shortcuts import render
 from django.db import transaction
+from django.http import JsonResponse
 from django.utils import timezone
+from django.views.decorators.http import require_POST
 
-from tickets.forms import TicketForm
-from tickets.models import NotificationDelivery, NotificationSettings, Ticket
-from site_content.content import get_home_content
+from .forms import TicketForm
+from .models import NotificationDelivery, NotificationSettings, Ticket
 
 logger = logging.getLogger(__name__)
-
-
-def home(request):
-    content = get_home_content()
-    middle = (len(content["faq_items"]) + 1) // 2
-    return render(request, "home.html", {
-        "public_site_url": settings.PUBLIC_SITE_URL,
-        **content,
-        "faq_left": content["faq_items"][:middle],
-        "faq_right": content["faq_items"][middle:],
-    })
-
-
-def privacy_policy(request):
-    return render(request, "privacy-policy.html")
-
-
-def requisites(request):
-    return render(request, "requisites.html")
 
 
 @require_POST
@@ -44,7 +22,7 @@ def create_ticket(request):
         return JsonResponse({"success": False, "error": "Некорректный JSON."}, status=400)
     if not isinstance(data, dict):
         return JsonResponse({"success": False, "error": "Ожидается объект JSON."}, status=400)
-    form = TicketForm(data)  # Правила проверки вынесены в отдельную форму.
+    form = TicketForm(data)
     if not form.is_valid():
         return JsonResponse({"success": False, "errors": form.errors.get_json_data()}, status=400)
 

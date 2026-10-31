@@ -23,7 +23,7 @@
 
 .expertise-description {
   text-align: left;
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 20px;
   line-height: 120%;
@@ -75,7 +75,7 @@
   padding: 32px;
 }
 .expertise-card h3 {
-  font-family: Fira Sans Extra Condensed;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 24px;
   line-height: 120%;
@@ -83,7 +83,7 @@
   color: rgba(255, 255, 255, 1);
 }
 .expertise-card span {
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
   line-height: 130%;
@@ -254,7 +254,7 @@
     width: 100%;
     align-items: flex-start;
     padding: 20px;
-    border: 1px solid #1b1c1f;
+    border: 1px solid var(--color-surface-raised);
   }
 
   .expertise-card-image {

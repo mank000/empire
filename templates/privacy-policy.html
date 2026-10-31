@@ -14,5 +14,5 @@
         <p>Текст политики пока не опубликован. По вопросам обработки персональных данных напишите на <a href="mailto:{{ site_settings.email }}">{{ site_settings.email }}</a>.</p>
     {% endif %}
 </article>
-{% include "includes/09-footer.html" %}
 {% endblock %}
+{% block footer %}{% include "includes/09-footer.html" %}{% endblock %}

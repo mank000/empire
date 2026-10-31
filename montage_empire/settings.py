@@ -5,7 +5,7 @@ from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = os.getenv("DJANGO_DEBUG", "true").lower() == "true"
+DEBUG = os.getenv("DJANGO_DEBUG", "false").lower() == "true"
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
     if not DEBUG:
@@ -53,7 +53,7 @@ MIDDLEWARE = [
 if DEBUG:
     MIDDLEWARE.append("django_browser_reload.middleware.BrowserReloadMiddleware")
 
-ROOT_URLCONF = "mantage_empire.urls"
+ROOT_URLCONF = "montage_empire.urls"
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "mantage_empire.wsgi.application"
+WSGI_APPLICATION = "montage_empire.wsgi.application"
 
 
 DATABASES = {
@@ -98,19 +98,49 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = "RU-ru"
+LANGUAGE_CODE = "ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Vladivostok"
 
 USE_I18N = True
 
 USE_TZ = True
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": "%(asctime)s %(levelname)s %(name)s: %(message)s"},
+    },
+    "handlers": {
+        "stdout": {
+            "class": "logging.StreamHandler",
+            "stream": "ext://sys.stdout",
+            "formatter": "standard",
+        },
+    },
+    "loggers": {
+        "django.request": {"handlers": ["stdout"], "level": "ERROR", "propagate": False},
+        "montage_empire": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "tickets": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+        "site_content": {"handlers": ["stdout"], "level": "INFO", "propagate": False},
+    },
+}
+
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {
+        "BACKEND": (
+            "django.contrib.staticfiles.storage.StaticFilesStorage"
+            if DEBUG else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+        ),
+    },
+}
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 

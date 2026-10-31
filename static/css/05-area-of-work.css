@@ -1,5 +1,5 @@
 .area-sponsors {
-  background-color: #151619;
+  background-color: var(--color-surface);
   background-image:
     radial-gradient(
       ellipse 700px 245px at 50% 78%,
@@ -85,7 +85,7 @@
   padding: 28px;
 }
 .card-text h3 {
-  font-family: Fira Sans Extra Condensed;
+  font-family: var(--font-display);
   font-weight: 600;
   font-size: 28px;
 
@@ -95,14 +95,14 @@
 }
 .card-text p {
   color: rgba(255, 255, 255, 0.6);
-  font-family: Onest;
+  font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
   line-height: 130%;
   margin-top: 8px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 760px) {
   .area-of-work-content {
     padding: 60px 20px;
   }
@@ -115,7 +115,7 @@
 @media (min-width: 601px) and (max-width: 760px) {
   /* Область работы */
   .area-of-work-content {
-    padding: 64px 32px;
+    padding: var(--space-section-tablet) var(--space-page-tablet);
   }
 
   .area-of-work .section-top h2 {

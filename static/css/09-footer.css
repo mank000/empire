@@ -102,7 +102,7 @@
   font-size: 14px;
   line-height: 14px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   padding-top: 28px;
   border-top: 1px rgba(255, 255, 255, 0.1) solid;
 }
@@ -117,7 +117,7 @@
   gap: 76px;
 }
 .footer-right-links a {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
 }
 .footer-right-links a:hover {
@@ -131,7 +131,8 @@
   container-type: inline-size;
   overflow: hidden;
 }
-.company-name p {
+.company-name::before {
+  content: "МОНТАЖНАЯ ИМПЕРИЯ";
   position: absolute;
   left: 50%;
   bottom: -0.35em;
@@ -299,7 +300,7 @@
     height: 96px;
   }
 
-  .company-name p {
+  .company-name::before {
     font-size: 76px;
   }
 }

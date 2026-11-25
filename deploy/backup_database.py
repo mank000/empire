@@ -2,18 +2,26 @@
 
 import os
 import sqlite3
+from contextlib import closing
+from tempfile import mkstemp
 from datetime import datetime, timezone
 from pathlib import Path
 
 
+def private_temporary_file(directory, prefix):
+    descriptor, path = mkstemp(dir=directory, prefix=prefix, suffix=".tmp")
+    os.close(descriptor)
+    return Path(path)
+
+
 def backup_database(source, directory, keep=14):
-    directory.mkdir(parents=True, exist_ok=True)
+    directory.mkdir(parents=True, exist_ok=True, mode=0o700)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     destination = directory / f"empire-{stamp}.sqlite3"
-    temporary = directory / f".{destination.name}.tmp"
+    temporary = private_temporary_file(directory, f".{destination.name}.")
     try:
-        with sqlite3.connect(source.resolve().as_uri() + "?mode=ro", uri=True) as database:
-            with sqlite3.connect(temporary) as backup:
+        with closing(sqlite3.connect(source.resolve().as_uri() + "?mode=ro", uri=True)) as database:
+            with closing(sqlite3.connect(temporary)) as backup:
                 database.backup(backup)
                 if backup.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
                     raise RuntimeError("Проверка целостности резервной копии не прошла")

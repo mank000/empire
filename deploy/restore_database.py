@@ -8,6 +8,8 @@ from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
+from backup_database import private_temporary_file
+
 
 def check_database(path):
     with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as database:
@@ -21,17 +23,22 @@ def restore_database(source, target, backup_dir):
     if source == target or not source.is_file() or not target.is_file():
         raise ValueError("Укажите существующую копию и существующую базу")
     check_database(source)
-    backup_dir.mkdir(parents=True, exist_ok=True)
+    backup_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     before = backup_dir / f"pre-restore-{stamp}.sqlite3"
-    with closing(sqlite3.connect(target)) as current:
-        with closing(sqlite3.connect(before)) as saved:
-            current.backup(saved)
-        if current.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchone()[0]:
-            raise RuntimeError("Текущая база занята; остановите все сервисы")
-    check_database(before)
+    saved_path = private_temporary_file(backup_dir, f".{before.name}.")
+    try:
+        with closing(sqlite3.connect(target)) as current:
+            with closing(sqlite3.connect(saved_path)) as saved:
+                current.backup(saved)
+            if current.execute("PRAGMA wal_checkpoint(TRUNCATE)").fetchone()[0]:
+                raise RuntimeError("Текущая база занята; остановите все сервисы")
+        check_database(saved_path)
+        os.replace(saved_path, before)
+    finally:
+        saved_path.unlink(missing_ok=True)
 
-    temporary = target.with_name(target.name + ".restore")
+    temporary = private_temporary_file(target.parent, f".{target.name}.restore.")
     try:
         shutil.copyfile(source, temporary)
         check_database(temporary)

@@ -1,10 +1,13 @@
+import os
 import shutil
+import stat
 import sqlite3
 import tempfile
 import unittest
 from contextlib import closing
 from pathlib import Path
 
+from backup_database import backup_database
 from restore_database import restore_database
 
 
@@ -20,6 +23,17 @@ class RestoreDatabaseTests(unittest.TestCase):
             database.execute("INSERT INTO tickets VALUES ('first')")
         self.source = self.backups / "empire-test.sqlite3"
         shutil.copyfile(self.target, self.source)
+
+    @unittest.skipUnless(os.name == "posix", "Права POSIX")
+    def test_backup_files_are_private_under_permissive_umask(self):
+        original_umask = os.umask(0)
+        try:
+            backup = backup_database(self.target, self.backups)
+            previous = restore_database(backup, self.target, self.backups)
+        finally:
+            os.umask(original_umask)
+        for path in (backup, previous):
+            self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o600)
 
     def test_restore_preserves_previous_database(self):
         with sqlite3.connect(self.target) as database:
